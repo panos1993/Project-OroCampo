@@ -8,7 +8,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class DatabaseHelper
+    public partial class DatabaseHelper
     {
         public async Task<Guid> SaveProduct(Product product, string connectionString)
         {
@@ -48,7 +48,7 @@
                 // Open the connection async
                 await sqlConnection.OpenAsync();
 
-                var query = "SELECT * FROM [dbo].[Product] (NOLOCK) WHERE [ProductId] = @productId ";
+                var query = "SELECT * FROM [dbo].[Product] (NOLOCK) WHERE [Id] = @productId ";
 
                 var product = await sqlConnection.QueryFirstOrDefaultAsync<Product>(query, new { productId });
 
@@ -58,7 +58,7 @@
             }
         }
 
-        public async Task<List<Product>> GetRoutePoints(string connectionString)
+        public async Task<List<Product>> GetProducts(string connectionString)
         {
             // We create an sql connection 
             using (var sqlConnection = new SqlConnection(connectionString))
@@ -75,6 +75,5 @@
                 return products.ToList();
             }
         }
-
     }
 }
