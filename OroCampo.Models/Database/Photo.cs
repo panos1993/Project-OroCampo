@@ -6,7 +6,7 @@
     {
         public Guid Id { get; set; }
 
-        public string PhotoString { get; set; }
+        public string PhotoData { get; set; }
 
         public string Description { get; set; }
 

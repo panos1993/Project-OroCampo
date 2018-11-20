@@ -1,12 +1,14 @@
 ﻿namespace OroCampo.DatabaseHandler
 {
-    using Dapper;
-    using OroCampo.Models.Database;
     using System;
     using System.Collections.Generic;
     using System.Data.SqlClient;
     using System.Linq;
     using System.Threading.Tasks;
+
+    using Dapper;
+
+    using OroCampo.Models.Database;
 
     public partial class DatabaseHelper
     {
@@ -19,14 +21,14 @@
                 await sqlConnection.OpenAsync();
 
                 var query =
-                    "INSERT INTO [dbo].[Photo] ([DateTime], [Photo], [Description], [CategoryId]) OUTPUT INSERTED.Id ";
-                query += "VALUES (GETDATE(), @photo, @description, @categoryId)";
+                    "INSERT INTO [dbo].[Photo] ([DateTime], [PhotoData], [Description], [CategoryId]) OUTPUT INSERTED.Id ";
+                query += "VALUES (GETDATE(), @photoData, @description, @categoryId)";
 
                 var insertedId = await sqlConnection.QuerySingleAsync<Guid>(
                                      query,
                                      new
                                      {
-                                         photo = photo.PhotoString,
+                                         photoData = photo.PhotoData,
                                          description = photo.Description,
                                          categoryId = photo.CategoryId
                                      });

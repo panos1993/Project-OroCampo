@@ -41,7 +41,7 @@ namespace OroCampo.DatabaseHandler
             }
         }
 
-        public async Task<Service> GetProduct(Guid serviceId, string connectionString)
+        public async Task<Service> GetService(Guid serviceId, string connectionString)
         {
             // We create an sql connection 
             using (var sqlConnection = new SqlConnection(connectionString))
@@ -59,7 +59,7 @@ namespace OroCampo.DatabaseHandler
             }
         }
 
-        public async Task<List<Service>> GetProducts(string connectionString)
+        public async Task<List<Service>> GetServices(string connectionString)
         {
             // We create an sql connection 
             using (var sqlConnection = new SqlConnection(connectionString))
