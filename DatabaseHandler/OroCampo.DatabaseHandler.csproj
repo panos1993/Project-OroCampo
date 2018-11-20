@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="DatabaseHelper.Photo.cs" />
     <Compile Include="DatabaseHelper.PhotoCategory.cs" />
+    <Compile Include="DatabaseHelper.BlogPost.cs" />
     <Compile Include="DatabaseHelper.Product.cs" />
     <Compile Include="DatabaseHelperService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,6 +59,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseHelper.ProductCategory.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\Photo.cs" />
+    <Compile Include="Database\BlogPost.cs" />
     <Compile Include="Database\PhotoCategory.cs" />
     <Compile Include="Database\Product.cs" />
     <Compile Include="Database\ProductCategory.cs" />
