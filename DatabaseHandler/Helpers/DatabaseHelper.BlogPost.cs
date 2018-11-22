@@ -1,4 +1,4 @@
-﻿namespace OroCampo.DatabaseHandler
+﻿namespace OroCampo.DatabaseHandler.Helpers
 {
     using System;
     using System.Collections.Generic;
@@ -12,7 +12,7 @@
 
     public partial class DatabaseHelper
     {
-         public async Task<Guid> SaveBlogPost(BlogPost blogPost, string connectionString)
+         public static async Task<Guid> SaveBlogPost(BlogPost blogPost, string connectionString)
         {
             // We create an sql connection 
             using (var sqlConnection = new SqlConnection(connectionString))
@@ -41,7 +41,7 @@
             }
         }
 
-        public async Task<BlogPost> GetBlogPost(Guid blogPostId, string connectionString)
+        public static async Task<BlogPost> GetBlogPost(Guid blogPostId, string connectionString)
         {
             // We create an sql connection 
             using (var sqlConnection = new SqlConnection(connectionString))
@@ -59,7 +59,7 @@
             }
         }
 
-        public async Task<List<BlogPost>> GetBlogPosts(string connectionString)
+        public static async Task<List<BlogPost>> GetBlogPosts(string connectionString)
         {
             // We create an sql connection 
             using (var sqlConnection = new SqlConnection(connectionString))

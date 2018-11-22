@@ -1,6 +1,4 @@
-﻿
-
-namespace OroCampo.DatabaseHandler
+﻿namespace OroCampo.DatabaseHandler.Helpers
 {
     using Dapper;
     using OroCampo.Models.Database;
@@ -10,9 +8,9 @@ namespace OroCampo.DatabaseHandler
     using System.Linq;
     using System.Threading.Tasks;
 
-    public class DatabaseHelperService
+    public partial class DatabaseHelper
     {
-        public async Task<Guid> SaveService(Service service, string connectionString)
+        public static async Task<Guid> SaveService(Service service, string connectionString)
         {
             // We create an sql connection 
             using (var sqlConnection = new SqlConnection(connectionString))
@@ -41,7 +39,7 @@ namespace OroCampo.DatabaseHandler
             }
         }
 
-        public async Task<Service> GetService(Guid serviceId, string connectionString)
+        public static async Task<Service> GetService(Guid serviceId, string connectionString)
         {
             // We create an sql connection 
             using (var sqlConnection = new SqlConnection(connectionString))
@@ -59,7 +57,7 @@ namespace OroCampo.DatabaseHandler
             }
         }
 
-        public async Task<List<Service>> GetServices(string connectionString)
+        public static async Task<List<Service>> GetServices(string connectionString)
         {
             // We create an sql connection 
             using (var sqlConnection = new SqlConnection(connectionString))

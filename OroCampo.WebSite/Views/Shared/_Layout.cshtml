@@ -24,6 +24,12 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                    @* This will only appear when loged in *@
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Add Photo Category", "Index", "Admin")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

@@ -1,18 +1,16 @@
-﻿namespace OroCampo.DatabaseHandler
+﻿namespace OroCampo.DatabaseHandler.Helpers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data.SqlClient;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    using Dapper;
-
     using OroCampo.Models.Database;
+    using System;
+    using System.Data.SqlClient;
+    using System.Threading.Tasks;
+    using Dapper;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public partial class DatabaseHelper
     {
-        public async Task<Guid> SavePhoto(Photo photo, string connectionString)
+        public static async Task<Guid> SaveProduct(Product product, string connectionString)
         {
             // We create an sql connection 
             using (var sqlConnection = new SqlConnection(connectionString))
@@ -21,16 +19,17 @@
                 await sqlConnection.OpenAsync();
 
                 var query =
-                    "INSERT INTO [dbo].[Photo] ([DateTime], [PhotoData], [Description], [CategoryId]) OUTPUT INSERTED.Id ";
-                query += "VALUES (GETDATE(), @photoData, @description, @categoryId)";
+                    "INSERT INTO [dbo].[Product] ([DateTime], [Name], [Description], [Photo], [CategoryId]) OUTPUT INSERTED.Id ";
+                query += "VALUES (GETDATE(), @name, @description, @photo, @categoryId)";
 
                 var insertedId = await sqlConnection.QuerySingleAsync<Guid>(
                                      query,
                                      new
                                      {
-                                         photoData = photo.PhotoData,
-                                         description = photo.Description,
-                                         categoryId = photo.CategoryId
+                                         name =product.Name,
+                                         description = product.Description,
+                                         photo = product.Photo,
+                                         categoryId = product.CategoryId
                                      });
 
                 // Close the connection with database
@@ -41,7 +40,7 @@
             }
         }
 
-        public async Task<Photo> GetPhoto(Guid photoId, string connectionString)
+        public static async Task<Product> GetProduct(Guid productId, string connectionString)
         {
             // We create an sql connection 
             using (var sqlConnection = new SqlConnection(connectionString))
@@ -49,19 +48,17 @@
                 // Open the connection async
                 await sqlConnection.OpenAsync();
 
-                var query = "SELECT * FROM [dbo].[Photo] (NOLOCK) WHERE [Id] = @photoId ";
+                var query = "SELECT * FROM [dbo].[Product] (NOLOCK) WHERE [Id] = @productId ";
 
-                var photo = await sqlConnection.QueryFirstOrDefaultAsync<Photo>(query, new { photoId });
+                var product = await sqlConnection.QueryFirstOrDefaultAsync<Product>(query, new { productId });
 
-                // Close the connection with database
                 sqlConnection.Close();
 
-                // Return id
-                return photo;
+                return product;
             }
         }
 
-        public async Task<List<Photo>> GetPhotos(string connectionString)
+        public static async Task<List<Product>> GetProducts(string connectionString)
         {
             // We create an sql connection 
             using (var sqlConnection = new SqlConnection(connectionString))
@@ -69,13 +66,13 @@
                 // Open the connection async
                 await sqlConnection.OpenAsync();
 
-                var query = "SELECT * FROM [dbo].[Photo] (NOLOCK)";
+                var query = "SELECT * FROM [dbo].[Product] (NOLOCK)";
 
-                var photos = await sqlConnection.QueryAsync<Photo>(query);
+                var products = await sqlConnection.QueryAsync<Product>(query);
 
                 sqlConnection.Close();
 
-                return photos.ToList();
+                return products.ToList();
             }
         }
     }

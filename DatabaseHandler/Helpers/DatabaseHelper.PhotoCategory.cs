@@ -1,16 +1,18 @@
-﻿namespace OroCampo.DatabaseHandler
+﻿namespace OroCampo.DatabaseHandler.Helpers
 {
-    using OroCampo.Models.Database;
     using System;
-    using System.Data.SqlClient;
-    using System.Threading.Tasks;
-    using Dapper;
     using System.Collections.Generic;
+    using System.Data.SqlClient;
     using System.Linq;
+    using System.Threading.Tasks;
+
+    using Dapper;
+
+    using OroCampo.Models.Database;
 
     public partial class DatabaseHelper
     {
-        public async Task<Guid> SaveProduct(Product product, string connectionString)
+        public static async Task<Guid> SavePhotoCategory(PhotoCategory photoCategory, string connectionString)
         {
             // We create an sql connection 
             using (var sqlConnection = new SqlConnection(connectionString))
@@ -19,17 +21,14 @@
                 await sqlConnection.OpenAsync();
 
                 var query =
-                    "INSERT INTO [dbo].[Product] ([DateTime], [Name], [Description], [Photo], [CategoryId]) OUTPUT INSERTED.Id ";
-                query += "VALUES (GETDATE(), @name, @description, @photo, @categoryId)";
+                    "INSERT INTO [dbo].[PhotoCategory] ([Name]) OUTPUT INSERTED.Id ";
+                query += "VALUES (@name)";
 
                 var insertedId = await sqlConnection.QuerySingleAsync<Guid>(
                                      query,
                                      new
                                      {
-                                         name =product.Name,
-                                         description = product.Description,
-                                         photo = product.Photo,
-                                         categoryId = product.CategoryId
+                                         name = photoCategory.Name,
                                      });
 
                 // Close the connection with database
@@ -40,7 +39,7 @@
             }
         }
 
-        public async Task<Product> GetProduct(Guid productId, string connectionString)
+        public static async Task<PhotoCategory> GetPhotoCategory(Guid photoCategoryId, string connectionString)
         {
             // We create an sql connection 
             using (var sqlConnection = new SqlConnection(connectionString))
@@ -48,17 +47,17 @@
                 // Open the connection async
                 await sqlConnection.OpenAsync();
 
-                var query = "SELECT * FROM [dbo].[Product] (NOLOCK) WHERE [Id] = @productId ";
+                var query = "SELECT * FROM [dbo].[PhotoCategory] (NOLOCK) WHERE [Id] = @photoCategoryId ";
 
-                var product = await sqlConnection.QueryFirstOrDefaultAsync<Product>(query, new { productId });
+                var photoCategory = await sqlConnection.QueryFirstOrDefaultAsync<PhotoCategory>(query, new { photoCategoryId });
 
                 sqlConnection.Close();
 
-                return product;
+                return photoCategory;
             }
         }
 
-        public async Task<List<Product>> GetProducts(string connectionString)
+        public static async Task<List<PhotoCategory>> GetPhotoCategories(string connectionString)
         {
             // We create an sql connection 
             using (var sqlConnection = new SqlConnection(connectionString))
@@ -66,13 +65,13 @@
                 // Open the connection async
                 await sqlConnection.OpenAsync();
 
-                var query = "SELECT * FROM [dbo].[Product] (NOLOCK)";
+                var query = "SELECT * FROM [dbo].[PhotoCategory] (NOLOCK)";
 
-                var products = await sqlConnection.QueryAsync<Product>(query);
+                var photoCategories = await sqlConnection.QueryAsync<PhotoCategory>(query);
 
                 sqlConnection.Close();
 
-                return products.ToList();
+                return photoCategories.ToList();
             }
         }
     }
