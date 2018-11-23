@@ -1,0 +1,53 @@
+﻿@model OroCampo.WebSite.Models.PhotoModel
+@{
+    ViewBag.Title = "Manage Product Category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("SavePhoto", "Admin", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "saveProgramForm" }))
+{
+    @Html.AntiForgeryToken()
+    <h2>Διαχείρηση Φωτογραφιών</h2>
+
+    @Html.Label("Περιγραφή φωτογραφίας:")
+    <text>&ensp;</text>
+    @Html.TextBoxFor(m => m.NewPhotoDescription)
+    <text>&ensp; &ensp; &ensp; &ensp;</text>
+    @Html.Label("Επιλογή Φωτογραφίας")
+    <text>&ensp;</text>
+    <td><button type="button" class="btn btn-primary">Άνοιγμα</button></td>
+    <br/><br/><br/>
+    <input type="submit" class="btn alert-success" value="Submit" />
+}
+
+@if (Model.Photos != null && Model.Photos.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="row">Id</th>
+                <th scope="col">Περιγραφή εικόνας</th>
+                <th scope="col">Εικόνα</th>
+                <th scope="col">Ενέργιες</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @for (int i = 0; i < Model.Photos.Count; i++)
+            {
+                var temp = Model.Photos[i];
+
+                <tr>
+                    <th scope="row">@i</th>
+                    <td>@temp.Description</td>
+                    <td>@temp.PhotoData</td> @*edw pera kapws prepei na metatrepoume to kwdika tis fwtografias se fwtografia*@
+                    <td><button type="button" class="btn btn-danger">Διαγραφή</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1>Δεν υπάρχουν φωτογραφίες</h1>
+}

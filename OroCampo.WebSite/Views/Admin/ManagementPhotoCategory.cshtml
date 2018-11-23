@@ -8,21 +8,22 @@
 @using (Html.BeginForm("SavePhotoCategory", "Admin", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "saveProgramForm" }))
 {
     @Html.AntiForgeryToken()
-    <h2>Add a category name</h2>
+    <h2>Διαχείρηση των κατηγοριών για τις φωτογραφίες</h2>
 
-    @Html.LabelFor(m => m.NewPhotoCategoryName)
+    @Html.Label("Κατηγορία Φωτογραφίας")
+    <text>&ensp;</text>
     @Html.TextBoxFor(m => m.NewPhotoCategoryName)
     <input type="submit" value="Submit" />
     @*<button type="submit" id="submitProgramForm" class="btn btn-primary waves-effect w-md waves-light m-b-5">*@
 }
 
 
-@*<form action="/OroCampo.WebSite/Admin/SavePhotoCategory" class="form-horizontal" id="saveProgramForm" method="post" role="form"> 
-    <h2>Add a category name</h2>
-    <label for="NewPhotoCategoryName">NewPhotoCategoryName</label>
-    <input id="NewPhotoCategoryName" name="NewPhotoCategoryName" type="text" value="">    
-    <input type="submit" value="Submit">
-</form>*@
+@*<form action="/OroCampo.WebSite/Admin/SavePhotoCategory" class="form-horizontal" id="saveProgramForm" method="post" role="form">
+        <h2>Add a category name</h2>
+        <label for="NewPhotoCategoryName">NewPhotoCategoryName</label>
+        <input id="NewPhotoCategoryName" name="NewPhotoCategoryName" type="text" value="">
+        <input type="submit" value="Submit">
+    </form>*@
 
 @if (Model.PhotoCategories != null && Model.PhotoCategories.Any())
 {
