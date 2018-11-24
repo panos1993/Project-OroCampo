@@ -1,0 +1,10 @@
+﻿
+@{
+    ViewBag.Title = "CheckIfAuthenticated";
+}
+
+@if (!Request.IsAuthenticated)
+{
+   Response.Redirect("~/Home/Index");
+}
+

@@ -278,6 +278,7 @@
     <Content Include="Views\Admin\ManagementPhoto.cshtml" />
     <Content Include="Views\Admin\ManagementService.cshtml" />
     <Content Include="Views\Admin\ManagementBlogPost.cshtml" />
+    <Content Include="Views\Shared\CheckIfAuthenticated.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

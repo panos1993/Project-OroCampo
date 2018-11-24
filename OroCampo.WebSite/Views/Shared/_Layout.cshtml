@@ -52,14 +52,14 @@
                     @if (Request.IsAuthenticated)
                     {
                         <li class="dropdown">
-                            <a href="javascript:void(0)">Διαχείρηση Βάσης Δεδομένων</a>
+                            <a href="javascript:void(0)">Διαχείρηση</a>
                             <div class="dropdown-content">
                                 @Html.ActionLink("Προσθήκη κατηγορίας φωτογραφίας", "ManagementPhotoCategory", "Admin")
-                                @Html.ActionLink("Προσθήκη κατηγορίας Προϊόντος", "ManagementProductCategory", "Admin")
-                                @Html.ActionLink("Προσθήκη Προϊόντος", "ManagementProduct", "Admin")
+                                @Html.ActionLink("Προσθήκη κατηγορίας προϊόντος", "ManagementProductCategory", "Admin")
+                                @Html.ActionLink("Προσθήκη προϊόντος", "ManagementProduct", "Admin")
                                 @Html.ActionLink("Προσθήκη φωτογραφίας","ManagementPhoto","Admin")
-                                @Html.ActionLink("Προσθήκη Υπηρεσίας","ManagementService","Admin")
-                                @Html.ActionLink("Προσθήκη Νέου Blog post","ManagementBlogPost","Admin")
+                                @Html.ActionLink("Προσθήκη υπηρεσίας","ManagementService","Admin")
+                                @Html.ActionLink("Προσθήκη άρθρου","ManagementBlogPost","Admin")
                             </div>
 
                         </li>
