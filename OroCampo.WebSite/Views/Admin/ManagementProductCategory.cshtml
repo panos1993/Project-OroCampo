@@ -4,44 +4,56 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm("SaveProductCategory", "Admin", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "saveProgramForm" }))
+
+<div class="jumbotron margin-top-25">
+    <h1 class="display-4">Κατηγορίες προϊόντων</h1>
+    <p class="lead">Εδώ μπορείτε να προσθέσετε μία νέα κατηγορία προϊόντος ή να διαγράψετε μία υπάρχουσα αν αυτή δεν χρησιμοποιείται.</p>
+    <hr class="my-4">
+    <p>Πληκτρολογήστε το όνομα της νέας κατηγορίας και πατήστε το κουμπί "Εισαγωγή" για να την προσθέσετε. Αν τώρα θέλετε να διαγράψετε μια κατηγορία πατήστε το κουμπί "Διαγραφή" δίπλα σε κάθε γραμμή κατηγορίας παρακάτω.</p>
+    <hr class="my-4">
+    @using (Html.BeginForm("SaveProductCategory", "Admin", FormMethod.Post, new { @class = "form-inline", role = "form", id = "saveProgramForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <label for="productCategoryName">Όνομα νέου προϊόντος</label>
+            @Html.TextBoxFor(m => m.NewProductCategoryName, new { id = "productCategoryName", @class = "form-control", @required = "required" })
+        </div>
+
+        <button type="submit" class="btn btn-success">Εισαγωγή</button>     
+    }
+</div>
+
+@if (Model.ProductCategories != null && Model.ProductCategories.Any())
 {
-    @Html.AntiForgeryToken()
-    <h2>Διαχείρηση των κατηγοριών για τις φωτογραφίες</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th class="text-center" scope="row">Id</th>
+            <th class="text-center" scope="col">Όνομα κατηγορίας</th>
+            <th class="text-center" scope="col">Ενέργιες</th>
+        </tr>
+        </thead>
+        <tbody>
 
-    @Html.Label("Κατηγορίας Προϊόντος:")
-    <text>&ensp;</text>
-        @Html.TextBoxFor(m => m.NewProductCategoryName)
-        <input type="submit" value="Submit" />
-        }
-
-        @if (Model.ProductCategories != null && Model.ProductCategories.Any())
+        @for (int i = 0; i < Model.ProductCategories.Count; i++)
         {
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="row">Id</th>
-                        <th scope="col">Όνομα κατηγορίας</th>
-                        <th scope="col">Ενέργιες</th>
-                    </tr>
-                </thead>
-                <tbody>
+            var temp = Model.ProductCategories[i];
 
-                    @for (int i = 0; i < Model.ProductCategories.Count; i++)
-                    {
-                        var temp = Model.ProductCategories[i];
-
-                        <tr>
-                            <th scope="row">@i</th>
-                            <td>@temp.Name</td>
-                            <td><button type="button" class="btn btn-danger">Διαγραφή</button></td>
-                        </tr>
-
-                    }
-                </tbody>
-            </table>
+            <tr>
+                <th class="text-center" scope="row">@i</th>
+                <td class="text-center">@temp.Name</td>
+                <td class="text-center">
+                    <button type="button" class="btn btn-danger">Διαγραφή</button>
+                </td>
+            </tr>
         }
-        else
-        {
-            <h1>Δεν υπάρχουν κατηγορίες Προϊόντων</h1>
-        }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="jumbotron margin-top-25">
+        <h2 class="text-center">Δεν υπάρχουν κατηγορίες Προϊόντων</h2>
+    </div>
+}
