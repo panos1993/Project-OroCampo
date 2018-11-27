@@ -75,5 +75,23 @@
                 return products.ToList();
             }
         }
+
+        public static async Task<List<Product>> GetProductsByCategoryId(string connectionString, Guid productCategoryId)
+        {
+            // We create an sql connection 
+            using (var sqlConnection = new SqlConnection(connectionString))
+            {
+                // Open the connection async
+                await sqlConnection.OpenAsync();
+
+                var query = "SELECT * FROM [dbo].[Product] (NOLOCK) WHERE [CategoryId] = @productCategoryId";
+
+                var products = await sqlConnection.QueryAsync<Product>(query, new { productCategoryId });
+
+                sqlConnection.Close();
+
+                return products.ToList();
+            }
+        }
     }
 }

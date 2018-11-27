@@ -1,9 +1,10 @@
-﻿using OroCampo.Models.Database;
-using System;
-using System.Collections.Generic;
+﻿
 
 namespace OroCampo.WebSite.Models
 {
+    using OroCampo.Models.Database;
+    using System;
+    using System.Collections.Generic;
     public class PhotoCategoryModel
     {
         public List<PhotoCategory> PhotoCategories { get; set; }
@@ -11,5 +12,7 @@ namespace OroCampo.WebSite.Models
         public string NewPhotoCategoryName { get; set; }
 
         public Guid? PhotoCategoryIdToDelete { get; set; }
+
+        public string Message { get; set; }
     }
 }

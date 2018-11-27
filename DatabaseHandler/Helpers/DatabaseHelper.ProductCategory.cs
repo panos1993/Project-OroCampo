@@ -72,5 +72,23 @@
                 return productCategories.ToList();
             }
         }
+
+        public static async Task<bool> DeleteProductCategory(string connectionString, Guid productCategoryId)
+        {
+            // We create an sql connection 
+            using (var sqlConnection = new SqlConnection(connectionString))
+            {
+                // Open the connection async
+                await sqlConnection.OpenAsync();
+
+                var query = "DELETE FROM [dbo].[ProductCategory] WHERE [Id] = @productCategoryId";
+
+                var deletedRows = await sqlConnection.ExecuteAsync(query, new { productCategoryId });
+
+                sqlConnection.Close();
+
+                return deletedRows == 1;
+            }
+        }
     }
 }

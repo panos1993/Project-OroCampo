@@ -6,7 +6,32 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style>
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
 
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #f1f1f1
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -28,7 +53,21 @@
                     @* This will only appear when loged in *@
                     @if (Request.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Add Photo Category", "Index", "Admin")</li>
+                        <li class="dropdown">
+                            <a href="javascript:void(0)">Διαχείρηση</a>
+                            <div class="dropdown-content">
+                                @Html.ActionLink("Προσθήκη κατηγορίας φωτογραφίας", "ManagementPhotoCategory", "Admin")
+                                @Html.ActionLink("Προσθήκη κατηγορίας προϊόντος", "ManagementProductCategory", "Admin")
+                                @Html.ActionLink("Προσθήκη προϊόντος", "ManagementProduct", "Admin")
+                                @Html.ActionLink("Προσθήκη φωτογραφίας", "ManagementPhoto", "Admin")
+                                @Html.ActionLink("Προσθήκη υπηρεσίας", "ManagementService", "Admin")
+                                @Html.ActionLink("Προσθήκη άρθρου", "ManagementBlogPost", "Admin")
+                            </div>
+
+                        </li>
+
+
+
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -39,12 +78,13 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Oro Campo</p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/sitequery")
     @RenderSection("scripts", required: false)
 </body>
 </html>
