@@ -9,21 +9,21 @@
 
 
 <div class="jumbotron margin-top-25">
-    <h1 class="display-4">Κατηγορίες φωτογραφίας</h1>
-    <p class="lead">Εδώ μπορείτε να προσθέσετε μία νέα κατηγορία φωτογραφίας ή να διαγράψετε μία υπάρχουσα αν αυτή δεν χρησιμοποιείται.</p>
+    <h1 class="display-4">@Resourse.photo_category</h1>
+    <p class="lead">@Resourse.photo_category_first_text</p>
     <hr class="my-4">
-    <p>Πληκτρολογήστε το όνομα της νέας κατηγορίας και πατήστε το κουμπί "Εισαγωγή" για να την προσθέσετε. Αν τώρα θέλετε να διαγράψετε μια κατηγορία πατήστε το κουμπί "Διαγραφή" δίπλα σε κάθε γραμμή κατηγορίας παρακάτω.</p>
+    <p>@Resourse.photo_category_second_text</p>
     <hr class="my-4">
     @using (Html.BeginForm("SavePhotoCategory", "Admin", FormMethod.Post, new { @class = "form-inline", role = "form", id = "saveProgramForm" }))
     {
         @Html.AntiForgeryToken()
 
         <div class="form-group">
-            <label for="photoCategoryName">Όνομα νέας φωτογραφίας</label>
+            <label for="photoCategoryName">@Resourse.photo_category_text_box_label</label>
             @Html.TextBoxFor(m => m.NewPhotoCategoryName, new { id = "photoCategoryName", @class = "form-control", @required = "required" })
         </div>
 
-        <button type="submit" class="btn btn-success">Εισαγωγή</button>
+        <button type="submit" class="btn btn-success">@Resourse.button_insert</button>
     }
 </div>
 
@@ -32,9 +32,9 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th class="text-center" scope="row">Id</th>
-            <th class="text-center" scope="col">Όνομα κατηγορίας</th>
-            <th class="text-center" scope="col">Ενέργιες</th>
+            <th class="text-center" scope="row">@Resourse.column_id</th>
+            <th class="text-center" scope="col">@Resourse.column_name_category</th>
+            <th class="text-center" scope="col">@Resourse.column_actions</th>
         </tr>
         </thead>
         <tbody>
@@ -47,7 +47,7 @@
                 <th class="text-center" scope="row">@i</th>
                 <td class="text-center">@temp.Name</td>
                 <td class="text-center">
-                    <button type="button" class="btn btn-danger">Διαγραφή</button>
+                    <button type="button" class="btn btn-danger">@Resourse.button_delete</button>
                 </td>
             </tr>
         }
@@ -57,6 +57,6 @@
 else
 {
     <div class="jumbotron margin-top-25">
-        <h2 class="text-center">Δεν υπάρχουν κατηγορίες φωτογραφιών</h2>
+        <h2 class="text-center">@Resourse.photo_category_no_categories_available</h2>
     </div>
 }

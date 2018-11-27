@@ -4,6 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@Html.Partial("CheckIfAuthenticated")
+
 @using (Html.BeginForm("SavePhoto", "Admin", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "saveProgramForm" }))
 {
     @Html.AntiForgeryToken()
@@ -16,7 +18,7 @@
     @Html.Label("Επιλογή Φωτογραφίας")
     <text>&ensp;</text>
     <td><button type="button" class="btn btn-primary">Άνοιγμα</button></td>
-    <br/><br/><br/>
+    <br /><br /><br />
     <input type="submit" class="btn alert-success" value="Submit" />
 }
 

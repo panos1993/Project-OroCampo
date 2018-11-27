@@ -13,6 +13,8 @@ namespace OroCampo.WebSite.Models
 
         public string NewProductCategoryName { get; set; }
 
-        public Guid? ProductCategoryIdToDelete { get; set; }
+        public string Message { get; set; }
+
+        public bool Success { get; set; }
     }
 }

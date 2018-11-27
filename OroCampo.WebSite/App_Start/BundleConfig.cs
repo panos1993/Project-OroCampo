@@ -25,6 +25,10 @@ namespace OroCampo.WebSite
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/Site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/sitequery").Include(
+                "~/Scripts/site.js"));
+
         }
     }
 }
