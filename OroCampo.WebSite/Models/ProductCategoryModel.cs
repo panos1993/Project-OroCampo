@@ -1,10 +1,7 @@
 ﻿
 namespace OroCampo.WebSite.Models
 {
-    using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
     using OroCampo.Models.Database;
 
     public class ProductCategoryModel
