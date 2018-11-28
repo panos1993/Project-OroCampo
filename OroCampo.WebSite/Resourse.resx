@@ -153,6 +153,9 @@
   <data name="photo_category_unable_to_delete_existing_photos" xml:space="preserve">
     <value>Αδυναμία διαγραφής. Υπάρχουν φωτογραφίες που χρησιμοποιούν αυτήν την κατηγορία.</value>
   </data>
+  <data name="product" xml:space="preserve">
+    <value>Προϊόντα</value>
+  </data>
   <data name="product_category" xml:space="preserve">
     <value>Κατηγορίες προϊόντων</value>
   </data>
@@ -170,6 +173,9 @@
   </data>
   <data name="product_category_unable_to_delete_existing_products" xml:space="preserve">
     <value>Αδυναμία διαγραφής. Υπάρχουν προϊόντα που χρησιμοποιούν αυτήν την κατηγορία.</value>
+  </data>
+  <data name="product_first_text" xml:space="preserve">
+    <value>Εδώ μπορείται να προσθέσεται ένα νέο προϊόν</value>
   </data>
   <data name="something_went_wrong" xml:space="preserve">
     <value>😢 Κάτι πήγε στραβά</value>

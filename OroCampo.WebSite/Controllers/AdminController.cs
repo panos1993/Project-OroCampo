@@ -1,6 +1,8 @@
 ﻿
 
 using System;
+using System.IO;
+using System.Web;
 
 namespace OroCampo.WebSite.Controllers
 {
@@ -10,6 +12,8 @@ namespace OroCampo.WebSite.Controllers
     using OroCampo.Models.Database;
     using Models;
     using ConfigurationManager = System.Configuration.ConfigurationManager;
+    using System.Collections.Generic;
+
     public class AdminController : Controller
     {
         // GET: Admin
@@ -56,7 +60,21 @@ namespace OroCampo.WebSite.Controllers
         {
             var products = await DatabaseHelper.GetProducts(ConfigurationManager.AppSettings["ConnectionString"]);
 
-            return View(new ProductModel() { Products = products });
+            var categories =
+                await DatabaseHelper.GetProductCategories(ConfigurationManager.AppSettings["ConnectionString"]);
+
+            var listItems = new List<SelectListItem>();
+
+            foreach (var productCategory in categories)
+            {
+                listItems.Add(new SelectListItem()
+                {
+                    Text = productCategory.Name,
+                    Value = productCategory.Id.ToString()
+                });
+            }
+
+            return View(new ProductModel() { Products = products, Categories = listItems});
         }
 
         public async Task<ActionResult> ManagementPhoto()
@@ -113,6 +131,29 @@ namespace OroCampo.WebSite.Controllers
                 await DatabaseHelper.DeletePhotoCategory(ConfigurationManager.AppSettings["ConnectionString"], id);
             return RedirectToAction("ManagementPhotoCategory", "Admin",
                 new {message = success ? Resourse.delete_success : Resourse.something_went_wrong, success});
+        }
+
+        public async Task<ActionResult> SaveProduct(ProductModel model, HttpPostedFileBase file)
+        {
+            var theFileName = Path.GetFileName(file.FileName);
+            var thePictureAsBytes = new byte[file.ContentLength];
+            using (var theReader = new BinaryReader(file.InputStream))
+            {
+                thePictureAsBytes = theReader.ReadBytes(file.ContentLength);
+            }
+            var thePictureDataAsString = Convert.ToBase64String(thePictureAsBytes);
+
+            var productToAdd = new Product()
+            {
+                Name = model.Name,
+                Description = model.Description,
+                Photo = thePictureDataAsString,
+                CategoryId = model.ProductCategoryId
+            };
+
+            await DatabaseHelper.SaveProduct(productToAdd, ConfigurationManager.AppSettings["ConnectionString"]);
+
+            return RedirectToAction("ManagementProduct", "Admin");
         }
     }
 }

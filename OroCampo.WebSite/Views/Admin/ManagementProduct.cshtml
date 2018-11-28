@@ -1,3 +1,40 @@
-﻿
+﻿@using System.Web.Mvc.Html
+@model OroCampo.WebSite.Models.ProductModel
+
 @Html.Partial("CheckIfAuthenticated")
 
+<div class="jumbotron margin-top-25">
+    <h1>@Resourse.product</h1>
+    <p class="lead">@Resourse.product_first_text</p>
+    <hr>
+    <p>@Resourse.photo_category_second_text</p>@*TODO*@
+    @*<hr>*@
+
+    @using (Html.BeginForm("SaveProduct", "Admin", FormMethod.Post, new { role = "form", id = "saveProductForm", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <label for="productName">@Resourse.photo_category_text_box_label</label>@*TODO*@
+            @Html.TextBoxFor(m => m.Name, new { id = "productName", @class = "form-control", @required = "required" })
+        </div>
+        <div class="form-group">
+            <label for="productDescription">Περιγραφή</label>@*TODO*@
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 10, @required = "required" })
+        </div>
+        <div class="form-group">
+            <label>Κατηγορία προϊόντος</label>
+            @Html.DropDownListFor(model => model.ProductCategoryId, Model.Categories, "Κατηγορία", new { @class = "form-control", @required = "required" })
+        </div>
+        <div class="form-group">
+            <label>Αρχείο εικόνας</label><br />
+            <label class="btn btn-danger btn-file">
+                Είκονα @Html.TextBox("file", "", new { type = "file" }) <br />
+                @Html.ValidationMessageFor(model => model.Photo)
+            </label>
+        </div>
+
+        <button type="submit" class="btn btn-success">@Resourse.button_insert</button>
+    }
+
+</div>

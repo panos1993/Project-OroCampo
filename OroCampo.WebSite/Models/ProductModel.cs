@@ -1,4 +1,6 @@
 ﻿
+using System.Web.Mvc;
+
 namespace OroCampo.WebSite.Models
 {
     using System;
@@ -9,14 +11,14 @@ namespace OroCampo.WebSite.Models
     {
         public List<Product> Products { get; set; }
 
-        public string NewProductName { get; set; }
+        public List<SelectListItem> Categories { get; set; }
 
-        public string NewProductDescription { get; set; }
+        public string Name { get; set; }
 
-        public string NewProductPhoto { get; set; }
+        public string Description { get; set; }
+
+        public string Photo { get; set; }
 
         public Guid ProductCategoryId { get; set; }
-
-        public Guid? ProductIdToDelete { get; set; }
     }
 }

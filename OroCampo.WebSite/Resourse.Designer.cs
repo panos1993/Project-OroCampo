@@ -169,6 +169,15 @@ namespace OroCampo.WebSite {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Προϊόντα.
+        /// </summary>
+        public static string product {
+            get {
+                return ResourceManager.GetString("product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Κατηγορίες προϊόντων.
         /// </summary>
         public static string product_category {
@@ -219,6 +228,15 @@ namespace OroCampo.WebSite {
         public static string product_category_unable_to_delete_existing_products {
             get {
                 return ResourceManager.GetString("product_category_unable_to_delete_existing_products", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Εδώ μπορείται να προσθέσεται ένα νέο προϊόν.
+        /// </summary>
+        public static string product_first_text {
+            get {
+                return ResourceManager.GetString("product_first_text", resourceCulture);
             }
         }
         
