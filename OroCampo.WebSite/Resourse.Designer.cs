@@ -160,6 +160,15 @@ namespace OroCampo.WebSite {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Αδυναμία διαγραφής. Υπάρχουν φωτογραφίες που χρησιμοποιούν αυτήν την κατηγορία..
+        /// </summary>
+        public static string photo_category_unable_to_delete_existing_photos {
+            get {
+                return ResourceManager.GetString("photo_category_unable_to_delete_existing_photos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Κατηγορίες προϊόντων.
         /// </summary>
         public static string product_category {

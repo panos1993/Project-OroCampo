@@ -10,6 +10,5 @@ function dismissAlerts() {
     for (var i = 0; i < alerts.length; i++) {
         var alert = alerts[i];
         alert.remove();
-        // alert.hide('slow', function () {alert.remove(); });
     }
 }

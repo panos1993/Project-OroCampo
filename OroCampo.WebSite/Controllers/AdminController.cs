@@ -13,12 +13,12 @@ namespace OroCampo.WebSite.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
-        public async Task<ActionResult> ManagementPhotoCategory()
+        public async Task<ActionResult> ManagementPhotoCategory(string message = null, bool success = false)
         {
 
             var categories = await DatabaseHelper.GetPhotoCategories(ConfigurationManager.AppSettings["ConnectionString"]);
 
-            return View(new PhotoCategoryModel() { PhotoCategories = categories });
+            return View(new PhotoCategoryModel() { PhotoCategories = categories, Message = message, Success  = success});
         }
 
         public async Task<ActionResult> SavePhotoCategory(PhotoCategoryModel model)
@@ -97,6 +97,22 @@ namespace OroCampo.WebSite.Controllers
             var success = await DatabaseHelper.DeleteProductCategory(ConfigurationManager.AppSettings["ConnectionString"], id);
 
             return RedirectToAction("ManagementProductCategory", "Admin", new { message = success ? Resourse.delete_success : Resourse.something_went_wrong, success});
+        }
+
+        public async Task<ActionResult> DeletePhotoCategory(Guid id)
+        {
+            var existingPhotos =
+                await DatabaseHelper.GetPhotosByCategoryId(ConfigurationManager.AppSettings["ConnectionString"], id);
+            if (existingPhotos.Count > 0)
+            {
+                return RedirectToAction("ManagementPhotoCategory", "Admin",
+                    new {message = Resourse.photo_category_unable_to_delete_existing_photos});
+            }
+
+            var success =
+                await DatabaseHelper.DeletePhotoCategory(ConfigurationManager.AppSettings["ConnectionString"], id);
+            return RedirectToAction("ManagementPhotoCategory", "Admin",
+                new {message = success ? Resourse.delete_success : Resourse.something_went_wrong, success});
         }
     }
 }

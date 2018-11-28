@@ -14,5 +14,7 @@ namespace OroCampo.WebSite.Models
         public Guid? PhotoCategoryIdToDelete { get; set; }
 
         public string Message { get; set; }
+
+        public bool Success { get; set; }
     }
 }

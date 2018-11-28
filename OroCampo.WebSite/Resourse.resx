@@ -150,6 +150,9 @@
   <data name="photo_category_text_box_label" xml:space="preserve">
     <value>Όνομα νέας φωτογραφίας</value>
   </data>
+  <data name="photo_category_unable_to_delete_existing_photos" xml:space="preserve">
+    <value>Αδυναμία διαγραφής. Υπάρχουν φωτογραφίες που χρησιμοποιούν αυτήν την κατηγορία.</value>
+  </data>
   <data name="product_category" xml:space="preserve">
     <value>Κατηγορίες προϊόντων</value>
   </data>

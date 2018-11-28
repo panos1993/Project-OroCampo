@@ -1,6 +1,6 @@
 ﻿namespace OroCampo.DatabaseHandler.Helpers
 {
-    using OroCampo.Models.Database;
+    using Models.Database;
     using System;
     using System.Data.SqlClient;
     using System.Threading.Tasks;

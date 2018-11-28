@@ -5,11 +5,9 @@
     using System.Data.SqlClient;
     using System.Linq;
     using System.Threading.Tasks;
-
     using Dapper;
-
-    using OroCampo.Models.Database;
-
+    using Models.Database;
+    
     public partial class DatabaseHelper
     {
         public static async Task<Guid> SavePhoto(Photo photo, string connectionString)
@@ -76,6 +74,42 @@
                 sqlConnection.Close();
 
                 return photos.ToList();
+            }
+        }
+
+        public static async Task<List<Photo>> GetPhotosByCategoryId(string connectionString,Guid photoCategoryId)
+        {
+            // We create an sql connection 
+            using (var sqlConnection = new SqlConnection(connectionString))
+            {
+                // Open the connection async
+                await sqlConnection.OpenAsync();
+
+                var query = "SELECT * FROM [dbo].[Photo] (NOLOCK) WHERE [CategoryId] = @photoCategoryId";
+
+                var photos = await sqlConnection.QueryAsync<Photo>(query, new { photoCategoryId });
+
+                sqlConnection.Close();
+
+                return photos.ToList();
+            }   
+        }
+
+        public static async Task<bool> DeletePhotoCategory(string connectionString, Guid photoCategoryId)
+        {
+            // We create an sql connection 
+            using (var sqlConnection = new SqlConnection(connectionString))
+            {
+                // Open the connection async
+                await sqlConnection.OpenAsync();
+
+                var query = "DELETE FROM [dbo].[PhotoCategory] WHERE [Id] = @photoCategoryId";
+
+                var deletedRows = await sqlConnection.ExecuteAsync(query, new { photoCategoryId });
+
+                sqlConnection.Close();
+
+                return deletedRows == 1;
             }
         }
     }
