@@ -123,8 +123,20 @@
   <data name="button_insert" xml:space="preserve">
     <value>Εισαγωγή</value>
   </data>
+  <data name="category" xml:space="preserve">
+    <value>Κατηγορία</value>
+  </data>
+  <data name="category_photo" xml:space="preserve">
+    <value>Κατηγορία φωτογραφίας</value>
+  </data>
+  <data name="category_text_box_label" xml:space="preserve">
+    <value>Όνομα νέας κατηγορίας</value>
+  </data>
   <data name="column_actions" xml:space="preserve">
     <value>Ενέργιες</value>
+  </data>
+  <data name="column_icon" xml:space="preserve">
+    <value>Εικόνα</value>
   </data>
   <data name="column_id" xml:space="preserve">
     <value>Id</value>
@@ -132,8 +144,26 @@
   <data name="column_name_category" xml:space="preserve">
     <value>Όνομα κατηγορίας</value>
   </data>
+  <data name="column_name_product" xml:space="preserve">
+    <value>Όνομα προϊόντος</value>
+  </data>
   <data name="delete_success" xml:space="preserve">
     <value>Επιτυχής διαγραφή</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Περιγραφή</value>
+  </data>
+  <data name="description_photo" xml:space="preserve">
+    <value>Περιγραφή φωτογραφίας</value>
+  </data>
+  <data name="number" xml:space="preserve">
+    <value>A/A</value>
+  </data>
+  <data name="photo" xml:space="preserve">
+    <value>Φωτογραφίες</value>
+  </data>
+  <data name="photos_no_available" xml:space="preserve">
+    <value>Δεν υπάρχουν φωτογραφίες</value>
   </data>
   <data name="photo_category" xml:space="preserve">
     <value>Κατηγορίες φωτογραφίας</value>
@@ -147,17 +177,26 @@
   <data name="photo_category_second_text" xml:space="preserve">
     <value>Πληκτρολογήστε το όνομα της νέας κατηγορίας και πατήστε το κουμπί "Εισαγωγή" για να την προσθέσετε. Αν τώρα θέλετε να διαγράψετε μια κατηγορία πατήστε το κουμπί "Διαγραφή" δίπλα σε κάθε γραμμή κατηγορίας παρακάτω.</value>
   </data>
-  <data name="photo_category_text_box_label" xml:space="preserve">
-    <value>Όνομα νέας φωτογραφίας</value>
-  </data>
   <data name="photo_category_unable_to_delete_existing_photos" xml:space="preserve">
     <value>Αδυναμία διαγραφής. Υπάρχουν φωτογραφίες που χρησιμοποιούν αυτήν την κατηγορία.</value>
+  </data>
+  <data name="photo_first_text" xml:space="preserve">
+    <value>Εδώ μπορείται να προσθέσεται ή να διαγράψετε μια φωτογραφία</value>
+  </data>
+  <data name="photo_second_text" xml:space="preserve">
+    <value>Εισάγετε μια περιγραφή για την φωτογραφία που θα ανεβάσεται και επιλέξτε την κατηγορία στην οποία ανοικει η φωτογραφία. Όλα τα πεδία είναι υποχρεωτικά. (Αν η κατηγορία που ανοίκει η φωτογραφία δεν υπάρχει ήδη, μπορείτε να την προσθέσεται από την επιλογή "προσθήκη κατηγορίας φωτογραφίας"). </value>
+  </data>
+  <data name="picture_file" xml:space="preserve">
+    <value>Αρχείο εικόνας:</value>
   </data>
   <data name="product" xml:space="preserve">
     <value>Προϊόντα</value>
   </data>
-  <data name="product_category" xml:space="preserve">
+  <data name="products_categories" xml:space="preserve">
     <value>Κατηγορίες προϊόντων</value>
+  </data>
+  <data name="product_category" xml:space="preserve">
+    <value>Κατηγορία προϊόντος</value>
   </data>
   <data name="product_category_first_text" xml:space="preserve">
     <value>Εδώ μπορείτε να προσθέσετε μία νέα κατηγορία προϊόντος ή να διαγράψετε μία υπάρχουσα αν αυτή δεν χρησιμοποιείται.</value>
@@ -168,14 +207,23 @@
   <data name="product_category_second_text" xml:space="preserve">
     <value>Πληκτρολογήστε το όνομα της νέας κατηγορίας και πατήστε το κουμπί "Εισαγωγή" για να την προσθέσετε. Αν τώρα θέλετε να διαγράψετε μια κατηγορία πατήστε το κουμπί "Διαγραφή" δίπλα σε κάθε γραμμή κατηγορίας παρακάτω.</value>
   </data>
-  <data name="product_category_text_box_label" xml:space="preserve">
-    <value>Όνομα νέου προϊόντος</value>
-  </data>
   <data name="product_category_unable_to_delete_existing_products" xml:space="preserve">
     <value>Αδυναμία διαγραφής. Υπάρχουν προϊόντα που χρησιμοποιούν αυτήν την κατηγορία.</value>
   </data>
+  <data name="product_description" xml:space="preserve">
+    <value>Περιγραφή προϊόντος</value>
+  </data>
   <data name="product_first_text" xml:space="preserve">
-    <value>Εδώ μπορείται να προσθέσεται ένα νέο προϊόν</value>
+    <value>Εδώ μπορείται να προσθέσεται ένα νέο προϊόν ή να διαγράψετε κάποιο προϊόν που δεν διατίθεται πλέον από την επιχείρηση.</value>
+  </data>
+  <data name="product_name" xml:space="preserve">
+    <value>Όνομα νέου προϊόντος</value>
+  </data>
+  <data name="product_no_available" xml:space="preserve">
+    <value>Δεν υπάρχουν προϊόντα</value>
+  </data>
+  <data name="product_second_text" xml:space="preserve">
+    <value>Πληκτρολογίστε το όνομα του νέου προϊόντος, εισάγετε μια περιγραφή για το προϊόν και επιλέξτε την κατηγορία στην οποία ανοικει το προϊόν που θα εισάγετε. Όλα τα πεδία είναι υποχρεωτικά. (Αν η κατηγορία που ανοίκει το προϊόν δεν υπάρχει ήδη, μπορείτε να την προσθέσεται από την επιλογή "προσθήκη κατηγορίας προϊόντος").</value>
   </data>
   <data name="something_went_wrong" xml:space="preserve">
     <value>😢 Κάτι πήγε στραβά</value>

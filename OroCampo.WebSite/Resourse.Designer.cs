@@ -79,11 +79,47 @@ namespace OroCampo.WebSite {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Κατηγορία.
+        /// </summary>
+        public static string category {
+            get {
+                return ResourceManager.GetString("category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Κατηγορία φωτογραφίας.
+        /// </summary>
+        public static string category_photo {
+            get {
+                return ResourceManager.GetString("category_photo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Όνομα νέας κατηγορίας.
+        /// </summary>
+        public static string category_text_box_label {
+            get {
+                return ResourceManager.GetString("category_text_box_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ενέργιες.
         /// </summary>
         public static string column_actions {
             get {
                 return ResourceManager.GetString("column_actions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Εικόνα.
+        /// </summary>
+        public static string column_icon {
+            get {
+                return ResourceManager.GetString("column_icon", resourceCulture);
             }
         }
         
@@ -106,11 +142,56 @@ namespace OroCampo.WebSite {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Όνομα προϊόντος.
+        /// </summary>
+        public static string column_name_product {
+            get {
+                return ResourceManager.GetString("column_name_product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Επιτυχής διαγραφή.
         /// </summary>
         public static string delete_success {
             get {
                 return ResourceManager.GetString("delete_success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Περιγραφή.
+        /// </summary>
+        public static string description {
+            get {
+                return ResourceManager.GetString("description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Περιγραφή φωτογραφίας.
+        /// </summary>
+        public static string description_photo {
+            get {
+                return ResourceManager.GetString("description_photo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A/A.
+        /// </summary>
+        public static string number {
+            get {
+                return ResourceManager.GetString("number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Φωτογραφίες.
+        /// </summary>
+        public static string photo {
+            get {
+                return ResourceManager.GetString("photo", resourceCulture);
             }
         }
         
@@ -151,20 +232,47 @@ namespace OroCampo.WebSite {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Όνομα νέας φωτογραφίας.
-        /// </summary>
-        public static string photo_category_text_box_label {
-            get {
-                return ResourceManager.GetString("photo_category_text_box_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Αδυναμία διαγραφής. Υπάρχουν φωτογραφίες που χρησιμοποιούν αυτήν την κατηγορία..
         /// </summary>
         public static string photo_category_unable_to_delete_existing_photos {
             get {
                 return ResourceManager.GetString("photo_category_unable_to_delete_existing_photos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Εδώ μπορείται να προσθέσεται ή να διαγράψετε μια φωτογραφία.
+        /// </summary>
+        public static string photo_first_text {
+            get {
+                return ResourceManager.GetString("photo_first_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Εισάγετε μια περιγραφή για την φωτογραφία που θα ανεβάσεται και επιλέξτε την κατηγορία στην οποία ανοικει η φωτογραφία. Όλα τα πεδία είναι υποχρεωτικά. (Αν η κατηγορία που ανοίκει η φωτογραφία δεν υπάρχει ήδη, μπορείτε να την προσθέσεται από την επιλογή &quot;προσθήκη κατηγορίας φωτογραφίας&quot;). .
+        /// </summary>
+        public static string photo_second_text {
+            get {
+                return ResourceManager.GetString("photo_second_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Δεν υπάρχουν φωτογραφίες.
+        /// </summary>
+        public static string photos_no_available {
+            get {
+                return ResourceManager.GetString("photos_no_available", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Αρχείο εικόνας:.
+        /// </summary>
+        public static string picture_file {
+            get {
+                return ResourceManager.GetString("picture_file", resourceCulture);
             }
         }
         
@@ -178,7 +286,7 @@ namespace OroCampo.WebSite {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Κατηγορίες προϊόντων.
+        ///   Looks up a localized string similar to Κατηγορία προϊόντος.
         /// </summary>
         public static string product_category {
             get {
@@ -214,15 +322,6 @@ namespace OroCampo.WebSite {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Όνομα νέου προϊόντος.
-        /// </summary>
-        public static string product_category_text_box_label {
-            get {
-                return ResourceManager.GetString("product_category_text_box_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Αδυναμία διαγραφής. Υπάρχουν προϊόντα που χρησιμοποιούν αυτήν την κατηγορία..
         /// </summary>
         public static string product_category_unable_to_delete_existing_products {
@@ -232,11 +331,56 @@ namespace OroCampo.WebSite {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Εδώ μπορείται να προσθέσεται ένα νέο προϊόν.
+        ///   Looks up a localized string similar to Περιγραφή προϊόντος.
+        /// </summary>
+        public static string product_description {
+            get {
+                return ResourceManager.GetString("product_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Εδώ μπορείται να προσθέσεται ένα νέο προϊόν ή να διαγράψετε κάποιο προϊόν που δεν διατίθεται πλέον από την επιχείρηση..
         /// </summary>
         public static string product_first_text {
             get {
                 return ResourceManager.GetString("product_first_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Όνομα νέου προϊόντος.
+        /// </summary>
+        public static string product_name {
+            get {
+                return ResourceManager.GetString("product_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Δεν υπάρχουν προϊόντα.
+        /// </summary>
+        public static string product_no_available {
+            get {
+                return ResourceManager.GetString("product_no_available", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Πληκτρολογίστε το όνομα του νέου προϊόντος, εισάγετε μια περιγραφή για το προϊόν και επιλέξτε την κατηγορία στην οποία ανοικει το προϊόν που θα εισάγετε. Όλα τα πεδία είναι υποχρεωτικά. (Αν η κατηγορία που ανοίκει το προϊόν δεν υπάρχει ήδη, μπορείτε να την προσθέσεται από την επιλογή &quot;προσθήκη κατηγορίας προϊόντος&quot;)..
+        /// </summary>
+        public static string product_second_text {
+            get {
+                return ResourceManager.GetString("product_second_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Κατηγορίες προϊόντων.
+        /// </summary>
+        public static string products_categories {
+            get {
+                return ResourceManager.GetString("products_categories", resourceCulture);
             }
         }
         

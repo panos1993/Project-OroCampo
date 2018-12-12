@@ -22,7 +22,7 @@ namespace OroCampo.WebSite.Controllers
 
             var categories = await DatabaseHelper.GetPhotoCategories(ConfigurationManager.AppSettings["ConnectionString"]);
 
-            return View(new PhotoCategoryModel() { PhotoCategories = categories, Message = message, Success  = success});
+            return View(new PhotoCategoryModel() { PhotoCategories = categories, Message = message, Success = success });
         }
 
         public async Task<ActionResult> SavePhotoCategory(PhotoCategoryModel model)
@@ -37,11 +37,11 @@ namespace OroCampo.WebSite.Controllers
             return RedirectToAction("ManagementPhotoCategory", "Admin");
         }
 
-        public async Task<ActionResult> ManagementProductCategory(string message = null, bool success=false)
+        public async Task<ActionResult> ManagementProductCategory(string message = null, bool success = false)
         {
             var categories = await DatabaseHelper.GetProductCategories(ConfigurationManager.AppSettings["ConnectionString"]);
 
-            return View(new ProductCategoryModel() { ProductCategories = categories, Message = message, Success = success});
+            return View(new ProductCategoryModel() { ProductCategories = categories, Message = message, Success = success });
         }
 
         public async Task<ActionResult> SaveProductCategory(ProductCategoryModel model)
@@ -56,7 +56,7 @@ namespace OroCampo.WebSite.Controllers
             return RedirectToAction("ManagementProductCategory", "Admin");
         }
 
-        public async Task<ActionResult> ManagementProduct()
+        public async Task<ActionResult> ManagementProduct(string message = null, bool success = false)
         {
             var products = await DatabaseHelper.GetProducts(ConfigurationManager.AppSettings["ConnectionString"]);
 
@@ -74,19 +74,50 @@ namespace OroCampo.WebSite.Controllers
                 });
             }
 
-            return View(new ProductModel() { Products = products, Categories = listItems});
+            return View(new ProductModel() { Products = products, Categories = listItems, Message = message, Success = success });
         }
 
-        public async Task<ActionResult> ManagementPhoto()
+        public async Task<ActionResult> ManagementPhoto(string message = null, bool success = false)
         {
             var photos = await DatabaseHelper.GetPhotos(ConfigurationManager.AppSettings["ConnectionString"]);
 
-            return View(new PhotoModel() { Photos = photos });
+            var categories =
+                await DatabaseHelper.GetPhotoCategories(ConfigurationManager.AppSettings["ConnectionString"]);
+
+            var listItems = new List<SelectListItem>();
+
+            foreach (var photoCategory in categories)
+            {
+                listItems.Add(new SelectListItem()
+                {
+                    Text = photoCategory.Name,
+                    Value = photoCategory.Id.ToString()
+                });
+            }
+
+            return View(new PhotoModel() { Photos = photos, Categories = listItems, Message = message, Success = success });
         }
 
-        public ActionResult SavePhoto()
+        public async Task<ActionResult> SavePhoto(PhotoModel model, HttpPostedFileBase file)
         {
-            throw new NotImplementedException();
+            var theFileName = Path.GetFileName(file.FileName);
+            var thePictureAsBytes = new byte[file.ContentLength];
+            using (var theReader = new BinaryReader(file.InputStream))
+            {
+                thePictureAsBytes = theReader.ReadBytes(file.ContentLength);
+            }
+            var thePictureDataAsString = Convert.ToBase64String(thePictureAsBytes);
+
+            var photoToAdd = new Photo()
+            {
+                Description = model.PhotoDescription,
+                PhotoData = thePictureDataAsString,
+                CategoryId = model.PhotoCategoryId
+            };
+
+            await DatabaseHelper.SavePhoto(photoToAdd, ConfigurationManager.AppSettings["ConnectionString"]);
+
+            return RedirectToAction("ManagementPhoto", "Admin");
         }
 
         public async Task<ActionResult> ManagementService()
@@ -114,7 +145,7 @@ namespace OroCampo.WebSite.Controllers
 
             var success = await DatabaseHelper.DeleteProductCategory(ConfigurationManager.AppSettings["ConnectionString"], id);
 
-            return RedirectToAction("ManagementProductCategory", "Admin", new { message = success ? Resourse.delete_success : Resourse.something_went_wrong, success});
+            return RedirectToAction("ManagementProductCategory", "Admin", new { message = success ? Resourse.delete_success : Resourse.something_went_wrong, success });
         }
 
         public async Task<ActionResult> DeletePhotoCategory(Guid id)
@@ -124,13 +155,13 @@ namespace OroCampo.WebSite.Controllers
             if (existingPhotos.Count > 0)
             {
                 return RedirectToAction("ManagementPhotoCategory", "Admin",
-                    new {message = Resourse.photo_category_unable_to_delete_existing_photos});
+                    new { message = Resourse.photo_category_unable_to_delete_existing_photos });
             }
 
             var success =
                 await DatabaseHelper.DeletePhotoCategory(ConfigurationManager.AppSettings["ConnectionString"], id);
             return RedirectToAction("ManagementPhotoCategory", "Admin",
-                new {message = success ? Resourse.delete_success : Resourse.something_went_wrong, success});
+                new { message = success ? Resourse.delete_success : Resourse.something_went_wrong, success });
         }
 
         public async Task<ActionResult> SaveProduct(ProductModel model, HttpPostedFileBase file)
@@ -155,5 +186,34 @@ namespace OroCampo.WebSite.Controllers
 
             return RedirectToAction("ManagementProduct", "Admin");
         }
+
+        public async Task<ActionResult> DeleteProduct(Guid id)
+        {
+            var success =
+                await DatabaseHelper.DeleteProduct(ConfigurationManager.AppSettings["ConnectionString"], id);
+            return RedirectToAction("ManagementProduct", "Admin",
+                new { message = success ? Resourse.delete_success : Resourse.something_went_wrong, success });
+        }
+
+        public List<string> FindProductCategoryName(Guid? id)
+        {
+            var categoryName = DatabaseHelper.FindProductCategoryName(ConfigurationManager.AppSettings["ConnectionString"], id);
+            return categoryName;
+        }
+
+        public async Task<ActionResult> DeletePhoto(Guid id)
+        {
+            var success =
+                await DatabaseHelper.DeletePhoto(ConfigurationManager.AppSettings["ConnectionString"], id);
+            return RedirectToAction("ManagementPhoto", "Admin",
+                new { message = success ? Resourse.delete_success : Resourse.something_went_wrong, success });
+        }
+
+        public List<string> FindPhotoCategoryName(Guid? id)
+        {
+            var categoryName = DatabaseHelper.FindPhotoCategoryName(ConfigurationManager.AppSettings["ConnectionString"], id);
+            return categoryName;
+        }
+
     }
 }

@@ -18,7 +18,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-group">
-            <label for ="photoCategoryName">@Resourse.photo_category_text_box_label</label>
+            <label for ="photoCategoryName">@Resourse.category_text_box_label</label>
             @Html.TextBoxFor(m => m.NewPhotoCategoryName, new { id = "photoCategoryName", @class = "form-control", @required = "required" })
         </div>
 

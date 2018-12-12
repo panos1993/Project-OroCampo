@@ -1,25 +1,53 @@
-﻿@model OroCampo.WebSite.Models.PhotoModel
-@{
-    ViewBag.Title = "Manage Product Category";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@using System.Data.Entity
+@using System.Web.Mvc.Html
+@using OroCampo.Models.Database
+@using OroCampo.WebSite.Controllers
+@model OroCampo.WebSite.Models.PhotoModel
 
 @Html.Partial("CheckIfAuthenticated")
 
-@using (Html.BeginForm("SavePhoto", "Admin", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "saveProgramForm" }))
-{
-    @Html.AntiForgeryToken()
-    <h2>Διαχείρηση Φωτογραφιών</h2>
+<div class="jumbotron margin-top-25">
+    <h1>@Resourse.photo</h1>
+    <p class="lead">@Resourse.photo_first_text</p>
+    <hr>
+    <p>@Resourse.photo_second_text</p>
+    @*<hr>*@
 
-    @Html.Label("Περιγραφή φωτογραφίας:")
-    <text>&ensp;</text>
-    @Html.TextBoxFor(m => m.NewPhotoDescription)
-    <text>&ensp; &ensp; &ensp; &ensp;</text>
-    @Html.Label("Επιλογή Φωτογραφίας")
-    <text>&ensp;</text>
-    <td><button type="button" class="btn btn-primary">Άνοιγμα</button></td>
-    <br /><br /><br />
-    <input type="submit" class="btn alert-success" value="Submit" />
+    @using (Html.BeginForm("SavePhoto", "Admin", FormMethod.Post, new { role = "form", id = "savePhotoForm", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+
+        <div class="form-group">
+            <label for="productDescription">@Resourse.description</label>@*TODO*@
+            @Html.TextAreaFor(m => m.PhotoDescription, new { @class = "form-control", rows = 10, @required = "required" })
+        </div>
+        <div class="form-group">
+            <label>@Resourse.category_photo</label>
+            @Html.DropDownListFor(model => model.PhotoCategoryId, Model.Categories, @Resourse.category, new { @class = "form-control", @required = "required" })
+        </div>
+        <div class="form-group">
+            <label for="file">@Resourse.picture_file</label> <br />
+            @Html.TextBox("file", "", new { type = "file" })
+            @Html.ValidationMessageFor(model => model.PhotoData)
+            <img id="blah" src="#" alt="your image" height="150" width="300" />
+        </div>
+
+        <button type="submit" class="btn btn-success">@Resourse.button_insert</button>
+
+    }
+</div>
+
+@if (Model.Message != null)
+{
+    if (Model.Success)
+    {
+        <div class="alert alert-success" name="alert" role="alert">@Model.Message</div>
+    }
+    else
+    {
+        <div class="alert alert-danger" name="alert" role="alert">@Model.Message</div>
+    }
 }
 
 @if (Model.Photos != null && Model.Photos.Any())
@@ -27,10 +55,11 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="row">Id</th>
-                <th scope="col">Περιγραφή εικόνας</th>
-                <th scope="col">Εικόνα</th>
-                <th scope="col">Ενέργιες</th>
+                <th class="text-center" scope="row">@Resourse.number</th>
+                <th class="text-center" scope="row">@Resourse.column_icon</th>
+                <th class="text-center" scope="col">@Resourse.category_photo</th>
+                <th class="text-center" scope="col">@Resourse.description_photo</th>
+                <th class="text-center" scope="col">@Resourse.column_actions</th>
             </tr>
         </thead>
         <tbody>
@@ -40,10 +69,21 @@
                 var temp = Model.Photos[i];
 
                 <tr>
-                    <th scope="row">@i</th>
-                    <td>@temp.Description</td>
-                    <td>@temp.PhotoData</td> @*edw pera kapws prepei na metatrepoume to kwdika tis fwtografias se fwtografia*@
-                    <td><button type="button" class="btn btn-danger">Διαγραφή</button></td>
+                    <th class="text-center" scope="row">@i</th>
+                    <td class="text-center"><img src="data:image/png;base64, @temp.PhotoData" alt="" border=3 height=150 width=250 /> </td>
+                    <td class="text-center">
+                        @{
+                            var photoCategory = ((AdminController)this.ViewContext.Controller).FindPhotoCategoryName(temp.CategoryId);
+                        } @photoCategory.First()
+                    </td>
+                    <td class="text-center">@temp.Description</td>
+                    <td class="text-center">
+                        @using (Html.BeginForm("DeletePhoto", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "deletePhotoForm" }))
+                        {
+                            <button type="submit" class="btn btn-danger">@Resourse.button_delete</button>
+                        }
+
+                    </td>
                 </tr>
             }
         </tbody>
@@ -51,5 +91,7 @@
 }
 else
 {
-    <h1>Δεν υπάρχουν φωτογραφίες</h1>
+    <div class="jumbotron margin-top-25">
+        <h2 class="text-center">@Resourse.photos_no_available</h2>
+    </div>
 }

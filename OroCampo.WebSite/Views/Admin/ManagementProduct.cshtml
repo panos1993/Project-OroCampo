@@ -1,4 +1,7 @@
-﻿@using System.Web.Mvc.Html
+﻿@using System.Data.Entity
+@using System.Web.Mvc.Html
+@using OroCampo.Models.Database
+@using OroCampo.WebSite.Controllers
 @model OroCampo.WebSite.Models.ProductModel
 
 @Html.Partial("CheckIfAuthenticated")
@@ -7,7 +10,7 @@
     <h1>@Resourse.product</h1>
     <p class="lead">@Resourse.product_first_text</p>
     <hr>
-    <p>@Resourse.photo_category_second_text</p>@*TODO*@
+    <p>@Resourse.product_second_text</p>
     @*<hr>*@
 
     @using (Html.BeginForm("SaveProduct", "Admin", FormMethod.Post, new { role = "form", id = "saveProductForm", enctype = "multipart/form-data" }))
@@ -15,26 +18,83 @@
         @Html.AntiForgeryToken()
 
         <div class="form-group">
-            <label for="productName">@Resourse.photo_category_text_box_label</label>@*TODO*@
+            <label for="productName">@Resourse.product_name</label>
             @Html.TextBoxFor(m => m.Name, new { id = "productName", @class = "form-control", @required = "required" })
         </div>
         <div class="form-group">
-            <label for="productDescription">Περιγραφή</label>@*TODO*@
+            <label for="productDescription">@Resourse.description</label>
             @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 10, @required = "required" })
         </div>
         <div class="form-group">
-            <label>Κατηγορία προϊόντος</label>
-            @Html.DropDownListFor(model => model.ProductCategoryId, Model.Categories, "Κατηγορία", new { @class = "form-control", @required = "required" })
+            <label>@Resourse.product_category</label>
+            @Html.DropDownListFor(model => model.ProductCategoryId, Model.Categories, @Resourse.category, new { @class = "form-control", @required = "required" })
         </div>
         <div class="form-group">
-            <label>Αρχείο εικόνας</label><br />
-            <label class="btn btn-danger btn-file">
-                Είκονα @Html.TextBox("file", "", new { type = "file" }) <br />
-                @Html.ValidationMessageFor(model => model.Photo)
-            </label>
+            <label for="file">@Resourse.picture_file</label> <br />
+            @Html.TextBox("file", "", new { type = "file" })
+            @Html.ValidationMessageFor(model => model.Photo)
+            <img id="blah" src="#" alt="your image" height="150" width="300" />
         </div>
 
         <button type="submit" class="btn btn-success">@Resourse.button_insert</button>
-    }
 
+    }
 </div>
+
+@if (Model.Message != null)
+{
+    if (Model.Success)
+    {
+        <div class="alert alert-success" name="alert" role="alert">@Model.Message</div>
+    }
+    else
+    {
+        <div class="alert alert-danger" name="alert" role="alert">@Model.Message</div>
+    }
+}
+
+@if (Model.Products != null && Model.Products.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-center" scope="row">@Resourse.number</th>
+                <th class="text-center" scope="row">@Resourse.column_icon</th>
+                <th class="text-center" scope="col">@Resourse.column_name_product</th>
+                <th class="text-center" scope="col">@Resourse.product_category</th>
+                <th class="text-center" scope="col">@Resourse.product_description</th>
+                <th class="text-center" scope="col">@Resourse.column_actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @for (int i = 0; i < Model.Products.Count; i++)
+            {
+                var temp = Model.Products[i];
+
+                <tr>
+                    <th class="text-center" scope="row">@i</th>
+                    <td class="text-center"><img src="data:image/png;base64, @temp.Photo" alt="" border=3 height=150 width=250 /> </td>
+                    <td class="text-center">@temp.Name</td>
+                    <td class="text-center"> @{
+                                               var productCategoryName =  ((AdminController)this.ViewContext.Controller).FindProductCategoryName(temp.CategoryId);
+                                             } @productCategoryName.First()</td>
+                    <td class="text-center">@temp.Description</td>
+                    <td class="text-center">
+                        @using (Html.BeginForm("DeleteProduct", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "deleteProductForm" }))
+                        {
+                            <button type="submit" class="btn btn-danger">@Resourse.button_delete</button>
+                        }
+
+                    </td>
+                </tr>
+            }
+           </tbody>
+    </table>
+}
+else
+{
+    <div class="jumbotron margin-top-25">
+        <h2 class="text-center">@Resourse.product_no_available</h2>
+    </div>
+}

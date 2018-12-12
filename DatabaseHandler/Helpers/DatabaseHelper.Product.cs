@@ -26,7 +26,7 @@
                                      query,
                                      new
                                      {
-                                         name =product.Name,
+                                         name = product.Name,
                                          description = product.Description,
                                          photo = product.Photo,
                                          categoryId = product.CategoryId
@@ -91,6 +91,42 @@
                 sqlConnection.Close();
 
                 return products.ToList();
+            }
+        }
+
+        public static async Task<bool> DeleteProduct(string connectionString, Guid productId)
+        {
+            // We create an sql connection 
+            using (var sqlConnection = new SqlConnection(connectionString))
+            {
+                // Open the connection async
+                await sqlConnection.OpenAsync();
+
+                var query = "DELETE FROM [dbo].[Product] WHERE [Id] = @productId";
+
+                var deletedRows = await sqlConnection.ExecuteAsync(query, new { productId });
+
+                sqlConnection.Close();
+
+                return deletedRows == 1;
+            }
+        }
+
+        public static List<string> FindProductCategoryName(string connectionString, Guid? productCategoryId)
+        {
+            // We create an sql connection 
+            using (var sqlConnection = new SqlConnection(connectionString))
+            {
+                // Open the connection async
+                sqlConnection.Open();
+
+                var query = "SELECT [Name] FROM [dbo].[ProductCategory] (NOLOCK) WHERE [Id] = @productCategoryId";
+
+                var productCategory = sqlConnection.Query<string>(query, new { productCategoryId });
+
+                sqlConnection.Close();
+
+                return (List<string>)productCategory;
             }
         }
     }

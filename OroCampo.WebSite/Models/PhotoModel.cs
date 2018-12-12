@@ -1,4 +1,5 @@
 ﻿
+using System.Web.Mvc;
 
 namespace OroCampo.WebSite.Models
 {
@@ -10,13 +11,17 @@ namespace OroCampo.WebSite.Models
     {
         public List<Photo> Photos { get; set; }
 
-        public string NewPhotoData { get; set; }
+        public string PhotoData { get; set; }
 
-        public string NewPhotoDescription { get; set; }
+        public List<SelectListItem> Categories { get; set; }
+
+        public string PhotoDescription { get; set; }
 
         public Guid PhotoCategoryId { get; set; }
 
-        public Guid? PhotoIdToDelete { get; set; }
+        public string Message { get; set; }
+
+        public bool Success { get; set; }
 
     }
 }

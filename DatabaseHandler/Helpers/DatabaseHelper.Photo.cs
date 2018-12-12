@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     using Dapper;
     using Models.Database;
-    
+
     public partial class DatabaseHelper
     {
         public static async Task<Guid> SavePhoto(Photo photo, string connectionString)
@@ -77,7 +77,7 @@
             }
         }
 
-        public static async Task<List<Photo>> GetPhotosByCategoryId(string connectionString,Guid photoCategoryId)
+        public static async Task<List<Photo>> GetPhotosByCategoryId(string connectionString, Guid photoCategoryId)
         {
             // We create an sql connection 
             using (var sqlConnection = new SqlConnection(connectionString))
@@ -92,7 +92,7 @@
                 sqlConnection.Close();
 
                 return photos.ToList();
-            }   
+            }
         }
 
         public static async Task<bool> DeletePhotoCategory(string connectionString, Guid photoCategoryId)
@@ -112,5 +112,42 @@
                 return deletedRows == 1;
             }
         }
+
+        public static async Task<bool> DeletePhoto(string connectionString, Guid photoId)
+        {
+            // We create an sql connection 
+            using (var sqlConnection = new SqlConnection(connectionString))
+            {
+                // Open the connection async
+                await sqlConnection.OpenAsync();
+
+                var query = "DELETE FROM [dbo].[Photo] WHERE [Id] = @photoId";
+
+                var deletedRows = await sqlConnection.ExecuteAsync(query, new { photoId });
+
+                sqlConnection.Close();
+
+                return deletedRows == 1;
+            }
+        }
+
+        public static List<string> FindPhotoCategoryName(string connectionString, Guid? photoCategoryId)
+        {
+            // We create an sql connection 
+            using (var sqlConnection = new SqlConnection(connectionString))
+            {
+                // Open the connection async
+                sqlConnection.Open();
+
+                var query = "SELECT [Name] FROM [dbo].[PhotoCategory] (NOLOCK) WHERE [Id] = @photoCategoryId";
+
+                var photoCategory = sqlConnection.Query<string>(query, new { photoCategoryId });
+
+                sqlConnection.Close();
+
+                return (List<string>)photoCategory;
+            }
+        }
     }
 }
+
