@@ -53,9 +53,10 @@
             @for (int i = 0; i < Model.PhotoCategories.Count; i++)
             {
                 var temp = Model.PhotoCategories[i];
+                var count = i + 1;
 
                 <tr>
-                    <th class="text-center" scope="row">@i</th>
+                    <th class="text-center" scope="row">@count</th>
                     <td class="text-center">@temp.Name</td>
                     <td class="text-center">
                         @using (Html.BeginForm("DeletePhotoCategory", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "DeletePhotoForm" }))

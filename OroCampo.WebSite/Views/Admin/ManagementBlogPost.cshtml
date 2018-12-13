@@ -1,3 +1,92 @@
-﻿
+﻿@using System.Data.Entity
+@using System.Web.Mvc.Html
+@using OroCampo.Models.Database
+@using OroCampo.WebSite.Controllers
+@model OroCampo.WebSite.Models.BlogPostModel
+
 @Html.Partial("CheckIfAuthenticated")
 
+<div class="jumbotron margin-top-25">
+    <h1>@Resourse.blog_post</h1>
+    <p class="lead">@Resourse.blog_post_first_text</p>
+    <hr>
+    <p>@Resourse.blog_post_second_text</p>
+    @*<hr>*@
+
+    @using (Html.BeginForm("SaveBlogPost", "Admin", FormMethod.Post, new { role = "form", id = "saveBlogPostForm", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <label for="blogPostName">@Resourse.blog_post_name</label>
+            @Html.TextBoxFor(m => m.NewTitleBlogPost, new { id = "blog_postName", @class = "form-control", @required = "required" })
+        </div>
+        <div class="form-group">
+            <label for="blogPostDescription">@Resourse.text_blog</label>
+            @Html.TextAreaFor(m => m.NewTextBlogPost, new { @class = "form-control", rows = 10, @required = "required" })
+        </div>
+        <div class="form-group">
+            <label for="file">@Resourse.picture_file</label> <br />
+            @Html.TextBox("file", "", new { type = "file" })
+            @Html.ValidationMessageFor(model => model.NewPhotoBlogPost)
+            <img id="blah" src="#" alt="your image" height="150" width="300" />
+        </div>
+
+        <button type="submit" class="btn btn-success">@Resourse.button_insert</button>
+
+    }
+</div>
+
+@if (Model.Message != null)
+{
+    if (Model.Success)
+    {
+        <div class="alert alert-success" name="alert" role="alert">@Model.Message</div>
+    }
+    else
+    {
+        <div class="alert alert-danger" name="alert" role="alert">@Model.Message</div>
+    }
+}
+
+@if (Model.BlogPosts != null && Model.BlogPosts.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-center" scope="row">@Resourse.number</th>
+                <th class="text-center" scope="row">@Resourse.column_icon</th>
+                <th class="text-center" scope="col">@Resourse.column_title_blog_post</th>
+                <th class="text-center" scope="col">@Resourse.blog_post_text</th>
+                <th class="text-center" scope="col">@Resourse.column_actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @for (int i = 0; i < Model.BlogPosts.Count; i++)
+            {
+                var temp = Model.BlogPosts[i];
+                var count = i + 1;
+                <tr>
+                    <th class="text-center" scope="row"> @count</th>
+                    <td class="text-center"><img src="data:image/png;base64, @temp.Photo" alt="" border=3 height=150 width=250 /> </td>
+                    <td class="text-center">@temp.Title</td>
+                    <td class="text-center">@temp.Text</td>
+                    <td class="text-center">
+                        @using (Html.BeginForm("DeleteBlogPost", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "deleteBlogPostForm" }))
+                        {
+                            <button type="submit" class="btn btn-danger">@Resourse.button_delete</button>
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="jumbotron margin-top-25">
+        <h2 class="text-center">@Resourse.blog_post_no_available</h2>
+    </div>
+}

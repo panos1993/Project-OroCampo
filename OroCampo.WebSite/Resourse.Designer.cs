@@ -61,6 +61,60 @@ namespace OroCampo.WebSite {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Άρθρα και δημοσιεύσεις .
+        /// </summary>
+        public static string blog_post {
+            get {
+                return ResourceManager.GetString("blog_post", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Εδώ μπορείται να δημοσιεύσετε ή να διαγράψετε ένα άρθρο.
+        /// </summary>
+        public static string blog_post_first_text {
+            get {
+                return ResourceManager.GetString("blog_post_first_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Τίτλος νέας δημοσίευσης .
+        /// </summary>
+        public static string blog_post_name {
+            get {
+                return ResourceManager.GetString("blog_post_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Δεν υπάρχουν δημοσιευμένα άρθρα..
+        /// </summary>
+        public static string blog_post_no_available {
+            get {
+                return ResourceManager.GetString("blog_post_no_available", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Πληκτρολογίστε τον τίτλο της νέας υπηρεσίας, εισάγετε μια περιγραφή για την υπηρεσία και επιλέξτε μια φωτογραφία που αντιπροσοπεύει την υπηρεσία. Τέλος επιλέξτε το κουμπί  &quot;Εισαγωγή&quot; για να την προσθέσεται. Αν τώρα θέλετε να διαγράψετε μια ανάρτηση πατήστε το κουμπί &quot;Διαγραφή&quot; δίπλα σε κάθε γραμμή κατηγορίας παρακάτω. Όλα τα πεδία είναι υποχρεωτικά..
+        /// </summary>
+        public static string blog_post_second_text {
+            get {
+                return ResourceManager.GetString("blog_post_second_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Κείμενο δημοσίευσης.
+        /// </summary>
+        public static string blog_post_text {
+            get {
+                return ResourceManager.GetString("blog_post_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Διαγραφή.
         /// </summary>
         public static string button_delete {
@@ -147,6 +201,24 @@ namespace OroCampo.WebSite {
         public static string column_name_product {
             get {
                 return ResourceManager.GetString("column_name_product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Τίτλος δημοσίευσης.
+        /// </summary>
+        public static string column_title_blog_post {
+            get {
+                return ResourceManager.GetString("column_title_blog_post", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Τίτλος υπηρεσίας.
+        /// </summary>
+        public static string column_title_service {
+            get {
+                return ResourceManager.GetString("column_title_service", resourceCulture);
             }
         }
         
@@ -250,7 +322,7 @@ namespace OroCampo.WebSite {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Εισάγετε μια περιγραφή για την φωτογραφία που θα ανεβάσεται και επιλέξτε την κατηγορία στην οποία ανοικει η φωτογραφία. Όλα τα πεδία είναι υποχρεωτικά. (Αν η κατηγορία που ανοίκει η φωτογραφία δεν υπάρχει ήδη, μπορείτε να την προσθέσεται από την επιλογή &quot;προσθήκη κατηγορίας φωτογραφίας&quot;). .
+        ///   Looks up a localized string similar to Εισάγετε μια περιγραφή για την φωτογραφία που θα ανεβάσεται και επιλέξτε την κατηγορία στην οποία ανοικει η φωτογραφία. Τέλος επιλέξτε το κουμπί  &quot;Εισαγωγή&quot; για να την προσθέσεται. Αν τώρα θέλετε να διαγράψετε μια φωτογραφία πατήστε το κουμπί &quot;Διαγραφή&quot; δίπλα σε κάθε γραμμή κατηγορίας παρακάτω. Όλα τα πεδία είναι υποχρεωτικά. (Αν η κατηγορία που ανοίκει η φωτογραφία δεν υπάρχει ήδη, μπορείτε να την προσθέσεται από την επιλογή &quot;προσθήκη κατηγορίας φωτογραφίας&quot;). .
         /// </summary>
         public static string photo_second_text {
             get {
@@ -367,7 +439,7 @@ namespace OroCampo.WebSite {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Πληκτρολογίστε το όνομα του νέου προϊόντος, εισάγετε μια περιγραφή για το προϊόν και επιλέξτε την κατηγορία στην οποία ανοικει το προϊόν που θα εισάγετε. Όλα τα πεδία είναι υποχρεωτικά. (Αν η κατηγορία που ανοίκει το προϊόν δεν υπάρχει ήδη, μπορείτε να την προσθέσεται από την επιλογή &quot;προσθήκη κατηγορίας προϊόντος&quot;)..
+        ///   Looks up a localized string similar to Πληκτρολογίστε το όνομα του νέου προϊόντος, εισάγετε μια περιγραφή για το προϊόν και επιλέξτε την κατηγορία στην οποία ανοικει το προϊόν που θα εισάγετε. Τέλος επιλέξτε το κουμπί  &quot;Εισαγωγή&quot; για να την προσθέσεται. Αν τώρα θέλετε να διαγράψετε ένα προϊόν πατήστε το κουμπί &quot;Διαγραφή&quot; δίπλα σε κάθε γραμμή κατηγορίας παρακάτω.Όλα τα πεδία είναι υποχρεωτικά. (Αν η κατηγορία που ανοίκει το προϊόν δεν υπάρχει ήδη, μπορείτε να την προσθέσεται από την επιλογή &quot;προσθήκη κατηγορίας προϊόντος&quot;)..
         /// </summary>
         public static string product_second_text {
             get {
@@ -385,11 +457,74 @@ namespace OroCampo.WebSite {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Υπηρεσία.
+        /// </summary>
+        public static string service {
+            get {
+                return ResourceManager.GetString("service", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Περιγραφή υπηρεσίας.
+        /// </summary>
+        public static string service_description {
+            get {
+                return ResourceManager.GetString("service_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Εδώ μπορείται να προσθέσεται ή να διαγράψετε μια υπηρεσία.
+        /// </summary>
+        public static string service_first_text {
+            get {
+                return ResourceManager.GetString("service_first_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Όνομα νέας υπηρεσίας.
+        /// </summary>
+        public static string service_name {
+            get {
+                return ResourceManager.GetString("service_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Δεν υπάρχουν υπηρεσίες.
+        /// </summary>
+        public static string service_no_available {
+            get {
+                return ResourceManager.GetString("service_no_available", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Πληκτρολογίστε τον τίτλο της νέας υπηρεσίας, εισάγετε μια περιγραφή για την υπηρεσία και επιλέξτε μια φωτογραφία που αντιπροσοπεύει την υπηρεσία. Τέλος επιλέξτε το κουμπί  &quot;Εισαγωγή&quot; για να την προσθέσεται. Αν τώρα θέλετε να διαγράψετε μια υπηρεσία πατήστε το κουμπί &quot;Διαγραφή&quot; δίπλα σε κάθε γραμμή κατηγορίας παρακάτω. Όλα τα πεδία είναι υποχρεωτικά. .
+        /// </summary>
+        public static string service_second_text {
+            get {
+                return ResourceManager.GetString("service_second_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 😢 Κάτι πήγε στραβά.
         /// </summary>
         public static string something_went_wrong {
             get {
                 return ResourceManager.GetString("something_went_wrong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Κείμενο νέας δημοσίευσης .
+        /// </summary>
+        public static string text_blog {
+            get {
+                return ResourceManager.GetString("text_blog", resourceCulture);
             }
         }
     }

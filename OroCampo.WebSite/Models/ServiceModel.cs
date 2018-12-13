@@ -15,5 +15,9 @@
         public string NewPhotoService {get; set; }
 
         public Guid? ServiceIdToDelete { get; set; }
+        
+        public string Message { get; set; }
+
+        public bool Success { get; set; }
     }
 }

@@ -14,7 +14,9 @@
 
         public string NewTextBlogPost { get; set; }
 
-        public string BlogPostIdDelete { get; set; }
+        public string Message { get; set; }
+
+        public bool Success { get; set; }
 
     }
 }

@@ -22,7 +22,7 @@
 
                 var query =
                     "INSERT INTO [dbo].[BlogPost] ([DateTime], [Title], [Text], [Photo]) OUTPUT INSERTED.Id ";
-                query += "VALUES (GETDATE(), @title, @text, @photo, @categoryId, @text)";
+                query += "VALUES (GETDATE(), @title, @text, @photo)";
 
                 var insertedId = await sqlConnection.QuerySingleAsync<Guid>(
                                      query,
@@ -74,6 +74,24 @@
                 sqlConnection.Close();
 
                 return blogPosts.ToList();
+            }
+        }
+
+        public static async Task<bool> DeleteBlogPost(string connectionString, Guid blogPostId)
+        {
+            // We create an sql connection 
+            using (var sqlConnection = new SqlConnection(connectionString))
+            {
+                // Open the connection async
+                await sqlConnection.OpenAsync();
+
+                var query = "DELETE FROM [dbo].[BlogPost] WHERE [Id] = @blogPostId";
+
+                var deletedRows = await sqlConnection.ExecuteAsync(query, new { blogPostId });
+
+                sqlConnection.Close();
+
+                return deletedRows == 1;
             }
         }
     }

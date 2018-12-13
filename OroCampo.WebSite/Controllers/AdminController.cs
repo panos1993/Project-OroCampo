@@ -120,18 +120,18 @@ namespace OroCampo.WebSite.Controllers
             return RedirectToAction("ManagementPhoto", "Admin");
         }
 
-        public async Task<ActionResult> ManagementService()
+        public async Task<ActionResult> ManagementService(string message = null, bool success = false)
         {
             var services = await DatabaseHelper.GetServices(ConfigurationManager.AppSettings["ConnectionString"]);
 
-            return View(new ServiceModel() { Services = services });
+            return View(new ServiceModel() { Services = services, Message = message,Success = success});
         }
 
-        public async Task<ActionResult> ManagementBlogPost()
+        public async Task<ActionResult> ManagementBlogPost(string message = null, bool success = false)
         {
             var blogPosts = await DatabaseHelper.GetBlogPosts(ConfigurationManager.AppSettings["ConnectionString"]);
 
-            return View(new BlogPostModel() { BlogPosts = blogPosts });
+            return View(new BlogPostModel() { BlogPosts = blogPosts, Message = message, Success = success });
         }
 
         public async Task<ActionResult> DeleteProductCategory(Guid id)
@@ -214,6 +214,67 @@ namespace OroCampo.WebSite.Controllers
             var categoryName = DatabaseHelper.FindPhotoCategoryName(ConfigurationManager.AppSettings["ConnectionString"], id);
             return categoryName;
         }
+
+        public async Task<ActionResult> SaveService(ServiceModel model, HttpPostedFileBase file)
+        {
+            var theFileName = Path.GetFileName(file.FileName);
+            var thePictureAsBytes = new byte[file.ContentLength];
+            using (var theReader = new BinaryReader(file.InputStream))
+            {
+                thePictureAsBytes = theReader.ReadBytes(file.ContentLength);
+            }
+            var thePictureDataAsString = Convert.ToBase64String(thePictureAsBytes);
+
+            var serviceToAdd = new Service()
+            {
+                Title = model.NewTitleService,
+                Description = model.NewDescriptionService,
+                Photo = thePictureDataAsString,
+            };
+
+            await DatabaseHelper.SaveService(serviceToAdd, ConfigurationManager.AppSettings["ConnectionString"]);
+
+            return RedirectToAction("ManagementService", "Admin");
+        }
+
+        public async Task<ActionResult> DeleteService(Guid id)
+        {
+            var success =
+                await DatabaseHelper.DeleteService(ConfigurationManager.AppSettings["ConnectionString"], id);
+            return RedirectToAction("ManagementService", "Admin",
+                new { message = success ? Resourse.delete_success : Resourse.something_went_wrong, success });
+        }
+
+        public async Task<ActionResult> SaveBlogPost(BlogPostModel model, HttpPostedFileBase file)
+        {
+            var theFileName = Path.GetFileName(file.FileName);
+            var thePictureAsBytes = new byte[file.ContentLength];
+            using (var theReader = new BinaryReader(file.InputStream))
+            {
+                thePictureAsBytes = theReader.ReadBytes(file.ContentLength);
+            }
+            var thePictureDataAsString = Convert.ToBase64String(thePictureAsBytes);
+
+            var blogPostToAdd = new BlogPost()
+            {
+                Title = model.NewTitleBlogPost,
+                Text = model.NewTextBlogPost,
+                Photo = thePictureDataAsString,
+            };
+
+            await DatabaseHelper.SaveBlogPost(blogPostToAdd, ConfigurationManager.AppSettings["ConnectionString"]);
+
+            return RedirectToAction("ManagementBlogPost", "Admin");
+        }
+
+        public async Task<ActionResult> DeleteBlogPost(Guid id)
+        {
+            var success =
+                await DatabaseHelper.DeleteBlogPost(ConfigurationManager.AppSettings["ConnectionString"], id);
+            return RedirectToAction("ManagementBlogPost", "Admin",
+                new { message = success ? Resourse.delete_success : Resourse.something_went_wrong, success });
+        }
+
 
     }
 }

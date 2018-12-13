@@ -19,7 +19,7 @@
                 await sqlConnection.OpenAsync();
 
                 var query =
-                    "INSERT INTO [dbo].[Product] ([DateTime], [Title], [Description], [Photo], OUTPUT INSERTED.Id ";
+                    "INSERT INTO [dbo].[Service] ([DateTime], [Title], [Description], [Photo]) OUTPUT INSERTED.Id ";
                 query += "VALUES (GETDATE(), @title, @description, @photo)";
 
                 var insertedId = await sqlConnection.QuerySingleAsync<Guid>(
@@ -72,6 +72,24 @@
                 sqlConnection.Close();
 
                 return services.ToList();
+            }
+        }
+
+        public static async Task<bool> DeleteService(string connectionString, Guid serviceId)
+        {
+            // We create an sql connection 
+            using (var sqlConnection = new SqlConnection(connectionString))
+            {
+                // Open the connection async
+                await sqlConnection.OpenAsync();
+
+                var query = "DELETE FROM [dbo].[Service] WHERE [Id] = @serviceId";
+
+                var deletedRows = await sqlConnection.ExecuteAsync(query, new { serviceId });
+
+                sqlConnection.Close();
+
+                return deletedRows == 1;
             }
         }
     }
