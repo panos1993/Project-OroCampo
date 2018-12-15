@@ -23,7 +23,7 @@
         </div>
         <div class="form-group">
             <label for="serviceDescription">@Resourse.description</label>
-            @Html.TextAreaFor(m => m.NewDescriptionService, new { @class = "form-control", rows = 10, @required = "required" })
+            @Html.TextAreaFor(m => m.NewDescriptionService, new { id = "edit", @class = "form-control", rows = 10, @required = "required" })
         </div>
         <div class="form-group">
             <label for="file">@Resourse.picture_file</label> <br />
@@ -89,4 +89,5 @@ else
     <div class="jumbotron margin-top-25">
         <h2 class="text-center">@Resourse.service_no_available</h2>
     </div>
+
 }

@@ -1,13 +1,11 @@
-﻿
-using System.Web.Mvc;
-
-namespace OroCampo.WebSite.Models
+﻿namespace OroCampo.WebSite.Models
 {
     using System;
     using System.Collections.Generic;
     using OroCampo.Models.Database;
+    using System.Web.Mvc;
 
-    public class PhotoModel
+    public class PhotoModel : ModelBase
     {
         public List<Photo> Photos { get; set; }
 
@@ -18,10 +16,6 @@ namespace OroCampo.WebSite.Models
         public string PhotoDescription { get; set; }
 
         public Guid PhotoCategoryId { get; set; }
-
-        public string Message { get; set; }
-
-        public bool Success { get; set; }
 
     }
 }

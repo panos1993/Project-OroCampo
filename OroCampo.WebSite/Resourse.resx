@@ -273,4 +273,10 @@
   <data name="text_blog" xml:space="preserve">
     <value>Κείμενο νέας δημοσίευσης </value>
   </data>
+  <data name="image_preview" xml:space="preserve">
+    <value>Προεπισκόπηση εικόνας</value>
+  </data>
+  <data name="open_image" xml:space="preserve">
+    <value>Επιλογή εικόνας</value>
+  </data>
 </root>

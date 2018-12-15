@@ -198,6 +198,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -205,6 +206,7 @@
     <Compile Include="Models\BlogPostModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\PhotoCategoryModel.cs" />
     <Compile Include="Models\PhotoModel.cs" />
     <Compile Include="Models\ProductCategoryModel.cs" />
@@ -223,16 +225,34 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\TextEditor\codemirror.min.css" />
+    <Content Include="Content\TextEditor\code_view.css" />
+    <Content Include="Content\TextEditor\code_view.min.css" />
+    <Content Include="Content\TextEditor\font-awesome.min.css" />
+    <Content Include="Content\TextEditor\froala_editor.css" />
+    <Content Include="Content\TextEditor\froala_style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="preview.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\ButtonChooseFile\button.js" />
+    <Content Include="Scripts\TextEditor\plugins\align.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\TextEditor\plugins\codemirror.min.js" />
+    <Content Include="Scripts\TextEditor\plugins\code_beautifier.min.js" />
+    <Content Include="Scripts\TextEditor\plugins\code_view.min.js" />
+    <Content Include="Scripts\TextEditor\plugins\draggable.min.js" />
+    <Content Include="Scripts\TextEditor\plugins\entities.min.js" />
+    <Content Include="Scripts\TextEditor\froala_editor.min.js" />
+    <Content Include="Scripts\TextEditor\froala_editor.pkgd.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -242,8 +262,15 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\TextEditor\plugins\link.min.js" />
+    <Content Include="Scripts\TextEditor\plugins\lists.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\TextEditor\plugins\paragraph_format.min.js" />
+    <Content Include="Scripts\TextEditor\plugins\paragraph_style.min.js" />
     <Content Include="Scripts\site.js" />
+    <Content Include="Scripts\TextEditor\plugins\url.min.js" />
+    <Content Include="Scripts\TextEditor\plugins\xml.min.js" />
+    <Content Include="Scripts\TextEditor\yolo.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -288,6 +315,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

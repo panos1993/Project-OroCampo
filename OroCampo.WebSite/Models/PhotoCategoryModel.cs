@@ -1,18 +1,12 @@
-﻿
-
-namespace OroCampo.WebSite.Models
+﻿namespace OroCampo.WebSite.Models
 {
     using OroCampo.Models.Database;
-    using System;
     using System.Collections.Generic;
-    public class PhotoCategoryModel
+    public class PhotoCategoryModel : ModelBase
     {
         public List<PhotoCategory> PhotoCategories { get; set; }
 
         public string NewPhotoCategoryName { get; set; }
 
-        public string Message { get; set; }
-
-        public bool Success { get; set; }
     }
 }

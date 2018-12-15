@@ -66,7 +66,7 @@
                 // Open the connection async
                 await sqlConnection.OpenAsync();
 
-                var query = "SELECT * FROM [dbo].[Product] (NOLOCK)";
+                var query = "SELECT P.*, PC.Name AS ProductCategoryName FROM [dbo].[Product] AS P, [dbo].[ProductCategory] AS PC (NOLOCK) WHERE P.CategoryId = PC.Id";
 
                 var products = await sqlConnection.QueryAsync<Product>(query);
 

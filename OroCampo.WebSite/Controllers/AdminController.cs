@@ -2,7 +2,9 @@
 
 using System;
 using System.IO;
+using System.Linq;
 using System.Web;
+using System.Web.UI;
 
 namespace OroCampo.WebSite.Controllers
 {
@@ -16,6 +18,7 @@ namespace OroCampo.WebSite.Controllers
 
     public class AdminController : Controller
     {
+
         // GET: Admin
         public async Task<ActionResult> ManagementPhotoCategory(string message = null, bool success = false)
         {
@@ -56,7 +59,7 @@ namespace OroCampo.WebSite.Controllers
             return RedirectToAction("ManagementProductCategory", "Admin");
         }
 
-        public async Task<ActionResult> ManagementProduct(string message = null, bool success = false)
+        public async Task<ActionResult> ManagementProduct(string message = null, bool success = false, Guid? editGuid = null)
         {
             var products = await DatabaseHelper.GetProducts(ConfigurationManager.AppSettings["ConnectionString"]);
 
@@ -74,7 +77,33 @@ namespace OroCampo.WebSite.Controllers
                 });
             }
 
-            return View(new ProductModel() { Products = products, Categories = listItems, Message = message, Success = success });
+            ProductModel model;
+
+            if (editGuid != null)
+            {
+                var editProduct = products.First(x => x.Id == editGuid.ToGuid());
+
+                model = new ProductModel()
+                {
+                    Products = products,
+                    Categories = listItems,
+                    Message = message,
+                    Success = success,
+                    Name = editProduct.Name,
+                    Description = editProduct.Description,
+                    ProductCategoryId = editProduct.CategoryId,
+                    Photo = editProduct.Photo,
+                    ProductId = editGuid.ToGuid()
+                };
+
+            }
+            else
+            {
+                model = new ProductModel()
+                { Products = products, Categories = listItems, Message = message, Success = success };
+            }
+
+            return View(model);
         }
 
         public async Task<ActionResult> ManagementPhoto(string message = null, bool success = false)
@@ -124,7 +153,7 @@ namespace OroCampo.WebSite.Controllers
         {
             var services = await DatabaseHelper.GetServices(ConfigurationManager.AppSettings["ConnectionString"]);
 
-            return View(new ServiceModel() { Services = services, Message = message,Success = success});
+            return View(new ServiceModel() { Services = services, Message = message, Success = success });
         }
 
         public async Task<ActionResult> ManagementBlogPost(string message = null, bool success = false)
@@ -164,21 +193,38 @@ namespace OroCampo.WebSite.Controllers
                 new { message = success ? Resourse.delete_success : Resourse.something_went_wrong, success });
         }
 
+        public async Task<bool> UpdateProduct(Guid guid)
+        {
+            return await DatabaseHelper.DeleteProduct(ConfigurationManager.AppSettings["ConnectionString"], guid);
+        }
+
+        [ValidateInput(false)]
         public async Task<ActionResult> SaveProduct(ProductModel model, HttpPostedFileBase file)
         {
-            var theFileName = Path.GetFileName(file.FileName);
-            var thePictureAsBytes = new byte[file.ContentLength];
-            using (var theReader = new BinaryReader(file.InputStream))
+            string imageData = null;
+            if (model.ProductId != default(Guid))
             {
-                thePictureAsBytes = theReader.ReadBytes(file.ContentLength);
+                await UpdateProduct(model.ProductId);
+                imageData = model.Photo;
             }
-            var thePictureDataAsString = Convert.ToBase64String(thePictureAsBytes);
+
+            if (file != null)
+            {
+                var theFileName = Path.GetFileName(file.FileName);
+                var thePictureAsBytes = new byte[file.ContentLength];
+                using (var theReader = new BinaryReader(file.InputStream))
+                {
+                    thePictureAsBytes = theReader.ReadBytes(file.ContentLength);
+                }
+
+                imageData = Convert.ToBase64String(thePictureAsBytes);
+            }
 
             var productToAdd = new Product()
             {
                 Name = model.Name,
                 Description = model.Description,
-                Photo = thePictureDataAsString,
+                Photo = imageData,
                 CategoryId = model.ProductCategoryId
             };
 
@@ -195,10 +241,9 @@ namespace OroCampo.WebSite.Controllers
                 new { message = success ? Resourse.delete_success : Resourse.something_went_wrong, success });
         }
 
-        public List<string> FindProductCategoryName(Guid? id)
+        public async Task<ActionResult> EditProduct(Guid id)
         {
-            var categoryName = DatabaseHelper.FindProductCategoryName(ConfigurationManager.AppSettings["ConnectionString"], id);
-            return categoryName;
+            return RedirectToAction("ManagementProduct", "Admin", new { editGuid = id });
         }
 
         public async Task<ActionResult> DeletePhoto(Guid id)
@@ -215,6 +260,7 @@ namespace OroCampo.WebSite.Controllers
             return categoryName;
         }
 
+        [ValidateInput(false)]
         public async Task<ActionResult> SaveService(ServiceModel model, HttpPostedFileBase file)
         {
             var theFileName = Path.GetFileName(file.FileName);
@@ -245,6 +291,7 @@ namespace OroCampo.WebSite.Controllers
                 new { message = success ? Resourse.delete_success : Resourse.something_went_wrong, success });
         }
 
+        [ValidateInput(false)]
         public async Task<ActionResult> SaveBlogPost(BlogPostModel model, HttpPostedFileBase file)
         {
             var theFileName = Path.GetFileName(file.FileName);

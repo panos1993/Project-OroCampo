@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using OroCampo.Models.Database;
 
-    public class ServiceModel
+    public class ServiceModel : ModelBase
     {
         public List<Service> Services { get; set; }
 
@@ -15,9 +15,6 @@
         public string NewPhotoService {get; set; }
 
         public Guid? ServiceIdToDelete { get; set; }
-        
-        public string Message { get; set; }
 
-        public bool Success { get; set; }
     }
 }

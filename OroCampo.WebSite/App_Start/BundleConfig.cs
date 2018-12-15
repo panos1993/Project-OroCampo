@@ -26,6 +26,33 @@ namespace OroCampo.WebSite
                       "~/Content/bootstrap.css",
                       "~/Content/Site.css"));
 
+            bundles.Add(new StyleBundle("~/Content/texteditorcss").Include(
+                    "~/Content/TextEditor/code_view.css",
+                    "~/Content/TextEditor/code_view.min.css",
+                    "~/Content/TextEditor/froala_editor.css",
+                    "~/Content/TextEditor/froala_style.css"));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/texteditorjs").Include(
+                "~/Scripts/TextEditor/plugins/align.min.js",
+                "~/Scripts/TextEditor/plugins/code_beautifier.min.js",
+                "~/Scripts/TextEditor/plugins/code_view.min.js",
+                "~/Scripts/TextEditor/plugins/draggable.min.js",
+                "~/Scripts/TextEditor/plugins/entities.min.js",
+                "~/Scripts/TextEditor/froala_editor.min.js",
+                "~/Scripts/TextEditor/plugins/link.min.js",
+                "~/Scripts/TextEditor/plugins/lists.min.js",
+                "~/Scripts/TextEditor/plugins/paragraph_format.min.js",
+                "~/Scripts/TextEditor/plugins/paragraph_style.min.js",
+                "~/Scripts/TextEditor/plugins/url.min.js",
+                "~/Scripts/TextEditor/yolo.js"));
+
+
+
+            bundles.Add(new ScriptBundle("~/bundles/buttonchoosefilejs").Include(
+                "~/Scripts/ButtonChooseFile/button.js"
+            ));
+
             bundles.Add(new ScriptBundle("~/bundles/sitequery").Include(
                 "~/Scripts/site.js"));
 

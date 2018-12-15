@@ -1,13 +1,11 @@
-﻿
-using System.Web.Mvc;
-
-namespace OroCampo.WebSite.Models
+﻿namespace OroCampo.WebSite.Models
 {
+    using System.Web.Mvc;
     using System;
     using System.Collections.Generic;
     using OroCampo.Models.Database;
 
-    public class ProductModel
+    public class ProductModel : ModelBase 
     {
         public List<Product> Products { get; set; }
 
@@ -21,8 +19,7 @@ namespace OroCampo.WebSite.Models
 
         public Guid ProductCategoryId { get; set; }
 
-        public string Message { get; set; }
+        public Guid ProductId { get; set; }
 
-        public bool Success { get; set; }
     }
 }

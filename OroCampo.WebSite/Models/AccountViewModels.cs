@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace OroCampo.WebSite.Models
+﻿namespace OroCampo.WebSite.Models
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
+
     public class ExternalLoginConfirmationViewModel
     {
         [Required]

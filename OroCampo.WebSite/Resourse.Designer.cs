@@ -250,11 +250,29 @@ namespace OroCampo.WebSite {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Προεπισκόπηση εικόνας.
+        /// </summary>
+        public static string image_preview {
+            get {
+                return ResourceManager.GetString("image_preview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A/A.
         /// </summary>
         public static string number {
             get {
                 return ResourceManager.GetString("number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Επιλογή εικόνας.
+        /// </summary>
+        public static string open_image {
+            get {
+                return ResourceManager.GetString("open_image", resourceCulture);
             }
         }
         
