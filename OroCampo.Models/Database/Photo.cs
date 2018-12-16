@@ -8,6 +8,8 @@
 
         public string PhotoData { get; set; }
 
+        public string PhotoCategoryName { get; set; }
+
         public string Description { get; set; }
 
         public DateTime DateTime { get; set; }

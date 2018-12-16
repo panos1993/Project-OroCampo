@@ -18,8 +18,10 @@
         @Html.AntiForgeryToken()
 
         <div class="form-group">
-            <label for="photoDescription">@Resourse.description</label>@*TODO*@
-            @Html.TextAreaFor(m => m.PhotoDescription, new { @class = "form-control", rows = 10, @required = "required" })
+            <label for="edit">@Resourse.description</label>
+            <div id="editor">
+                @Html.TextAreaFor(m => m.PhotoDescription, new { id = "edit",  @class = "form-control", rows = 30, @required = "required" })
+            </div>
         </div>
         <div class="form-group">
             <label>@Resourse.category_photo</label>
@@ -83,15 +85,15 @@
                 var count = i + 1;
 
                 <tr>
-                    <th class="text-center" scope="row">@count</th>
-                    <td class="text-center"><img src="data:image/png;base64, @temp.PhotoData" alt="" border=3 height=150 width=250 /> </td>
-                    <td class="text-center">
-                        @{
-                            var photoCategory = ((AdminController)this.ViewContext.Controller).FindPhotoCategoryName(temp.CategoryId);
-                        } @photoCategory.First()
+                    <th class="text-center" scope="row" style="vertical-align: middle;">@count</th>
+                    <td class="text-center" style="vertical-align: middle;"><img src="data:image/png;base64, @temp.PhotoData" alt="" border=3 height=150 width=250 /> </td>
+                    <td class="text-center" style="vertical-align: middle;"> @temp.PhotoCategoryName</td>
+                    <td class="text-center" style="vertical-align: middle;">
+                        <div style="width: 250px; height: 200px; word-wrap: break-word; overflow: hidden;">
+                            @Html.Raw(@temp.Description)
+                        </div>
                     </td>
-                    <td class="text-center">@temp.Description</td>
-                    <td class="text-center">
+                    <td class="text-center" style="vertical-align: middle;">
                         @using (Html.BeginForm("DeletePhoto", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "deletePhotoForm" }))
                         {
                             <button type="submit" class="btn btn-danger">@Resourse.button_delete</button>

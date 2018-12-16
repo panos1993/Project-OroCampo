@@ -27,9 +27,23 @@
         </div>
         <div class="form-group">
             <label for="file">@Resourse.picture_file</label> <br />
-            @Html.TextBox("file", "", new { type = "file" })
-            @Html.ValidationMessageFor(model => model.NewPhotoService)
-            <img id="blah" src="#" alt="your image" height="150" width="300" />
+            <div class="col-12" style="width: 100%; ">
+                <div class="input-group">
+                    <label class="input-group-btn">
+                        <span class="btn btn-primary">
+                            @Resourse.open_image&hellip;
+                            @Html.TextBox("file", "File", new { id = "file", type = "file", style = "display: none;" })
+                            @Html.ValidationMessageFor(model => model.NewPhotoService)
+                        </span>
+                    </label>
+                    <input type="text" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>@Resourse.image_preview</label><br />
+            <img id="blah" src="../preview.png" height="150" width="200" />
         </div>
 
         <button type="submit" class="btn btn-success">@Resourse.button_insert</button>
@@ -71,7 +85,11 @@
                     <th class="text-center" scope="row"> @count</th>
                     <td class="text-center"><img src="data:image/png;base64, @temp.Photo" alt="" border=3 height=150 width=250 /> </td>
                     <td class="text-center">@temp.Title</td>
-                    <td class="text-center">@temp.Description</td>
+                    <td class="text-center">
+                        <div style="width: 250px; height: 200px; word-wrap: break-word; overflow: hidden;">
+                            @Html.Raw(@temp.Description)
+                        </div>
+                    </td>
                     <td class="text-center">
                         @using (Html.BeginForm("DeleteService", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "deleteServiceForm" }))
                         {

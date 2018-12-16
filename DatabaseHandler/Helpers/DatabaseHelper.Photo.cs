@@ -67,7 +67,7 @@
                 // Open the connection async
                 await sqlConnection.OpenAsync();
 
-                var query = "SELECT * FROM [dbo].[Photo] (NOLOCK)";
+                var query = "SELECT P.*, PC.Name AS PhotoCategoryName FROM [dbo].[Photo] AS P, [dbo].[PhotoCategory] AS PC (NOLOCK) WHERE P.CategoryId = PC.Id";
 
                 var photos = await sqlConnection.QueryAsync<Photo>(query);
 

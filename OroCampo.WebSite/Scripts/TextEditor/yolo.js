@@ -4,10 +4,14 @@
 //    });
 //});
 
-$(function () {
+/*$(function () {
     $('#edit')
         .on('froalaEditor.initialized',
             function(e, editor) {
             })
         .froalaEditor({ enter: $.FroalaEditor.ENTER_P, placeholderText: null });
-});
+});*/
+
+    $(function(){
+        $('#edit').froalaEditor()
+    });

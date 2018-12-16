@@ -6,8 +6,6 @@
 
 @Html.Partial("CheckIfAuthenticated")
 
-@* @Styles.Render("~/Content/texteditorcss") *@
-
 <div class="jumbotron margin-top-25">
     <h1>@Resourse.product</h1>
     <p class="lead">@Resourse.product_first_text</p>
@@ -66,18 +64,21 @@
 
         if (Model.ProductId != default(Guid))
         {
-            <button type="submit" class="btn btn-warning">Ενημέρωση</button>
+            <div class="panel-body">
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-warning ">Ενημέρωση</button>
+                </div>
+                <div class="btn-group pull-right">
+                    <div class="pull-right">
+                        @Html.ActionLink("Ακύρωση Ενημέρωσης", "ManagementProduct", "Admin", new { @class = "btn btn-danger" })
+                    </div>
+                </div>
+            </div>
         }
         else
         {
             <button type="submit" class="btn btn-success">@Resourse.button_insert</button>
         }
-    }
-
-    @if (Model.ProductId != default(Guid))
-    {
-        @Html.ActionLink("Ακύρωση Ενημέρωσης", "ManagementProduct", "Admin", new { @class = "btn btn-danger" })
-        @*<button type="submit" class="btn btn-danger">Ακύρωση Ενημέρωσης</button>*@
     }
 
 </div>
@@ -114,20 +115,29 @@
                 var temp = Model.Products[i];
                 var count = i + 1;
                 <tr>
-                    <th class="text-center" scope="row"> @count</th>
-                    <td class="text-center"><img src="data:image/png;base64, @temp.Photo" alt="" height=150 width=250 /> </td>
-                    <td class="text-center">@temp.Name</td>
-                    <td class="text-center"> @temp.ProductCategoryName</td>
-                    <td class="text-center">@temp.Description.Substring(0, temp.Description.Length > 50 ? 50 : temp.Description.Length)</td>
-                    <td class="text-center">
-                        @using (Html.BeginForm("DeleteProduct", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "deleteProductForm" }))
-                        {
-                            <button type="submit" class="btn btn-danger">@Resourse.button_delete</button>
-                        }
+                    <th class="text-center" scope="row" style="vertical-align: middle;"> @count</th>
+                    <td class="text-center" style="vertical-align: middle;"><img src="data:image/png;base64, @temp.Photo" alt="" height=150 width=250 /> </td>
+                    <td class="text-center" style="vertical-align: middle;">@temp.Name</td>
+                    <td class="text-center" style="vertical-align: middle;"> @temp.ProductCategoryName</td>
+                    <td class="text-center" style="vertical-align: middle;">
+                        <div style="width: 250px; height: 200px; word-wrap: break-word; overflow: hidden;">
+                            @Html.Raw(@temp.Description )
+                        </div>
+                    </td>
+                    <td class="text-center" style="vertical-align: middle;">
                         @using (Html.BeginForm("EditProduct", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "editProductForm" }))
                         {
-                            <button type="submit" class="btn btn-warning">Αλλαγή</button>
+                            <div class="panel-body">
+                                <button type="submit" class="btn btn-warning btn-block">Αλλαγή</button>
+                            </div>
                         }
+                        @using (Html.BeginForm("DeleteProduct", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "deleteProductForm" }))
+                        {
+                            <div class="panel-body">
+                                <button type="submit" class="btn btn-danger btn-block">@Resourse.button_delete</button>
+                            </div>
+                        }
+
 
                     </td>
                 </tr>
@@ -141,5 +151,3 @@ else
         <h2 class="text-center">@Resourse.product_no_available</h2>
     </div>
 }
-
-@* @Scripts.Render("~/bundles/texteditorjs") *@
