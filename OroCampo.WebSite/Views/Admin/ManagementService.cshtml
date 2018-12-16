@@ -11,12 +11,13 @@
     <p class="lead">@Resourse.service_first_text</p>
     <hr>
     <p>@Resourse.service_second_text</p>
-    @*<hr>*@
 
     @using (Html.BeginForm("SaveService", "Admin", FormMethod.Post, new { role = "form", id = "saveServiceForm", enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 
+        @Html.HiddenFor(m => m.ServiceId)
+        @Html.HiddenFor(m => m.NewPhotoService)
         <div class="form-group">
             <label for="serviceName">@Resourse.service_name</label>
             @Html.TextBoxFor(m => m.NewTitleService, new { id = "serviceName", @class = "form-control", @required = "required" })
@@ -43,10 +44,33 @@
 
         <div class="form-group">
             <label>@Resourse.image_preview</label><br />
-            <img id="blah" src="../preview.png" height="150" width="200" />
+            @if (Model.NewPhotoService != null)
+            {
+                <img id="blah" src="data:image/png;base64, @Model.NewPhotoService" height="150" width="200" />
+            }
+            else
+            {
+                <img id="blah" src="../preview.png" height="150" width="200" />
+            }
         </div>
 
-        <button type="submit" class="btn btn-success">@Resourse.button_insert</button>
+        if (Model.ServiceId != default(Guid))
+        {
+            <div class="panel-body">
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-warning ">@Resourse.update</button>
+                </div>
+                <div class="btn-group pull-right">
+                    <div class="pull-right">
+                        @Html.ActionLink(@Resourse.cancel, "ManagementService", "Admin", new { @class = "btn btn-danger" })
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <button type="submit" class="btn btn-success">@Resourse.button_insert</button>
+        }
 
     }
 </div>
@@ -82,18 +106,26 @@
                 var temp = Model.Services[i];
                 var count = i + 1;
                 <tr>
-                    <th class="text-center" scope="row"> @count</th>
-                    <td class="text-center"><img src="data:image/png;base64, @temp.Photo" alt="" border=3 height=150 width=250 /> </td>
-                    <td class="text-center">@temp.Title</td>
-                    <td class="text-center">
+                    <th class="text-center" scope="row" style="vertical-align: middle;"> @count</th>
+                    <td class="text-center" style="vertical-align: middle;"><img src="data:image/png;base64, @temp.Photo" alt="" border=3 height=150 width=250 /> </td>
+                    <td class="text-center" style="vertical-align: middle;">@temp.Title</td>
+                    <td class="text-center" style="vertical-align: middle;">
                         <div style="width: 250px; height: 200px; word-wrap: break-word; overflow: hidden;">
                             @Html.Raw(@temp.Description)
                         </div>
                     </td>
-                    <td class="text-center">
+                    <td class="text-center" style="vertical-align: middle;">
+                        @using (Html.BeginForm("EditService", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "editServiceForm" }))
+                        {
+                            <div class="panel-body">
+                                <button type="submit" class="btn btn-warning btn-block">@Resourse.edit</button>
+                            </div>
+                        }
                         @using (Html.BeginForm("DeleteService", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "deleteServiceForm" }))
                         {
-                            <button type="submit" class="btn btn-danger">@Resourse.button_delete</button>
+                            <div class="panel-body">
+                                <button type="submit" class="btn btn-danger btn-block">@Resourse.button_delete</button>
+                            </div>
                         }
 
                     </td>

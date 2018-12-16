@@ -17,5 +17,7 @@
 
         public Guid PhotoCategoryId { get; set; }
 
+        public Guid PhotoId { get; set; }
+
     }
 }

@@ -14,7 +14,7 @@
 
         public string NewPhotoService {get; set; }
 
-        public Guid? ServiceIdToDelete { get; set; }
+        public Guid ServiceId { get; set; }
 
     }
 }

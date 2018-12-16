@@ -279,4 +279,13 @@
   <data name="open_image" xml:space="preserve">
     <value>Επιλογή εικόνας</value>
   </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Ακύρωση</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Επεξεργασία</value>
+  </data>
+  <data name="update" xml:space="preserve">
+    <value>Ενημέρωση</value>
+  </data>
 </root>

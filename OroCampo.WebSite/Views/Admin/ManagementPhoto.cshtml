@@ -17,10 +17,12 @@
     {
         @Html.AntiForgeryToken()
 
+        @Html.HiddenFor(m => m.PhotoId)
+        @Html.HiddenFor(m => m.PhotoData)
         <div class="form-group">
             <label for="edit">@Resourse.description</label>
             <div id="editor">
-                @Html.TextAreaFor(m => m.PhotoDescription, new { id = "edit",  @class = "form-control", rows = 30, @required = "required" })
+                @Html.TextAreaFor(m => m.PhotoDescription, new { id = "edit", @class = "form-control", rows = 30, @required = "required" })
             </div>
         </div>
         <div class="form-group">
@@ -45,10 +47,33 @@
 
         <div class="form-group">
             <label>@Resourse.image_preview</label><br />
-            <img id="blah" src="../preview.png" height="150" width="200" />
+            @if (Model.PhotoData != null)
+            {
+                <img id="blah" src="data:image/png;base64, @Model.PhotoData" height="150" width="200" />
+            }
+            else
+            {
+                <img id="blah" src="../preview.png" height="150" width="200" />
+            }
         </div>
 
-        <button type="submit" class="btn btn-success">@Resourse.button_insert</button>
+        if (Model.PhotoId != default(Guid))
+        {
+            <div class="panel-body">
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-warning ">@Resourse.update</button>
+                </div>
+                <div class="btn-group pull-right">
+                    <div class="pull-right">
+                        @Html.ActionLink(@Resourse.cancel, "ManagementPhoto", "Admin", new { @class = "btn btn-danger" })
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <button type="submit" class="btn btn-success">@Resourse.button_insert</button>
+        }
 
     }
 </div>
@@ -94,9 +119,17 @@
                         </div>
                     </td>
                     <td class="text-center" style="vertical-align: middle;">
+                        @using (Html.BeginForm("EditPhoto", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "editPhotoForm" }))
+                        {
+                            <div class="panel-body">
+                                <button type="submit" class="btn btn-warning btn-block">@Resourse.edit</button>
+                            </div>
+                        }
                         @using (Html.BeginForm("DeletePhoto", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "deletePhotoForm" }))
                         {
-                            <button type="submit" class="btn btn-danger">@Resourse.button_delete</button>
+                            <div class="panel-body">
+                                <button type="submit" class="btn btn-danger btn-block">@Resourse.button_delete</button>
+                            </div>
                         }
 
                     </td>

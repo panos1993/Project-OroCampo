@@ -133,6 +133,15 @@ namespace OroCampo.WebSite {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ακύρωση.
+        /// </summary>
+        public static string cancel {
+            get {
+                return ResourceManager.GetString("cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Κατηγορία.
         /// </summary>
         public static string category {
@@ -246,6 +255,15 @@ namespace OroCampo.WebSite {
         public static string description_photo {
             get {
                 return ResourceManager.GetString("description_photo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Επεξεργασία.
+        /// </summary>
+        public static string edit {
+            get {
+                return ResourceManager.GetString("edit", resourceCulture);
             }
         }
         
@@ -543,6 +561,15 @@ namespace OroCampo.WebSite {
         public static string text_blog {
             get {
                 return ResourceManager.GetString("text_blog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ενημέρωση.
+        /// </summary>
+        public static string update {
+            get {
+                return ResourceManager.GetString("update", resourceCulture);
             }
         }
     }

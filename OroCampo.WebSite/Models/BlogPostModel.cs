@@ -1,4 +1,6 @@
-﻿namespace OroCampo.WebSite.Models
+﻿using System;
+
+namespace OroCampo.WebSite.Models
 {
     using System.Collections.Generic;
     using OroCampo.Models.Database;
@@ -12,6 +14,8 @@
         public string NewTitleBlogPost { get; set; }
 
         public string NewTextBlogPost { get; set; }
+
+        public Guid BlogPostId { get; set; }
 
     }
 }

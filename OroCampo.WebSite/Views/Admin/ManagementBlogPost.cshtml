@@ -11,11 +11,13 @@
     <p class="lead">@Resourse.blog_post_first_text</p>
     <hr>
     <p>@Resourse.blog_post_second_text</p>
-    @*<hr>*@
 
     @using (Html.BeginForm("SaveBlogPost", "Admin", FormMethod.Post, new { role = "form", id = "saveBlogPostForm", enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(m => m.BlogPostId)
+        @Html.HiddenFor(m => m.NewPhotoBlogPost)
 
         <div class="form-group">
             <label for="blogPostName">@Resourse.blog_post_name</label>
@@ -45,10 +47,33 @@
 
         <div class="form-group">
             <label>@Resourse.image_preview</label><br />
-            <img id="blah" src="../preview.png" height="150" width="200" />
+            @if (Model.NewPhotoBlogPost != null)
+            {
+                <img id="blah" src="data:image/png;base64, @Model.NewPhotoBlogPost" height="150" width="200" />
+            }
+            else
+            {
+                <img id="blah" src="../preview.png" height="150" width="200" />
+            }
         </div>
 
-        <button type="submit" class="btn btn-success">@Resourse.button_insert</button>
+        if (Model.BlogPostId != default(Guid))
+        {
+            <div class="panel-body">
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-warning ">@Resourse.update</button>
+                </div>
+                <div class="btn-group pull-right">
+                    <div class="pull-right">
+                        @Html.ActionLink(@Resourse.cancel, "ManagementBlogPost", "Admin", new { @class = "btn btn-danger" })
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <button type="submit" class="btn btn-success">@Resourse.button_insert</button>
+        }
 
     }
 </div>
@@ -84,20 +109,27 @@
                 var temp = Model.BlogPosts[i];
                 var count = i + 1;
                 <tr>
-                    <th class="text-center" scope="row"> @count</th>
-                    <td class="text-center"><img src="data:image/png;base64, @temp.Photo" alt="" border=3 height=150 width=250 /> </td>
-                    <td class="text-center">@temp.Title</td>
-                    <td class="text-center">
+                    <th class="text-center"scope="row" style="vertical-align: middle;"> @count</th>
+                    <td class="text-center" style="vertical-align: middle;"><img src="data:image/png;base64, @temp.Photo" alt="" border=3 height=150 width=250 /> </td>
+                    <td class="text-center" style="vertical-align: middle;">@temp.Title</td>
+                    <td class="text-center" style="vertical-align: middle;">
                         <div style="width: 250px; height: 200px; word-wrap: break-word; overflow: hidden;">
                             @Html.Raw(@temp.Text)
                         </div>
                     </td>
-                    <td class="text-center">
+                    <td class="text-center" style="vertical-align: middle;">
+                        @using (Html.BeginForm("EditBlogPost", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "editBlogPostForm" }))
+                        {
+                            <div class="panel-body">
+                                <button type="submit" class="btn btn-warning btn-block">@Resourse.edit</button>
+                            </div>
+                        }
                         @using (Html.BeginForm("DeleteBlogPost", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "deleteBlogPostForm" }))
                         {
-                            <button type="submit" class="btn btn-danger">@Resourse.button_delete</button>
+                            <div class="panel-body">
+                                <button type="submit" class="btn btn-danger btn-block">@Resourse.button_delete</button>
+                            </div>
                         }
-
                     </td>
                 </tr>
             }
