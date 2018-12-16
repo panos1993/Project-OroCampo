@@ -27,27 +27,37 @@ namespace OroCampo.WebSite
                       "~/Content/Site.css"));
 
             bundles.Add(new StyleBundle("~/Content/texteditorcss").Include(
+                    "~/Content/TextEditor/froala_editor.css",
+                    "~/Content/TextEditor/froala_style.css",
                     "~/Content/TextEditor/code_view.css",
                     "~/Content/TextEditor/code_view.min.css",
-                    "~/Content/TextEditor/froala_editor.css",
-                    "~/Content/TextEditor/froala_style.css"));
+                    "~/Content/TextEditor/emoticons.css",
+                    "~/Content/TextEditor/fullscreen.css",
+                    "~/Content/TextEditor/special_characters.css",
+                    "~/Content/TextEditor/colors.css"
+                ));
 
 
             bundles.Add(new ScriptBundle("~/bundles/texteditorjs").Include(
+
+                "~/Scripts/TextEditor/froala_editor.min.js",
                 "~/Scripts/TextEditor/plugins/align.min.js",
                 "~/Scripts/TextEditor/plugins/code_beautifier.min.js",
                 "~/Scripts/TextEditor/plugins/code_view.min.js",
                 "~/Scripts/TextEditor/plugins/draggable.min.js",
                 "~/Scripts/TextEditor/plugins/entities.min.js",
-                "~/Scripts/TextEditor/froala_editor.min.js",
                 "~/Scripts/TextEditor/plugins/link.min.js",
                 "~/Scripts/TextEditor/plugins/lists.min.js",
                 "~/Scripts/TextEditor/plugins/paragraph_format.min.js",
                 "~/Scripts/TextEditor/plugins/paragraph_style.min.js",
                 "~/Scripts/TextEditor/plugins/url.min.js",
+                "~/Scripts/TextEditor/plugins/colors.min.js",
+                "~/Scripts/TextEditor/plugins/emoticons.min.js",
+                "~/Scripts/TextEditor/plugins/font_family.min.js",
+                "~/Scripts/TextEditor/plugins/font_size.min.js",
+                "~/Scripts/TextEditor/plugins/fullscreen.min.js",
+                "~/Scripts/TextEditor/plugins/special_characters.min.js",
                 "~/Scripts/TextEditor/yolo.js"));
-
-
 
             bundles.Add(new ScriptBundle("~/bundles/buttonchoosefilejs").Include(
                 "~/Scripts/ButtonChooseFile/button.js"
