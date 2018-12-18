@@ -148,6 +148,33 @@
                 return (List<string>)photoCategory;
             }
         }
+
+        public static async Task<bool> UpdatePhoto(Photo photo, string connectionString)
+        {
+            // We create an sql connection 
+            using (var sqlConnection = new SqlConnection(connectionString))
+            using (SqlCommand command = sqlConnection.CreateCommand())
+            {
+                // Open the connection async
+                await sqlConnection.OpenAsync();
+                command.CommandText=
+                    "UPDATE [dbo].[Photo] " +
+                    "SET [PhotoData] = @photoData, [Description] = @description, [CategoryId]= @catId " +
+                    "WHERE [Id] = @id";
+
+                command.Parameters.AddWithValue("@photoData", photo.PhotoData);
+                command.Parameters.AddWithValue("@description", photo.Description);
+                command.Parameters.AddWithValue("@catId", photo.CategoryId);
+                command.Parameters.AddWithValue("@id", photo.Id);
+                await command.ExecuteNonQueryAsync();
+
+
+                sqlConnection.Close();
+
+                return true;
+            }
+        }
+
     }
 }
 

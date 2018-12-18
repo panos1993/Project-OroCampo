@@ -270,10 +270,11 @@ namespace OroCampo.WebSite.Controllers
             string imageData = null;
             if (model.PhotoId != default(Guid))
             {
-                await UpdatePhoto(model.PhotoId);
                 imageData = model.PhotoData;
+                var success = await UpdatePhoto(model,file,imageData);
+                return RedirectToAction("ManagementPhoto", "Admin",
+                    new { message = success ? Resourse.delete_success : Resourse.something_went_wrong, success });
             }
-
             if (file != null)
             {
                 var theFileName = Path.GetFileName(file.FileName);
@@ -458,9 +459,29 @@ namespace OroCampo.WebSite.Controllers
             return await DatabaseHelper.DeleteProduct(ConfigurationManager.AppSettings["ConnectionString"], guid);
         }
 
-        public async Task<bool> UpdatePhoto(Guid guid)
+        public async Task<bool> UpdatePhoto(PhotoModel model, HttpPostedFileBase file, string imageData)
         {
-            return await DatabaseHelper.DeletePhoto(ConfigurationManager.AppSettings["ConnectionString"], guid);
+
+            if (file != null)
+            {
+                var theFileName = Path.GetFileName(file.FileName);
+                var thePictureAsBytes = new byte[file.ContentLength];
+                using (var theReader = new BinaryReader(file.InputStream))
+                {
+                    thePictureAsBytes = theReader.ReadBytes(file.ContentLength);
+                }
+
+                imageData = Convert.ToBase64String(thePictureAsBytes);
+            }
+            var photoUpdate = new Photo()
+            {
+                Id = model.PhotoId,
+                Description = model.PhotoDescription,
+                PhotoData = imageData,
+                CategoryId = model.PhotoCategoryId
+            };
+            
+            return await DatabaseHelper.UpdatePhoto(photoUpdate, ConfigurationManager.AppSettings["ConnectionString"]);
         }
 
         public async Task<bool> UpdateService(Guid guid)
