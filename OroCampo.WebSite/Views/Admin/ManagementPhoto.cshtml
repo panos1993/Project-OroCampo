@@ -10,7 +10,7 @@
     <h1>@Resourse.photo</h1>
     <p class="lead">@Resourse.photo_first_text</p>
     <hr>
-    <p>@Resourse.photo_second_text</p>
+    <p>@Resourse.photo_second_text <a href="ManagementPhotoCategory">@Resourse.add_photo_category_link</a>).</p>
     @*<hr>*@
 
     @using (Html.BeginForm("SavePhoto", "Admin", FormMethod.Post, new { role = "form", id = "savePhotoForm", enctype = "multipart/form-data" }))

@@ -10,7 +10,7 @@
     <h1>@Resourse.product</h1>
     <p class="lead">@Resourse.product_first_text</p>
     <hr>
-    <p>@Resourse.product_second_text</p>
+    <p>@Resourse.product_second_text <a href="ManagementProductCategory">@Resourse.add_product_category_link</a>).</p>
 
     @using (Html.BeginForm("SaveProduct", "Admin", FormMethod.Post, new { role = "form", id = "saveProductForm", enctype = "multipart/form-data" }))
     {
