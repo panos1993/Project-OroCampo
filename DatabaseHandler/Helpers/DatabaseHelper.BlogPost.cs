@@ -94,5 +94,30 @@
                 return deletedRows == 1;
             }
         }
+
+        public static async Task<bool> UpdateBlogPost(BlogPost blogPost, string connectionString)
+        {
+            // We create an sql connection 
+            using (var sqlConnection = new SqlConnection(connectionString))
+            using (SqlCommand command = sqlConnection.CreateCommand())
+            {
+                // Open the connection async
+                await sqlConnection.OpenAsync();
+                command.CommandText =
+                    "UPDATE [dbo].[BlogPost] " +
+                    "SET [Title] = @title, [Text] = @text, [Photo]= @photo " +
+                    "WHERE [Id] = @id";
+
+                command.Parameters.AddWithValue("@title", blogPost.Title);
+                command.Parameters.AddWithValue("@text", blogPost.Text);
+                command.Parameters.AddWithValue("@photo", blogPost.Photo);
+                command.Parameters.AddWithValue("@id", blogPost.Id);
+                await command.ExecuteNonQueryAsync();
+
+                sqlConnection.Close();
+
+                return true;
+            }
+        }
     }
 }

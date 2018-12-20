@@ -294,4 +294,7 @@
   <data name="add_product_category_link" xml:space="preserve">
     <value>"προσθήκη κατηγορίας προϊόντος"</value>
   </data>
+  <data name="update_success" xml:space="preserve">
+    <value>Επιτυχής ενημέρωση.</value>
+  </data>
 </root>

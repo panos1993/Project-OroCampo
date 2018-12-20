@@ -131,24 +131,6 @@
             }
         }
 
-        public static List<string> FindPhotoCategoryName(string connectionString, Guid? photoCategoryId)
-        {
-            // We create an sql connection 
-            using (var sqlConnection = new SqlConnection(connectionString))
-            {
-                // Open the connection async
-                sqlConnection.Open();
-
-                var query = "SELECT [Name] FROM [dbo].[PhotoCategory] (NOLOCK) WHERE [Id] = @photoCategoryId";
-
-                var photoCategory = sqlConnection.Query<string>(query, new { photoCategoryId });
-
-                sqlConnection.Close();
-
-                return (List<string>)photoCategory;
-            }
-        }
-
         public static async Task<bool> UpdatePhoto(Photo photo, string connectionString)
         {
             // We create an sql connection 

@@ -66,6 +66,7 @@ namespace OroCampo.WebSite.Controllers
                     Categories = listItems,
                     Message = message,
                     Success = success,
+
                     Name = editProduct.Name,
                     Description = editProduct.Description,
                     ProductCategoryId = editProduct.CategoryId,
@@ -235,8 +236,9 @@ namespace OroCampo.WebSite.Controllers
             string imageData = null;
             if (model.ProductId != default(Guid))
             {
-                await UpdateProduct(model.ProductId);
-                imageData = model.Photo;
+                var success = await UpdateProduct(model, file);
+                return RedirectToAction("ManagementProduct", "Admin",
+                    new { message = success ? Resourse.update_success : Resourse.something_went_wrong, success });
             }
 
             if (file != null)
@@ -270,10 +272,9 @@ namespace OroCampo.WebSite.Controllers
             string imageData = null;
             if (model.PhotoId != default(Guid))
             {
-                imageData = model.PhotoData;
-                var success = await UpdatePhoto(model,file,imageData);
+                var success = await UpdatePhoto(model, file);
                 return RedirectToAction("ManagementPhoto", "Admin",
-                    new { message = success ? Resourse.delete_success : Resourse.something_went_wrong, success });
+                    new { message = success ? Resourse.update_success : Resourse.something_went_wrong, success });
             }
             if (file != null)
             {
@@ -305,8 +306,9 @@ namespace OroCampo.WebSite.Controllers
             string imageData = null;
             if (model.ServiceId != default(Guid))
             {
-                await UpdateService(model.ServiceId);
-                imageData = model.NewPhotoService;
+                var success = await UpdateService(model,file);
+                return RedirectToAction("ManagementService", "Admin",
+                    new { message = success ? Resourse.update_success : Resourse.something_went_wrong, success });
             }
 
             if (file != null)
@@ -339,8 +341,9 @@ namespace OroCampo.WebSite.Controllers
             string imageData = null;
             if (model.BlogPostId != default(Guid))
             {
-                await UpdateBlogPost(model.BlogPostId);
-                imageData = model.NewPhotoBlogPost;
+                var success = await UpdateBlogPost(model,file);
+                return RedirectToAction("ManagementBlogPost", "Admin",
+                    new { message = success ? Resourse.update_success : Resourse.something_went_wrong, success });
             }
 
             if (file != null)
@@ -454,14 +457,35 @@ namespace OroCampo.WebSite.Controllers
 
         //------Update Methods-------
 
-        public async Task<bool> UpdateProduct(Guid guid)
+        public async Task<bool> UpdateProduct(ProductModel model, HttpPostedFileBase file)
         {
-            return await DatabaseHelper.DeleteProduct(ConfigurationManager.AppSettings["ConnectionString"], guid);
+            string imageData = model.Photo;
+            if (file != null)
+            {
+                var theFileName = Path.GetFileName(file.FileName);
+                var thePictureAsBytes = new byte[file.ContentLength];
+                using (var theReader = new BinaryReader(file.InputStream))
+                {
+                    thePictureAsBytes = theReader.ReadBytes(file.ContentLength);
+                }
+
+                imageData = Convert.ToBase64String(thePictureAsBytes);
+            }
+            var productUpdate = new Product()
+            {
+                Name = model.Name,
+                Id = model.ProductId,
+                Description = model.Description,
+                Photo = imageData,
+                CategoryId = model.ProductCategoryId
+            };
+
+            return await DatabaseHelper.UpdateProduct(productUpdate, ConfigurationManager.AppSettings["ConnectionString"]);
         }
 
-        public async Task<bool> UpdatePhoto(PhotoModel model, HttpPostedFileBase file, string imageData)
+        public async Task<bool> UpdatePhoto(PhotoModel model, HttpPostedFileBase file)
         {
-
+            string imageData = model.PhotoData;
             if (file != null)
             {
                 var theFileName = Path.GetFileName(file.FileName);
@@ -480,18 +504,58 @@ namespace OroCampo.WebSite.Controllers
                 PhotoData = imageData,
                 CategoryId = model.PhotoCategoryId
             };
-            
+
             return await DatabaseHelper.UpdatePhoto(photoUpdate, ConfigurationManager.AppSettings["ConnectionString"]);
         }
 
-        public async Task<bool> UpdateService(Guid guid)
+        public async Task<bool> UpdateService(ServiceModel model, HttpPostedFileBase file)
         {
-            return await DatabaseHelper.DeleteService(ConfigurationManager.AppSettings["ConnectionString"], guid);
+            string imageData = model.NewPhotoService;
+            if (file != null)
+            {
+                var theFileName = Path.GetFileName(file.FileName);
+                var thePictureAsBytes = new byte[file.ContentLength];
+                using (var theReader = new BinaryReader(file.InputStream))
+                {
+                    thePictureAsBytes = theReader.ReadBytes(file.ContentLength);
+                }
+
+                imageData = Convert.ToBase64String(thePictureAsBytes);
+            }
+            var serviceUpdate = new Service()
+            {
+                Id = model.ServiceId,
+                Title = model.NewTitleService,
+                Description = model.NewDescriptionService,
+                Photo = imageData,
+            };
+
+            return await DatabaseHelper.UpdateService(serviceUpdate, ConfigurationManager.AppSettings["ConnectionString"]);
         }
 
-        public async Task<bool> UpdateBlogPost(Guid guid)
+        public async Task<bool> UpdateBlogPost(BlogPostModel model, HttpPostedFileBase file)
         {
-            return await DatabaseHelper.DeleteBlogPost(ConfigurationManager.AppSettings["ConnectionString"], guid);
+            string imageData = model.NewPhotoBlogPost;
+            if (file != null)
+            {
+                var theFileName = Path.GetFileName(file.FileName);
+                var thePictureAsBytes = new byte[file.ContentLength];
+                using (var theReader = new BinaryReader(file.InputStream))
+                {
+                    thePictureAsBytes = theReader.ReadBytes(file.ContentLength);
+                }
+
+                imageData = Convert.ToBase64String(thePictureAsBytes);
+            }
+            var blogPostUpdate = new BlogPost()
+            {
+                Id = model.BlogPostId,
+                Title = model.NewTitleBlogPost,
+                Text = model.NewTextBlogPost,
+                Photo = imageData,
+            };
+
+            return await DatabaseHelper.UpdateBlogPost(blogPostUpdate, ConfigurationManager.AppSettings["ConnectionString"]);
         }
 
     }
