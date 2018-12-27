@@ -3,11 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
     @Styles.Render("~/Content/texteditorcss")
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/theme")
     @Scripts.Render("~/bundles/modernizr")
     <style>
         .dropdown-content {
@@ -37,52 +38,92 @@
     </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+    <!--================Header Area =================-->
+    <header class="main_header_area">
+        <div class="header_top">
+            <div class="container">
+                <div class="header_top_inner">
+                    <div class="pull-left">
+                        <a href="#"><i class="fa fa-phone"></i>23410 27288</a>
+                        <a href="#"><i class="fa fa-envelope-o"></i>info@OroCampo.gr</a>
 
-                    @* This will only appear when loged in *@
-                    @if (Request.IsAuthenticated)
-                    {
-                        <li class="dropdown">
-                            <a href="javascript:void(0)">Διαχείρηση</a>
-                            <div class="dropdown-content">
-                                @Html.ActionLink("Προσθήκη κατηγορίας φωτογραφίας", "ManagementPhotoCategory", "Admin")
-                                @Html.ActionLink("Προσθήκη κατηγορίας προϊόντος", "ManagementProductCategory", "Admin")
-                                @Html.ActionLink("Προσθήκη προϊόντος", "ManagementProduct", "Admin")
-                                @Html.ActionLink("Προσθήκη φωτογραφίας", "ManagementPhoto", "Admin")
-                                @Html.ActionLink("Προσθήκη υπηρεσίας", "ManagementService", "Admin")
-                                @Html.ActionLink("Προσθήκη άρθρου", "ManagementBlogPost", "Admin")
-                            </div>
-
-                        </li>
-
-
-
-                    }
-                </ul>
-                @Html.Partial("_LoginPartial")
+                    </div>
+                    <div class="pull-right">
+                        <ul class="header_social">
+                            <li><a href="https://www.facebook.com/OROCAMPO/?tn-str=k*F"><i class="fa fa-facebook"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
+        <div class="header_menu">
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"><img src="Theme/img/white_logo.png" alt=""></a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+
+                            <li>@Html.ActionLink("Αρχικη", "Index", "Home")</li>
+
+                            <li>@Html.ActionLink("Σχετικα", "About", "Home")</li>
+
+                            <li class="submenu dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Υπηρεσιες <i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Όλες υπηρεσίες", "Index", "Services")</li>
+                                </ul>
+                            </li>
+                            <li class="submenu dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Προϊοντα <i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Όλα τα προϊόντα", "Index", "Products")</li>
+                                </ul>
+                            </li>
+                            <li>@Html.ActionLink("Αρθρα", "Index", "BlogPosts")</li>
+                            <li>@Html.ActionLink("Εικονες", "Index", "Photos")</li>
+                            <li>@Html.ActionLink("Επικοινωνια", "Contact", "Home")</li>
+                            @if (Request.IsAuthenticated)
+                            {
+                                <li class="submenu dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Διαχειρηση <i class="fa fa-angle-down"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li>@Html.ActionLink("Προσθήκη κατηγορίας φωτογραφίας", "ManagementPhotoCategory", "Admin")</li>
+                                        <li>@Html.ActionLink("Προσθήκη κατηγορίας προϊόντος", "ManagementProductCategory", "Admin")</li>
+                                        <li>@Html.ActionLink("Προσθήκη προϊόντος", "ManagementProduct", "Admin")</li>
+                                        <li>@Html.ActionLink("Προσθήκη φωτογραφίας", "ManagementPhoto", "Admin")</li>
+                                        <li>@Html.ActionLink("Προσθήκη υπηρεσίας", "ManagementService", "Admin")</li>
+                                        <li>@Html.ActionLink("Προσθήκη άρθρου", "ManagementBlogPost", "Admin")</li>
+                                        @Html.Partial("_LoginPartial")
+                                    </ul>
+                                </li>
+                            }
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div>
+    </header>
+
+    <div class="container main-body-margin-top">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Oro Campo</p>
-        </footer>
+        @*<footer>
+                <div class="container">
+                    <div class="row">
+                        <p>&copy; @DateTime.Now.Year - Oro Campo</p>
+                    </div>
+                </div>
+            </footer>*@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
@@ -92,6 +133,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/sitequery")
     @Scripts.Render("~/bundles/buttonchoosefilejs")
+    @Scripts.Render("~/bundles/theme")
     @RenderSection("scripts", required: false)
 </body>
 </html>

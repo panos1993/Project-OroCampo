@@ -49,12 +49,21 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -194,10 +203,15 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BlogPostsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PhotosController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -235,6 +249,71 @@
     <Content Include="Content\TextEditor\froala_style.css" />
     <Content Include="Content\TextEditor\fullscreen.css" />
     <Content Include="Content\TextEditor\special_characters.css" />
+    <Content Include="Theme\css\animate.css" />
+    <Content Include="Theme\css\bootstrap.min.css" />
+    <Content Include="Theme\css\flaticon.css" />
+    <Content Include="Theme\css\font-awesome.css" />
+    <Content Include="Theme\css\font-awesome.min.css" />
+    <Content Include="Theme\css\hover.css" />
+    <Content Include="Theme\css\jquery.fancybox.css" />
+    <Content Include="Theme\css\page-css\blog-pages-style.css" />
+    <Content Include="Theme\css\page-css\contact-page-style.css" />
+    <Content Include="Theme\css\page-css\faq-page-style.css" />
+    <Content Include="Theme\css\page-css\header.css" />
+    <Content Include="Theme\css\page-css\nav-style.css" />
+    <Content Include="Theme\css\page-css\priceing.css" />
+    <Content Include="Theme\css\page-css\services-page-style.css" />
+    <Content Include="Theme\css\page-css\team-page-style.css" />
+    <Content Include="Theme\css\page-css\testimonials-page-style.css" />
+    <Content Include="Theme\css\responsive.css" />
+    <Content Include="Theme\css\responsive2.css" />
+    <Content Include="Theme\css\style - Copy.css" />
+    <Content Include="Theme\css\style.css" />
+    <Content Include="Theme\img\white_logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Theme\js\bootstrap.min.js" />
+    <Content Include="Theme\js\contact.js" />
+    <Content Include="Theme\js\custom-theme.js" />
+    <Content Include="Theme\js\gallery.js" />
+    <Content Include="Theme\js\gmaps.min.js" />
+    <Content Include="Theme\js\jquery-2.2.4.js" />
+    <Content Include="Theme\js\jquery.fancybox.pack.js" />
+    <Content Include="Theme\js\jquery.form.js" />
+    <Content Include="Theme\js\jquery.mixitup.min.js" />
+    <Content Include="Theme\js\jquery.validate.min.js" />
+    <Content Include="Theme\js\map-script.js" />
+    <Content Include="Theme\js\tab-script.js" />
+    <Content Include="Theme\js\theme.js" />
+    <Content Include="Theme\vendors\animate-css\animate.css" />
+    <Content Include="Theme\vendors\bootstrap-selector\css\bootstrap-select.min.css" />
+    <Content Include="Theme\vendors\bootstrap-selector\js\bootstrap-select.min.js" />
+    <Content Include="Theme\vendors\isotope\imagesloaded.pkgd.min.js" />
+    <Content Include="Theme\vendors\isotope\isotope.pkgd.min.js" />
+    <Content Include="Theme\vendors\magnific-popup\jquery.magnific-popup.min.js" />
+    <Content Include="Theme\vendors\magnific-popup\magnific-popup.css" />
+    <Content Include="Theme\vendors\owl-carousel\assets\owl.carousel.min.css" />
+    <Content Include="Theme\vendors\owl-carousel\assets\owl.video.play.html" />
+    <Content Include="Theme\vendors\owl-carousel\owl.carousel.min.js" />
+    <Content Include="Theme\vendors\revolution\assets\coloredbg.png" />
+    <Content Include="Theme\vendors\revolution\assets\gridtile.png" />
+    <Content Include="Theme\vendors\revolution\assets\gridtile_3x3.png" />
+    <Content Include="Theme\vendors\revolution\assets\gridtile_3x3_white.png" />
+    <Content Include="Theme\vendors\revolution\assets\gridtile_white.png" />
+    <Content Include="Theme\vendors\revolution\assets\loader.gif" />
+    <Content Include="Theme\vendors\revolution\css\closedhand.html" />
+    <Content Include="Theme\vendors\revolution\css\layers.css" />
+    <Content Include="Theme\vendors\revolution\css\navigation.css" />
+    <Content Include="Theme\vendors\revolution\css\openhand.html" />
+    <Content Include="Theme\vendors\revolution\css\settings.css" />
+    <Content Include="Theme\vendors\revolution\fonts\revicons\revicons90c6.svg" />
+    <Content Include="Theme\vendors\revolution\js\extensions\revolution.extension.layeranimation.min.js" />
+    <Content Include="Theme\vendors\revolution\js\extensions\revolution.extension.navigation.min.js" />
+    <Content Include="Theme\vendors\revolution\js\extensions\revolution.extension.slideanims.min.js" />
+    <Content Include="Theme\vendors\revolution\js\extensions\revolution.extension.video.min.js" />
+    <Content Include="Theme\vendors\revolution\js\jquery.themepunch.revolution.min.js" />
+    <Content Include="Theme\vendors\revolution\js\jquery.themepunch.tools.min.js" />
+    <Content Include="Theme\vendors\stroke-icon\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -249,6 +328,11 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Theme\vendors\revolution\fonts\revicons\revicons90c6.eot" />
+    <Content Include="Theme\vendors\revolution\fonts\revicons\revicons90c6.ttf" />
+    <Content Include="Theme\vendors\revolution\fonts\revicons\revicons90c6.woff" />
+    <Content Include="Theme\vendors\stroke-icon\fonts\Stroke-Gap-Icons.eot" />
+    <Content Include="white_logo.png" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\TextEditor\plugins\codemirror.min.js" />
     <Content Include="Scripts\TextEditor\plugins\code_beautifier.min.js" />
@@ -322,6 +406,10 @@
     <Content Include="Views\Admin\ManagementService.cshtml" />
     <Content Include="Views\Admin\ManagementBlogPost.cshtml" />
     <Content Include="Views\Shared\CheckIfAuthenticated.cshtml" />
+    <Content Include="Views\Services\Index.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\BlogPosts\Index.cshtml" />
+    <Content Include="Views\Photos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
