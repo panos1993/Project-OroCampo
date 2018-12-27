@@ -131,23 +131,32 @@
             }
         }
 
-        public static List<string> FindPhotoCategoryName(string connectionString, Guid? photoCategoryId)
+        public static async Task<bool> UpdatePhoto(Photo photo, string connectionString)
         {
             // We create an sql connection 
             using (var sqlConnection = new SqlConnection(connectionString))
+            using (SqlCommand command = sqlConnection.CreateCommand())
             {
                 // Open the connection async
-                sqlConnection.Open();
+                await sqlConnection.OpenAsync();
+                command.CommandText=
+                    "UPDATE [dbo].[Photo] " +
+                    "SET [PhotoData] = @photoData, [Description] = @description, [CategoryId]= @catId " +
+                    "WHERE [Id] = @id";
 
-                var query = "SELECT [Name] FROM [dbo].[PhotoCategory] (NOLOCK) WHERE [Id] = @photoCategoryId";
+                command.Parameters.AddWithValue("@photoData", photo.PhotoData);
+                command.Parameters.AddWithValue("@description", photo.Description);
+                command.Parameters.AddWithValue("@catId", photo.CategoryId);
+                command.Parameters.AddWithValue("@id", photo.Id);
+                await command.ExecuteNonQueryAsync();
 
-                var photoCategory = sqlConnection.Query<string>(query, new { photoCategoryId });
 
                 sqlConnection.Close();
 
-                return (List<string>)photoCategory;
+                return true;
             }
         }
+
     }
 }
 

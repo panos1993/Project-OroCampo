@@ -590,5 +590,14 @@ namespace OroCampo.WebSite {
                 return ResourceManager.GetString("update", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Επιτυχής ενημέρωση..
+        /// </summary>
+        public static string update_success {
+            get {
+                return ResourceManager.GetString("update_success", resourceCulture);
+            }
+        }
     }
 }

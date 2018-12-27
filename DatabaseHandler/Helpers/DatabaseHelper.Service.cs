@@ -92,5 +92,31 @@
                 return deletedRows == 1;
             }
         }
+
+        public static async Task<bool> UpdateService(Service service, string connectionString)
+        {
+            // We create an sql connection 
+            using (var sqlConnection = new SqlConnection(connectionString))
+            using (SqlCommand command = sqlConnection.CreateCommand())
+            {
+                // Open the connection async
+                await sqlConnection.OpenAsync();
+                command.CommandText =
+                    "UPDATE [dbo].[Service] " +
+                    "SET [Title] = @title, [Description] = @description, [Photo]= @photo " +
+                    "WHERE [Id] = @id";
+
+                command.Parameters.AddWithValue("@title", service.Title);
+                command.Parameters.AddWithValue("@description", service.Description);
+                command.Parameters.AddWithValue("@photo", service.Photo);
+                command.Parameters.AddWithValue("@id", service.Id);
+                await command.ExecuteNonQueryAsync();
+
+
+                sqlConnection.Close();
+
+                return true;
+            }
+        }
     }
 }

@@ -112,22 +112,31 @@
             }
         }
 
-        public static List<string> FindProductCategoryName(string connectionString, Guid? productCategoryId)
+        public static async Task<bool> UpdateProduct(Product product, string connectionString)
         {
             // We create an sql connection 
             using (var sqlConnection = new SqlConnection(connectionString))
+            using (SqlCommand command = sqlConnection.CreateCommand())
             {
                 // Open the connection async
-                sqlConnection.Open();
+                await sqlConnection.OpenAsync();
+                command.CommandText =
+                    "UPDATE [dbo].[Product] " +
+                    "SET [Name] = @name, [Description] = @description, [Photo] = @photo, [CategoryId]= @catId " +
+                    "WHERE [Id] = @id";
 
-                var query = "SELECT [Name] FROM [dbo].[ProductCategory] (NOLOCK) WHERE [Id] = @productCategoryId";
-
-                var productCategory = sqlConnection.Query<string>(query, new { productCategoryId });
+                command.Parameters.AddWithValue("@name", product.Name);
+                command.Parameters.AddWithValue("@description", product.Description);
+                command.Parameters.AddWithValue("@photo", product.Photo);
+                command.Parameters.AddWithValue("@catId", product.CategoryId);
+                command.Parameters.AddWithValue("@id", product.Id);
+                await command.ExecuteNonQueryAsync();
 
                 sqlConnection.Close();
 
-                return (List<string>)productCategory;
+                return true;
             }
         }
+
     }
 }
