@@ -44,8 +44,8 @@
             <div class="container">
                 <div class="header_top_inner">
                     <div class="pull-left">
-                        <a href="#"><i class="fa fa-phone"></i>23410 27288</a>
-                        <a href="#"><i class="fa fa-envelope-o"></i>info@OroCampo.gr</a>
+                        <a href=""><i class="fa fa-phone"></i>23410 27288</a>
+                        <a href=""><i class="fa fa-envelope-o"></i>info@OroCampo.gr</a>
 
                     </div>
                     <div class="pull-right">
@@ -67,7 +67,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#"><img src="Theme/img/white_logo.png" alt=""></a>
+                        <a class="navbar-brand" href=""><img src="Theme/img/white_logo.png" alt=""></a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -78,13 +78,14 @@
                             <li>@Html.ActionLink("Σχετικα", "About", "Home")</li>
 
                             <li class="submenu dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Υπηρεσιες <i class="fa fa-angle-down"></i></a>
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Υπηρεσιες <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu">
                                     <li>@Html.ActionLink("Όλες υπηρεσίες", "Index", "Services")</li>
+                                    @*@{ Html.Action("GetServices", "Layout"); }*@
                                 </ul>
                             </li>
                             <li class="submenu dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Προϊοντα <i class="fa fa-angle-down"></i></a>
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Προϊοντα <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu">
                                     <li>@Html.ActionLink("Όλα τα προϊόντα", "Index", "Products")</li>
                                 </ul>
@@ -95,7 +96,7 @@
                             @if (Request.IsAuthenticated)
                             {
                                 <li class="submenu dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Διαχειρηση <i class="fa fa-angle-down"></i></a>
+                                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Διαχειρηση <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown-menu">
                                         <li>@Html.ActionLink("Προσθήκη κατηγορίας φωτογραφίας", "ManagementPhotoCategory", "Admin")</li>
                                         <li>@Html.ActionLink("Προσθήκη κατηγορίας προϊόντος", "ManagementProductCategory", "Admin")</li>

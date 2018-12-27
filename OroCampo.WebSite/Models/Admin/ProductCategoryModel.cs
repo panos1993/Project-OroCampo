@@ -1,6 +1,7 @@
-﻿namespace OroCampo.WebSite.Models
+﻿namespace OroCampo.WebSite.Models.Admin
 {
     using System.Collections.Generic;
+
     using OroCampo.Models.Database;
 
     public class ProductCategoryModel : ModelBase

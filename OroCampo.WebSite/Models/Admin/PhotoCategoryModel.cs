@@ -1,7 +1,9 @@
-﻿namespace OroCampo.WebSite.Models
+﻿namespace OroCampo.WebSite.Models.Admin
 {
-    using OroCampo.Models.Database;
     using System.Collections.Generic;
+
+    using OroCampo.Models.Database;
+
     public class PhotoCategoryModel : ModelBase
     {
         public List<PhotoCategory> PhotoCategories { get; set; }

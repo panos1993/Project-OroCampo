@@ -1,8 +1,9 @@
-﻿namespace OroCampo.WebSite.Models
+﻿namespace OroCampo.WebSite.Models.Admin
 {
-    using System.Web.Mvc;
     using System;
     using System.Collections.Generic;
+    using System.Web.Mvc;
+
     using OroCampo.Models.Database;
 
     public class ProductModel : ModelBase 

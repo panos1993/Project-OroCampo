@@ -1,8 +1,7 @@
-﻿namespace OroCampo.WebSite.Models
+﻿namespace OroCampo.WebSite.Models.Admin
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
 
     public class ExternalLoginConfirmationViewModel
     {

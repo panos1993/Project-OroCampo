@@ -16,6 +16,8 @@ namespace OroCampo.WebSite.Controllers
     using ConfigurationManager = System.Configuration.ConfigurationManager;
     using System.Collections.Generic;
 
+    using OroCampo.WebSite.Models.Admin;
+
     public class AdminController : Controller
     {
 
@@ -136,7 +138,7 @@ namespace OroCampo.WebSite.Controllers
 
         public async Task<ActionResult> ManagementService(string message = null, bool success = false, Guid? editGuid = null)
         {
-            var services = await DatabaseHelper.GetServices(ConfigurationManager.AppSettings["ConnectionString"]);
+            var services = await DatabaseHelper.GetServices(ConfigurationManager.AppSettings["ConnectionString"], true);
 
             ServiceModel model;
 

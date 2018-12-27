@@ -1,9 +1,10 @@
-﻿namespace OroCampo.WebSite.Models
+﻿namespace OroCampo.WebSite.Models.Admin
 {
     using System;
     using System.Collections.Generic;
-    using OroCampo.Models.Database;
     using System.Web.Mvc;
+
+    using OroCampo.Models.Database;
 
     public class PhotoModel : ModelBase
     {

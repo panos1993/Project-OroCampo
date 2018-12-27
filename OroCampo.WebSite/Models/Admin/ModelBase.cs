@@ -1,4 +1,4 @@
-﻿namespace OroCampo.WebSite.Models
+﻿namespace OroCampo.WebSite.Models.Admin
 {
     public class ModelBase
     {
