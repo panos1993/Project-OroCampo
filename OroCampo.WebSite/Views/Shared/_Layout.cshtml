@@ -67,7 +67,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href=""><img src="Theme/img/white_logo.png" alt=""></a>
+                        <a class="navbar-brand" href=""><img src="~/Theme/img/white_logo.png" alt=""></a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -114,18 +114,109 @@
             </nav>
         </div>
     </header>
+    @RenderBody()
 
-    <div class="container main-body-margin-top">
-        @RenderBody()
-        @*<hr />*@
-        @*<footer>
-                <div class="container">
-                    <div class="row">
-                        <p>&copy; @DateTime.Now.Year - Oro Campo</p>
+    <!--================Footer Area =================-->
+    <section class="footer_top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <div class="footer_left_text">
+                        <h3>Gardner need & Landscaping</h3>
+                        <p>
+                            If you have an gardner need, simply call <br> our
+                            24 hour emergecny number
+                        </p>
                     </div>
                 </div>
-            </footer>*@
-    </div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="footer_left_text">
+                        <h3>Call Us Today</h3>
+                        <p>1800 856 7489 <span>Or</span> contact@legacygarden.com</p>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </section>
+    <!-- End Footer top section -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-xs-12">
+                    <div class="footer_pannel">
+                        <h3>Address</h3>
+                        <ul>
+                            <li>
+                                <span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                                <p>
+                                    110, Lorance Road Sanewadi,
+                                    Badlapur (W), Thane, Melbourne.
+                                </p>
+                            </li>
+                            <li>
+                                <span><i class="fa fa-phone" aria-hidden="true"></i></span>
+                                <p>
+                                    +91-92-45-35-43-35
+                                </p>
+                            </li>
+                            <li>
+                                <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                                <p>
+                                    sales@salesoliva.com
+                                </p>
+                            </li>
+                        </ul>
+                        <ul class="f_con">
+                            <li>
+                                <a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <div class="footer_logo">
+                        <figure>
+                            <img src="~/Theme/img/resource/footer_logo.png" alt="">
+                        </figure>
+                        <p>© Copyright Hilton 2018 . All right reserved.</p>
+                        <p>Design by Themelab15</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <div class="footer_pannel " style="padding-left: 30px">
+                        <h3>Quick Links</h3>
+                        <ul class="footer_links">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Free Tools</a></li>
+                            <li><a href="#">Career</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Free Tools</a></li>
+                            <li><a href="#">Career</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </footer>
+    <!--================End Footer Area =================-->
+
 
     @Scripts.Render("~/bundles/jquery")
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>

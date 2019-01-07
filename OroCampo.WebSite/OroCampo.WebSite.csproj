@@ -227,6 +227,7 @@
     <Compile Include="Models\Admin\ProductCategoryModel.cs" />
     <Compile Include="Models\Admin\ProductModel.cs" />
     <Compile Include="Models\Admin\ServiceModel.cs" />
+    <Compile Include="Models\Home\indexModel.cs" />
     <Compile Include="Models\LayoutServicesModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resourse.Designer.cs">
@@ -271,6 +272,47 @@
     <Content Include="Theme\css\responsive2.css" />
     <Content Include="Theme\css\style - Copy.css" />
     <Content Include="Theme\css\style.css" />
+    <Content Include="Theme\img\about-right-1.jpg" />
+    <Content Include="Theme\img\banner\banner-bg.jpg" />
+    <Content Include="Theme\img\bg\footer_bg.jpg" />
+    <Content Include="Theme\img\gallery\1.jpg" />
+    <Content Include="Theme\img\gallery\2.jpg" />
+    <Content Include="Theme\img\gallery\3.jpg" />
+    <Content Include="Theme\img\gallery\4.jpg" />
+    <Content Include="Theme\img\gallery\5.jpg" />
+    <Content Include="Theme\img\gallery\6.jpg" />
+    <Content Include="Theme\img\home-slider\slider-1.jpg" />
+    <Content Include="Theme\img\home-slider\slider-2.jpg" />
+    <Content Include="Theme\img\home-slider\slider-3.jpg" />
+    <Content Include="Theme\img\icon\1.png" />
+    <Content Include="Theme\img\icon\2.png" />
+    <Content Include="Theme\img\icon\advisor.png" />
+    <Content Include="Theme\img\icon\b1.png" />
+    <Content Include="Theme\img\icon\b2.png" />
+    <Content Include="Theme\img\icon\b3.png" />
+    <Content Include="Theme\img\icon\b4.png" />
+    <Content Include="Theme\img\icon\c1.png" />
+    <Content Include="Theme\img\icon\c2.png" />
+    <Content Include="Theme\img\icon\c3.png" />
+    <Content Include="Theme\img\icon\c4.png" />
+    <Content Include="Theme\img\icon\ct.png" />
+    <Content Include="Theme\img\icon\doc-f-1.png" />
+    <Content Include="Theme\img\icon\doc-f-2.png" />
+    <Content Include="Theme\img\icon\doc-f-3.png" />
+    <Content Include="Theme\img\icon\download-icon.png" />
+    <Content Include="Theme\img\icon\ex1.png" />
+    <Content Include="Theme\img\icon\project.png" />
+    <Content Include="Theme\img\icon\sing-icon.png" />
+    <Content Include="Theme\img\icon\techicon1.png" />
+    <Content Include="Theme\img\icon\techicon2.png" />
+    <Content Include="Theme\img\icon\techicon3.png" />
+    <Content Include="Theme\img\icon\techicon4.png" />
+    <Content Include="Theme\img\icon\user.png" />
+    <Content Include="Theme\img\resource\about-2.jpg" />
+    <Content Include="Theme\img\resource\cust_bt.jpg" />
+    <Content Include="Theme\img\resource\footer_logo.png" />
+    <Content Include="Theme\img\resource\pot.png" />
+    <Content Include="Theme\img\resource\service-img-2.jpg" />
     <Content Include="Theme\img\white_logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -335,6 +377,8 @@
     <Content Include="Theme\vendors\revolution\fonts\revicons\revicons90c6.woff" />
     <Content Include="Theme\vendors\stroke-icon\fonts\Stroke-Gap-Icons.eot" />
     <Content Include="white_logo.png" />
+    <None Include="Properties\PublishProfiles\OroCampo - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\OroCampo - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\TextEditor\plugins\codemirror.min.js" />
     <Content Include="Scripts\TextEditor\plugins\code_beautifier.min.js" />
@@ -417,7 +461,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

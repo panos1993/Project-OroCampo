@@ -59,6 +59,7 @@ namespace OroCampo.WebSite
 
             bundles.Add(
                 new ScriptBundle("~/bundles/theme").Include(
+                    "~/Themes/js/bootstrap.min.js",
                     "~/Theme/vendors/revolution/js/jquery.themepunch.tools.min.js",
                     "~/Theme/vendors/revolution/js/jquery.themepunch.revolution.min.js",
                     "~/Theme/vendors/revolution/js/extensions/revolution.extension.video.min.js",
@@ -69,6 +70,9 @@ namespace OroCampo.WebSite
                     "~/Theme/vendors/isotope/imagesloaded.pkgd.min.js",
                     "~/Theme/vendors/isotope/isotope.pkgd.min.js",
                     "~/Theme/vendors/magnific-popup/jquery.magnific-popup.min.js",
+                    "~/Theme/js/jquery.fancybox.pack.js",
+                    "~/Theme/js/jquery.mixitup.min.js",
+                    "~/Theme/js/gallery.js",
                     "~/Theme/js/theme.js"));
 
             bundles.Add(

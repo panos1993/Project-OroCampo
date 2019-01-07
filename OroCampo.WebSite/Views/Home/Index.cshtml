@@ -1,31 +1,671 @@
-﻿@{
+﻿@using System.Web.Mvc.Html
+@model OroCampo.WebSite.Models.Home.indexModel
+@using OroCampo.Models.Database
+
+@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<!--================Slider Area =================-->
+<section class="main_slider_area">
+    <div id="main_slider" class="rev_slider" data-version="5.3.1.6">
+        <ul>
+            @for (int i = 0; i <= 3; i++)
+            {
+                string str1 = "slider-";
+                string str2 = ".jpg";
+                string str3 = i.ToString();
+                var name = str1.Union(str3);
+                var namefile = name.Union(str2);
+                <li data-index="rs-1587" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="img/home-slider/slider-1.jpg" data-rotate="0" data-saveperformance="off" data-title="Creative" data-param1="01" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                    <!-- MAIN IMAGE -->
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+
+
+                    <img src="~/Theme/img/home-slider/@namefile" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
+                    <!-- LAYER NR. 1 -->
+                    <div class="slider_text_box">
+                        <div class="tp-caption tp-resizeme first_text"
+                             id="slide-1592-layer-1"
+                             data-x="['left','left','left','15','0']" data-hoffset="['0','0','0','0']"
+                             data-y="['top','top','top','top']" data-voffset="['290','290','290','220','130']"
+                             data-fontsize="['55','55','55','40','30']"
+                             data-lineheight="['59','59','59','50','40']"
+                             data-width="['550','550','550','400']"
+                             data-height="none"
+                             data-whitespace="normal"
+                             data-type="text"
+                             data-responsive_offset="on"
+                             data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:0px;s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
+                             data-textAlign="['left','left','left','left']">We Provide Best Consulting Service</div>
+
+                        <div class="tp-caption tp-resizeme secand_text"
+                             id="slide-1593-layer-2"
+                             data-x="['left','left','left','15','0']" data-hoffset="['0','0','0','0']"
+                             data-y="['top','top','top','top']" data-voffset="['435','435','435','340','225']"
+                             data-fontsize="['18','18','18','18','16']"
+                             data-lineheight="['26','26','26','26']"
+                             data-width="['550','550','550','550','300']"
+                             data-height="none"
+                             data-whitespace="normal"
+                             data-type="text"
+                             data-responsive_offset="on"
+                             data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
+                             data-textAlign="['left','left','left','left']">Lorem Ipsum is simply text of the Lorem Ipsum is simply my text of the printing and Ipsum is simply.</div>
+
+                        <div class="tp-caption tp-resizeme slider_button"
+                             id="slide-1594-layer-3"
+                             data-x="['left','left','left','15','0']" data-hoffset="['0','0','0','0']"
+                             data-y="['top','top','top','top']" data-voffset="['525','525','525','435','330']"
+                             data-fontsize="['14','14','14','14']"
+                             data-lineheight="['46','46','46','46']"
+                             data-width="none"
+                             data-height="none"
+                             data-whitespace="nowrap"
+                             data-type="text"
+                             data-responsive_offset="on"
+                             data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
+                             data-textAlign="['left','left','left','left']">
+                            <a class="main_btn" href="#">Our services</a>
+                            <a class="main_b_btn" href="#">learn more</a>
+                        </div>
+                    </div>
+                </li>
+            }
+            @*<li data-index="rs-1588" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="img/home-slider/slider-2.jpg" data-rotate="0" data-saveperformance="off" data-title="Creative" data-param1="01" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+            <!-- MAIN IMAGE -->
+            <img src="~/Theme/img/home-slider/slider-2.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
+            <!-- LAYERS -->
+            <!-- LAYERS -->
+            <!-- LAYER NR. 1 -->
+            <div class="slider_text_box">
+                <div class="tp-caption tp-resizeme first_text"
+                     id="slide-1589-layer-1"
+                     data-x="['left','left','left','15','0']" data-hoffset="['0','0','0','0']"
+                     data-y="['top','top','top','top']" data-voffset="['290','290',290','220','130']"
+                     data-fontsize="['55','55','55','40','30']"
+                     data-lineheight="['59','59','59','50','40']"
+                     data-width="['550','550','550','400']"
+                     data-height="none"
+                     data-whitespace="normal"
+                     data-type="text"
+                     data-responsive_offset="on"
+                     data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:0px;s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
+                     data-textAlign="['left','left','left','left']">We Provide Best Consulting Service</div>
+
+                <div class="tp-caption tp-resizeme secand_text"
+                     id="slide-1590-layer-2"
+                     data-x="['left','left','left','15','0']" data-hoffset="['0','0','0','0']"
+                     data-y="['top','top','top','top']" data-voffset="['435','435','435','340','225']"
+                     data-fontsize="['18','18','18','18','16']"
+                     data-lineheight="['26','26','26','26']"
+                     data-width="['550','550','550','550','300']"
+                     data-height="none"
+                     data-whitespace="normal"
+                     data-type="text"
+                     data-responsive_offset="on"
+                     data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
+                     data-textAlign="['left','left','left','left']">Lorem Ipsum is simply text of the Lorem Ipsum is  simply my text of the printing and Ipsum is simply.</div>
+
+                <div class="tp-caption tp-resizeme slider_button"
+                     id="slide-1591-layer-3"
+                     data-x="['left','left','left','15','0']" data-hoffset="['0','0','0','0']"
+                     data-y="['top','top','top','top']" data-voffset="['525','525','525','425','330']"
+                     data-fontsize="['14','14','14','14']"
+                     data-lineheight="['46','46','46','46']"
+                     data-width="none"
+                     data-height="none"
+                     data-whitespace="nowrap"
+                     data-type="text"
+                     data-responsive_offset="on"
+                     data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
+                     data-textAlign="['left','left','left','left']">
+                    <a class="main_btn" href="#">Our services</a>
+                    <a class="main_b_btn" href="#">learn more</a>
+                </div>
+            </div>
+        </li>
+
+        <li data-index="rs-1589" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="img/home-slider/slider-3.jpg" data-rotate="0" data-saveperformance="off" data-title="Creative" data-param1="01" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+            <!-- MAIN IMAGE -->
+            <img src="~/Theme/img/home-slider/slider-3.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
+            <!-- LAYER NR. 1 -->
+            <div class="slider_text_box">
+                <div class="tp-caption tp-resizeme first_text"
+                     id="slide-1586-layer-1"
+                     data-x="['left','left','left','15','0']" data-hoffset="['0','0','0','0']"
+                     data-y="['top','top','top','top']" data-voffset="['290','290','290','220','130']"
+                     data-fontsize="['55','55','55','40','30']"
+                     data-lineheight="['59','59','59','50','40']"
+                     data-width="['550','550','550','400']"
+                     data-height="none"
+                     data-whitespace="normal"
+                     data-type="text"
+                     data-responsive_offset="on"
+                     data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:0px;s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
+                     data-textAlign="['left','left','left','left']">We Provide Best Consulting Service</div>
+
+                <div class="tp-caption tp-resizeme secand_text"
+                     id="slide-1587-layer-2"
+                     data-x="['left','left','left','15','0']" data-hoffset="['0','0','0','0']"
+                     data-y="['top','top','top','top']" data-voffset="['435','435','435','340','225']"
+                     data-fontsize="['18','18','18','18','16']"
+                     data-lineheight="['26','26','26','26']"
+                     data-width="['550','550','550','550','300']"
+                     data-height="none"
+                     data-whitespace="normal"
+                     data-type="text"
+                     data-responsive_offset="on"
+                     data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
+                     data-textAlign="['left','left','left','left']">Lorem Ipsum is simply text of the Lorem Ipsum is  simply my text of the printing and Ipsum is simply.</div>
+
+                <div class="tp-caption tp-resizeme slider_button"
+                     id="slide-1588-layer-3"
+                     data-x="['left','left','left','15','0']" data-hoffset="['0','0','0','0']"
+                     data-y="['top','top','top','top']" data-voffset="['525','525','525','425','330']"
+                     data-fontsize="['14','14','14','14']"
+                     data-lineheight="['46','46','46','46']"
+                     data-width="none"
+                     data-height="none"
+                     data-whitespace="nowrap"
+                     data-type="text"
+                     data-responsive_offset="on"
+                     data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
+                     data-textAlign="['left','left','left','left']">
+                    <a class="main_btn" href="#">Our services</a>
+                    <a class="main_b_btn" href="#">learn more</a>
+                </div>
+            </div>
+        </li>*@
+        </ul>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+</section>
+<!--================End Slider Area =================-->
+<!-- Start hire_for_buisness area css -->
+<section class="hire_for_buisness">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-12">
+                <div class="hire_txt_bx">
+                    <h2>Hire for any buisness of work:</h2>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-4">
+                <div class="hire_txt_bx">
+                    <h3>Expert Advisor</h3>
+                    <p>Build a pool of diverse experts for one-off tasks </p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-4">
+                <div class="hire_txt_bx">
+                    <h3>Audit & Consulting</h3>
+                    <p>Build a pool of diverse experts for one-off tasks </p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-4">
+                <div class="hire_txt_bx">
+                    <h3>Market Analysis</h3>
+                    <p>Build a pool of diverse experts for one-off tasks </p>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+</section>
+<!-- End hire_for_buisness area css -->
+<section class="about_area_second">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 col-sm-5 padd-r-none hidden-xs">
+                <img src="~/Theme/img/resource/about-2.jpg" alt="">
+            </div>
+            <div class="col-md-7 col-sm-7 padd-l-none">
+                <div class="about_second_text_col">
+                    <h1 class="text-uppercase"><b>we are Landscaping Company</b></h1>
+                    <p>
+                        Lorem ipsum dolor sit amet, cons ectetur elit. Vestibulum nec odios Suspe ndisse cursus mal suada faci lisis. Lorem ipsum dolor sit ametion consectetur elit. Vesti bulum nec odio ipsum.
+                    </p>
+                    <br>
+                    <p>
+                        Lorem ipsum dolor sit amet, cons ectetur elit. Vestibulum nec odios Suspe ndisse cursus mal suada faci lisis. Lorem ipsum dolor sit ametion consectetur elit. Vesti bulum nec odio ipsum.
+                    </p>
+                    <br><br>
+                    <a href="#" class="theme_btn btn-lg">Read more</a>
+                    <div class="pot-img hidden-sm hidden-xs">
+                        <img src="~/Theme/img/resource/pot.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</section>
+<!-- End -->
+<!-- Start service area -->
+<section class="service_area_second">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 hidden-sm hidden-xs">
+                <div class="img_holder">
+                    <img src="~/Theme/img/resource/service-img-2.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-12">
+                <h1 class="text-uppercase">our services</h1>
+                <p class="mb-60">
+                    Lorem ipsum dolor sit amet, cons ectetur elit. Vestibulum nec odios Suspe ndisse cursus mtal suada faci lisis Vesti bulum nec odio ipsum.
+                </p>
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="our-services-wrapper mb-60">
+                            <div class="services-inner">
+                                <div class="our-services-img">
+                                    <div class="circle-icon">
+                                        <img src="~/Theme/img/icon/1.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="our-services-text">
+                                    <h4>business growth</h4>
+                                    <p>Proin varius pellentesque nuncia tincidunt ante. In id lacus</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- col -->
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="our-services-wrapper mb-60">
+                            <div class="services-inner">
+                                <div class="our-services-img">
+                                    <div class="circle-icon">
+                                        <img src="~/Theme/img/icon/2.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="our-services-text">
+                                    <h4>business growth</h4>
+                                    <p>Proin varius pellentesque nuncia tincidunt ante. In id lacus</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- col -->
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="our-services-wrapper mb-60">
+                            <div class="services-inner">
+                                <div class="our-services-img">
+                                    <div class="circle-icon">
+                                        <img src="~/Theme/img/icon/1.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="our-services-text">
+                                    <h4>business growth</h4>
+                                    <p>Proin varius pellentesque nuncia tincidunt ante. In id lacus</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- col -->
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="our-services-wrapper mb-60">
+                            <div class="services-inner">
+                                <div class="our-services-img">
+                                    <div class="circle-icon">
+                                        <img src="~/Theme/img/icon/2.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="our-services-text">
+                                    <h4>business growth</h4>
+                                    <p>Proin varius pellentesque nuncia tincidunt ante. In id lacus</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- col -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End -->
+
+<section class="latest-gallery text-center">
+    <div class="container">
+        <div class="sec_middle_title">
+            <h2>our work gallery</h2>
+        </div><!-- title -->
+        <ul class="post-filter list-inline">
+            <li class="active" data-filter=".filter-item">
+                <span>All</span>
+            </li>
+            @for (int i = 0; i < Model.Photos.Count; i++)
+            {
+                var temp = Model.Photos[i];
+                <li data-filter=".@temp.PhotoCategoryName">
+                    <span>@temp.PhotoCategoryName</span>
+                </li>
+            }
+
+        </ul>
+
+
+        <div class="row masonary-layout filter-layout">
+            @for (int i = 0; i < Model.Photos.Count; i++)
+            {
+                var temp = Model.Photos[i];
+                <div class="col-md-4 col-sm-4 col-xs-12 filter-item @temp.PhotoCategoryName">
+                    <div class="single-item">
+                        <div class="img-box">
+                            <img src="data:image/png;base64, @temp.PhotoData" alt="Awesome Image" />
+                            <div class="overlay">
+                                <div class="inner">
+                                    <div class="social">
+                                        <a href="data:image/png;base64, @temp.PhotoData" data-fancybox-group="example-gallery" class="view lightbox-image"><i class="flaticon-add"></i></a>
+                                        <h4>title here</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <!-- /.row -->
+
+    </div><!-- /.container -->
+</section><!-- /.latest-gallery -->
+@*<section class="latest-gallery text-center">
+        <div class="container">
+            <div class="sec_middle_title">
+                <h2>our work gallery</h2>
+            </div><!-- title -->
+            <ul class="post-filter list-inline">
+                <li class="active" data-filter=".filter-item">
+                    <span>All</span>
+                </li>
+                <li data-filter=".product">
+                    <span>Product</span>
+                </li>
+                <li data-filter=".Old-Wiring-Faults">
+                    <span>Services</span>
+                </li>
+                <li data-filter=".Out-door-repairing">
+                    <span>fruits</span>
+                </li>
+                <li data-filter=".Shortcircuits">
+                    <span>vegdables</span>
+                </li>
+            </ul>
+            <div class="row masonary-layout filter-layout">
+                <div class="col-md-4 col-sm-4 col-xs-12 filter-item product">
+                    <div class="single-item">
+                        <div class="img-box">
+                            <img src="~/Theme/img/gallery/1.jpg" alt="Awesome Image" />
+                            <div class="overlay">
+                                <div class="inner">
+                                    <div class="social">
+                                        <a href="img/gallery/1.jpg" data-fancybox-group="example-gallery" class="view lightbox-image"><i class="flaticon-add"></i></a>
+                                        <h4>title here</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 filter-item product">
+                    <div class="single-item">
+                        <div class="img-box">
+                            <img src="~/Theme/img/gallery/2.jpg" alt="Awesome Image" />
+                            <div class="overlay">
+                                <div class="inner">
+                                    <div class="social">
+                                        <a href="img/gallery/2.jpg" data-fancybox-group="example-gallery" class="view lightbox-image"><i class="flaticon-add"></i></a>
+                                        <h4>title here</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 filter-item product">
+                    <div class="single-item">
+                        <div class="img-box">
+                            <img src="~/Theme/img/gallery/3.jpg" alt="Awesome Image" />
+                            <div class="overlay">
+                                <div class="inner">
+                                    <div class="social">
+                                        <a href="img/gallery/3.jpg" data-fancybox-group="example-gallery" class="view lightbox-image"><i class="flaticon-add"></i></a>
+                                        <h4>title here</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 filter-item Indoor-Services Out-door-repairing Old-Wiring-Faults">
+                    <div class="single-item">
+                        <div class="img-box">
+                            <img src="~/Theme/img/gallery/4.jpg" alt="Awesome Image" />
+                            <div class="overlay">
+                                <div class="inner">
+                                    <div class="social">
+                                        <a href="img/gallery/4.jpg" data-fancybox-group="example-gallery" class="view lightbox-image"><i class="flaticon-add"></i></a>
+                                        <h4>title here</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 filter-item Shortcircuits Out-door-repairing ">
+                    <div class="single-item">
+                        <div class="img-box">
+                            <img src="~/Theme/img/gallery/5.jpg" alt="Awesome Image" />
+                            <div class="overlay">
+                                <div class="inner">
+                                    <div class="social">
+                                        <a href="img/gallery/5.jpg" data-fancybox-group="example-gallery" class="view lightbox-image"><i class="flaticon-add"></i></a>
+                                        <h4>title here</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 filter-item Out-door-repairing Indoor-Services video Shortcircuits Old-Wiring-Faults">
+                    <div class="single-item">
+                        <div class="img-box">
+                            <img src="~/Theme/img/gallery/6.jpg" alt="Awesome Image" />
+                            <div class="overlay">
+                                <div class="inner">
+                                    <div class="social">
+                                        <a href="img/gallery/6.jpg" data-fancybox-group="example-gallery" class="view lightbox-image"><i class="flaticon-add"></i></a>
+                                        <h4>title here</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section><!-- /.latest-gallery -->*@
+<!--Team section-->
+<section id="our-team-construct">
+    <div class="container">
+        <div class="sec_middle_title">
+            <h2>Our dedicated team</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="single-construct-member">
+                    <div class="content hvr-bounce-to-top">
+                        <div class="img-holder">
+                            <img src="img/team/5.png" alt="">
+                        </div>
+                        <h2>Hendrick jack</h2>
+                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia con</p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div><!-- /col -->
+            <div class="col-md-3">
+                <div class="single-construct-member">
+                    <div class="content hvr-bounce-to-top">
+                        <div class="img-holder">
+                            <img src="img/team/6.png" alt="">
+                        </div>
+                        <h2>Hendrick jack</h2>
+                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia con</p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div><!-- /col -->
+            <div class="col-md-3">
+                <div class="single-construct-member">
+                    <div class="content hvr-bounce-to-top">
+                        <div class="img-holder">
+                            <img src="img/team/7.png" alt="">
+                        </div>
+                        <h2>Hendrick jack</h2>
+                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia con</p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div><!-- /col -->
+            <div class="col-md-3">
+                <div class="single-construct-member">
+                    <div class="content hvr-bounce-to-top">
+                        <div class="img-holder">
+                            <img src="img/team/8.png" alt="">
+                        </div>
+                        <h2>Hendrick jack</h2>
+                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia con</p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div><!-- /col -->
+
+        </div>
+    </div>
+</section>
+
+<section class="seprator">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-12">
+                <div class="sep_content">
+                    <span>SHORT ABOUT US</span>
+                    <h3>Begin Your Greener future today with<br> a FREE in home consultation</h3>
+                    <p>Lorem ipsum dolor sit amet, cons ectetur elit. Vestibulum nec odios Suspe ndisse cursus mal suada faci lisis. Lorem ipsum dolor sit ametion consectetur elit. Vesti bulum nec odio ipsum.</p>
+                    <br>
+                    <p>
+                        Lorem ipsum dolor sit amet, cons ectetur elit. Vestibulum nec odios Suspe ndisse cursus mal suada faci lisis. Lorem ipsum dolor sit ametion consectetur elit. Vesti bulum nec odio ipsum.
+                    </p>
+                    <a href="#" class="theme_btn btn-xlg">Contact us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--================Latest News Area =================-->
+<section class="blog">
+    <div class="container">
+        <div class="sec_middle_title">
+            <h2>latest <span>blog</span></h2>
+        </div>
+        <div class="blog_cont">
+            <div class="blo_flex">
+                <div class="blog_img">
+                    <img src="img/blog/b1.jpg" alt="">
+                </div>
+                <div class="blog_conte">
+                    <div>
+                        <h3>Lorem ipsum dolor sit  Vesti bulum ipsum.</h3>
+                        <p>Lorem ipsum dolor sit amet, cons ectetur elit. Vestibulum  ipsum.</p>
+                    </div>
+                    <div class="ancor">
+                        <span>Posted On: Sep 23,2018</span>
+                        <a href="#">Reade More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="blog_cont">
+            <div class="blo_flex">
+                <div class="blog_img">
+                    <img src="img/blog/b1.jpg" alt="">
+                </div>
+                <div class="blog_conte">
+                    <div>
+                        <h3>Lorem ipsum dolor sit  Vesti bulum ipsum.</h3>
+                        <p>Lorem ipsum dolor sit amet, cons ectetur elit. Vestibulum  ipsum.</p>
+                    </div>
+                    <div class="ancor">
+                        <span>Posted On: Sep 23,2018</span>
+                        <a href="#">Reade More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Blog section -->
+<!--================End Latest News Area =================-->
+<!-- start clients -->
+<section id="clients">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="owl-carousel">
+                    <div class="item">
+                        <div class="client-img-holder">
+                            <img src="img/clients/1.png" alt="client">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="client-img-holder">
+                            <img src="img/clients/2.png" alt="client">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="client-img-holder">
+                            <img src="img/clients/3.png" alt="client">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="client-img-holder">
+                            <img src="img/clients/4.png" alt="client">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="client-img-holder">
+                            <img src="img/clients/5.png" alt="client">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="client-img-holder">
+                            <img src="img/clients/6.png" alt="client">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end clients -->
