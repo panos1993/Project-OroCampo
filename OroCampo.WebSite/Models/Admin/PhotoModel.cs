@@ -14,6 +14,10 @@
 
         public List<SelectListItem> Categories { get; set; }
 
+        public string Title { get; set; }
+
+        public string Thumbnail { get; set; }
+
         public string PhotoDescription { get; set; }
 
         public Guid PhotoCategoryId { get; set; }

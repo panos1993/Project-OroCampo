@@ -21,6 +21,11 @@
 
             @Html.HiddenFor(m => m.PhotoId)
             @Html.HiddenFor(m => m.PhotoData)
+
+            <div class="form-group">
+                <label for="photoTitle">@Resourse.title_photo</label>
+                @Html.TextBoxFor(m => m.Title, new { id = "photoTitle", @class = "form-control", @required = "required" })
+            </div>
             <div class="form-group">
                 <label for="edit">@Resourse.description</label>
                 <div id="editor">
@@ -99,6 +104,7 @@
                 <tr>
                     <th class="text-center" scope="row">@Resourse.number</th>
                     <th class="text-center" scope="row">@Resourse.column_icon</th>
+                    <th class="text-center" scope="row">@Resourse.title_photo</th>
                     <th class="text-center" scope="col">@Resourse.category_photo</th>
                     <th class="text-center" scope="col">@Resourse.description_photo</th>
                     <th class="text-center" scope="col">@Resourse.column_actions</th>
@@ -111,31 +117,32 @@
                     var temp = Model.Photos[i];
                     var count = i + 1;
 
-                    <tr>
-                        <th class="text-center" scope="row" style="vertical-align: middle;">@count</th>
-                        <td class="text-center" style="vertical-align: middle;"><img src="data:image/png;base64, @temp.PhotoData" alt="" border=3 height=150 width=250 /> </td>
-                        <td class="text-center" style="vertical-align: middle;"> @temp.PhotoCategoryName</td>
-                        <td class="text-center" style="vertical-align: middle;">
-                            <div style="width: 250px; height: 200px; word-wrap: break-word; overflow: hidden;">
-                                @Html.Raw(@temp.Description)
+                <tr>
+                    <th class="text-center" scope="row" style="vertical-align: middle;">@count</th>
+                    <td class="text-center" style="vertical-align: middle;"><img src="data:image/png;base64, @temp.Thumbnail" alt="" border=3 height=150 width=250 /> </td>
+                    <td class="text-center" style="vertical-align: middle;"> @temp.Title</td>
+                    <td class="text-center" style="vertical-align: middle;"> @temp.PhotoCategoryName</td>
+                    <td class="text-center" style="vertical-align: middle;">
+                        <div style="width: 250px; height: 200px; word-wrap: break-word; overflow: hidden;">
+                            @Html.Raw(@temp.Description)
+                        </div>
+                    </td>
+                    <td class="text-center" style="vertical-align: middle;">
+                        @using (Html.BeginForm("EditPhoto", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "editPhotoForm" }))
+                        {
+                            <div class="panel-body">
+                                <button type="submit" class="btn btn-warning btn-block">@Resourse.edit</button>
                             </div>
-                        </td>
-                        <td class="text-center" style="vertical-align: middle;">
-                            @using (Html.BeginForm("EditPhoto", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "editPhotoForm" }))
-                            {
-                                <div class="panel-body">
-                                    <button type="submit" class="btn btn-warning btn-block">@Resourse.edit</button>
-                                </div>
-                            }
-                            @using (Html.BeginForm("DeletePhoto", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "deletePhotoForm" }))
-                            {
-                                <div class="panel-body">
-                                    <button type="submit" class="btn btn-danger btn-block">@Resourse.button_delete</button>
-                                </div>
-                            }
+                        }
+                        @using (Html.BeginForm("DeletePhoto", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "deletePhotoForm" }))
+                        {
+                            <div class="panel-body">
+                                <button type="submit" class="btn btn-danger btn-block">@Resourse.button_delete</button>
+                            </div>
+                        }
 
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

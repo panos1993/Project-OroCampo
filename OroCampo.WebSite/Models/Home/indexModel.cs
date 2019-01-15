@@ -3,22 +3,20 @@
     using OroCampo.Models.Database;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
 
-    public class indexModel
+    public class IndexModel
     {
-        public List<Photo> Photos { get; set; }
+        public List<Photo> PhotosSlider { get; set; }
 
-        public string PhotoData { get; set; }
+        public List<PhotoCategory> PhotoCategories { get; set; }
 
-        public List<SelectListItem> Categories { get; set; }
+        public List<BlogPost> BlogPosts { get; set; }
 
-        public string PhotoDescription { get; set; }
+        public List<Photo> PhotosTeam { get; set; }
 
-        public Guid PhotoCategoryId { get; set; }
+        public List<Photo> PhotosThumbnail { get; set; }
+        
 
-        public Guid PhotoId { get; set; }
     }
 }

@@ -21,20 +21,33 @@ namespace OroCampo.WebSite.Controllers
     {
         public async Task<ActionResult> Index()
         {
-            var photos = await DatabaseHelper.GetPhotos(ConfigurationManager.AppSettings["ConnectionString"]);
-            var categories = await DatabaseHelper.GetPhotoCategories(ConfigurationManager.AppSettings["ConnectionString"]);
-            var listItems = new List<SelectListItem>();
+            var photoCategories = await DatabaseHelper.GetPhotoCategories(ConfigurationManager.AppSettings["ConnectionString"]);
 
-            foreach (var photoCategory in categories)
+            var slidePhotoCategory = photoCategories.FirstOrDefault(x => x.Name == "slide photo");
+
+            var id = Guid.Empty;
+
+            if (slidePhotoCategory != null)
             {
-                listItems.Add(new SelectListItem()
-                {
-                    Text = photoCategory.Name,
-                    Value = photoCategory.Id.ToString()
-                });
+                id = slidePhotoCategory.Id;
             }
-            indexModel model = new indexModel()
-                { Photos = photos, Categories = listItems};
+
+            
+            var photosSlider = await DatabaseHelper.GetPhotosByCategoryId(ConfigurationManager.AppSettings["ConnectionString"], id);
+            var teamPhotoCategory = photoCategories.FirstOrDefault(x => x.Name == "Team photo");
+            if (teamPhotoCategory != null)
+            {
+                id = teamPhotoCategory.Id;
+            }
+            var photosTeam =
+                await DatabaseHelper.GetPhotosByCategoryId(ConfigurationManager.AppSettings["ConnectionString"], id,
+                    true);
+            var photosThumbnail = await DatabaseHelper.GetPhotos(ConfigurationManager.AppSettings["ConnectionString"], true);
+            var blogPosts =
+                await DatabaseHelper.GetBlogPosts(ConfigurationManager.AppSettings["ConnectionString"], true);
+            IndexModel model = new IndexModel()
+            { PhotosSlider = photosSlider, PhotosTeam = photosTeam, PhotosThumbnail = photosThumbnail, PhotoCategories = photoCategories, BlogPosts = blogPosts};
+
             return View(model);
         }
 

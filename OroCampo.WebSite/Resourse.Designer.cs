@@ -583,6 +583,15 @@ namespace OroCampo.WebSite {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Τίτλος φωτογραφίας.
+        /// </summary>
+        public static string title_photo {
+            get {
+                return ResourceManager.GetString("title_photo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ενημέρωση.
         /// </summary>
         public static string update {

@@ -297,4 +297,7 @@
   <data name="update_success" xml:space="preserve">
     <value>Επιτυχής ενημέρωση.</value>
   </data>
+  <data name="title_photo" xml:space="preserve">
+    <value>Τίτλος φωτογραφίας</value>
+  </data>
 </root>

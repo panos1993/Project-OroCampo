@@ -886,7 +886,6 @@ i:before {
 ============================================================================================ */
 
 .seprator {
-    background-image: url("~/Theme/img/resource/cust_bt.jpg"S);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -4249,4 +4248,7 @@ footer {
         -ms-transition: all 0.3s ease;
         -o-transition: all 0.3s ease;
     }
-/*--- End quote_area css---
+
+.background-image-section {
+    background-image: url("../img/resource/cust_bt.jpg");
+}

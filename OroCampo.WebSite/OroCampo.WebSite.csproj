@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ImageProcessor, Version=2.6.2.25, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageProcessor.2.6.2.25\lib\net452\ImageProcessor.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -252,6 +255,11 @@
     <Content Include="Content\TextEditor\froala_style.css" />
     <Content Include="Content\TextEditor\fullscreen.css" />
     <Content Include="Content\TextEditor\special_characters.css" />
+    <Content Include="fonts\flaticon.css" />
+    <Content Include="fonts\Flaticon.svg" />
+    <Content Include="fonts\fontawesome-webfont3e6e.html" />
+    <Content Include="fonts\fontawesome-webfont3e6e.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.html" />
     <Content Include="Theme\css\animate.css" />
     <Content Include="Theme\css\bootstrap.min.css" />
     <Content Include="Theme\css\flaticon.css" />
@@ -272,7 +280,9 @@
     <Content Include="Theme\css\responsive2.css" />
     <Content Include="Theme\css\style - Copy.css" />
     <Content Include="Theme\css\style.css" />
-    <Content Include="Theme\img\about-right-1.jpg" />
+    <Content Include="Theme\img\about-right-1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Theme\img\banner\banner-bg.jpg" />
     <Content Include="Theme\img\bg\footer_bg.jpg" />
     <Content Include="Theme\img\gallery\1.jpg" />
@@ -308,11 +318,21 @@
     <Content Include="Theme\img\icon\techicon3.png" />
     <Content Include="Theme\img\icon\techicon4.png" />
     <Content Include="Theme\img\icon\user.png" />
-    <Content Include="Theme\img\resource\about-2.jpg" />
-    <Content Include="Theme\img\resource\cust_bt.jpg" />
-    <Content Include="Theme\img\resource\footer_logo.png" />
-    <Content Include="Theme\img\resource\pot.png" />
-    <Content Include="Theme\img\resource\service-img-2.jpg" />
+    <Content Include="Theme\img\resource\about-2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Theme\img\resource\cust_bt.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Theme\img\resource\footer_logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Theme\img\resource\pot.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Theme\img\resource\service-img-2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Theme\img\white_logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -377,6 +397,15 @@
     <Content Include="Theme\vendors\revolution\fonts\revicons\revicons90c6.woff" />
     <Content Include="Theme\vendors\stroke-icon\fonts\Stroke-Gap-Icons.eot" />
     <Content Include="white_logo.png" />
+    <Content Include="fonts\Flaticon.eot" />
+    <Content Include="fonts\Flaticon.ttf" />
+    <Content Include="fonts\Flaticon.woff" />
+    <Content Include="fonts\Flaticond41d.eot" />
+    <Content Include="fonts\fontawesome-webfont3e6e.eot" />
+    <Content Include="fonts\fontawesome-webfont3e6e.ttf" />
+    <Content Include="fonts\fontawesome-webfont3e6e.woff" />
+    <Content Include="fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="fonts\glyphicons-halflings-regulard41d.eot" />
     <None Include="Properties\PublishProfiles\OroCampo - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\OroCampo - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -489,6 +518,7 @@
     <EmbeddedResource Include="Resourse.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resourse.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
