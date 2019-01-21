@@ -280,6 +280,12 @@
     <Content Include="Theme\css\responsive2.css" />
     <Content Include="Theme\css\style - Copy.css" />
     <Content Include="Theme\css\style.css" />
+    <Content Include="Theme\fonts\flaticon.css" />
+    <Content Include="Theme\fonts\Flaticon.svg" />
+    <Content Include="Theme\fonts\fontawesome-webfont3e6e.html" />
+    <Content Include="Theme\fonts\fontawesome-webfont3e6e.svg" />
+    <Content Include="Theme\fonts\glyphicons-halflings-regular.html" />
+    <Content Include="Theme\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Theme\img\about-right-1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -346,7 +352,7 @@
     <Content Include="Theme\js\custom-theme.js" />
     <Content Include="Theme\js\gallery.js" />
     <Content Include="Theme\js\gmaps.min.js" />
-    <Content Include="Theme\js\jquery-2.2.4.js" />
+    <Content Include="Scripts\jquery-2.2.4.js" />
     <Content Include="Theme\js\jquery.fancybox.pack.js" />
     <Content Include="Theme\js\jquery.form.js" />
     <Content Include="Theme\js\jquery.mixitup.min.js" />
@@ -423,7 +429,6 @@
     <Content Include="Scripts\TextEditor\plugins\entities.min.js" />
     <Content Include="Scripts\TextEditor\froala_editor.min.js" />
     <Content Include="Scripts\TextEditor\froala_editor.pkgd.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
@@ -492,7 +497,18 @@
     <Content Include="Views\Photos\Index.cshtml" />
     <Content Include="Views\Layout\GetProducts.cshtml" />
     <Content Include="Views\Layout\GetServices.cshtml" />
-    <Content Include="Theme\img\site.webmanifest" />
+    <Content Include="Theme\fonts\Flaticon.eot" />
+    <Content Include="Theme\fonts\Flaticon.ttf" />
+    <Content Include="Theme\fonts\Flaticon.woff" />
+    <Content Include="Theme\fonts\Flaticond41d.eot" />
+    <Content Include="Theme\fonts\fontawesome-webfont3e6e.eot" />
+    <Content Include="Theme\fonts\fontawesome-webfont3e6e.ttf" />
+    <Content Include="Theme\fonts\fontawesome-webfont3e6e.woff" />
+    <Content Include="Theme\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="Theme\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Theme\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Theme\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Theme\fonts\glyphicons-halflings-regulard41d.eot" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

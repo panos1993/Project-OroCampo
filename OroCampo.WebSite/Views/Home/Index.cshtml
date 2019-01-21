@@ -1,6 +1,5 @@
-﻿@using System.Web.Mvc.Html
+﻿using System.Linq
 @model OroCampo.WebSite.Models.Home.IndexModel
-@using OroCampo.Models.Database
 
 @{
     ViewBag.Title = "Home Page";
@@ -76,25 +75,25 @@
         <div class="row">
             <div class="col-md-3 col-sm-12">
                 <div class="hire_txt_bx">
-                    <h2>Hire for any buisness of work:</h2>
+                    <h2>Καλώς ορίσατε στην σελίδα της εταιρίας Oro Campo:</h2>
                 </div>
             </div>
             <div class="col-md-3 col-sm-4">
                 <div class="hire_txt_bx">
-                    <h3>Expert Advisor</h3>
-                    <p>Build a pool of diverse experts for one-off tasks </p>
+                    <h3>Ανακαλύψτε τις υπηρεσίες μας</h3>
+                    <p>Η εταιρία Oro Campo προσφαίρει ποικιλία ποιοτικών υπηρεσιών</p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-4">
                 <div class="hire_txt_bx">
-                    <h3>Audit & Consulting</h3>
-                    <p>Build a pool of diverse experts for one-off tasks </p>
+                    <h3>Εμπιστευτείτε τους ειδικούς </h3>
+                    <p>Η εταιρία Oro Campo αποτελείται από έμπειρο και καταρτισμένο προσωπικό διαθέσιμο να συμβουλέψει και να καθοδιγήσει.</p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-4">
                 <div class="hire_txt_bx">
-                    <h3>Market Analysis</h3>
-                    <p>Build a pool of diverse experts for one-off tasks </p>
+                    <h3>Ανατρέξτε στην καρτέλα με τα προϊόντα μας</h3>
+                    <p>Γνωρίστε τα προϊόντα που προσφέρει η εταιρεία Oro Campo μέσα από μια αναλυτική λίστα στην σελίδα μας.</p>
                 </div>
             </div>
         </div>
@@ -398,10 +397,7 @@
                             <h2>@Model.PhotosTeam[i].Title</h2>
                             <p>@Html.Raw(@Model.PhotosTeam[i].Description)</p>
                             <ul>
-                                <li><a href="https://www.facebook.com/kostas.j.tasoulis"><i class="fa fa-facebook"></i></a></li>
-                                @*<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>*@
+                                <li><a href="https://www.facebook.com/OROCAMPO/"><i class="fa fa-facebook"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -409,58 +405,6 @@
                 <!-- /col -->
 
             }
-            @*<div class="col-md-3">
-                    <div class="single-construct-member">
-                        <div class="content hvr-bounce-to-top">
-                            <div class="img-holder">
-                                <img src="img/team/6.png" alt="">
-                            </div>
-                            <h2>Hendrick jack</h2>
-                            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia con</p>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!-- /col -->
-                <div class="col-md-3">
-                    <div class="single-construct-member">
-                        <div class="content hvr-bounce-to-top">
-                            <div class="img-holder">
-                                <img src="img/team/7.png" alt="">
-                            </div>
-                            <h2>Hendrick jack</h2>
-                            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia con</p>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!-- /col -->
-                <div class="col-md-3">
-                    <div class="single-construct-member">
-                        <div class="content hvr-bounce-to-top">
-                            <div class="img-holder">
-                                <img src="img/team/8.png" alt="">
-                            </div>
-                            <h2>Hendrick jack</h2>
-                            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia con</p>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!-- /col -->*@
-
         </div>
     </div>
 </section>
@@ -501,11 +445,22 @@
                     <div class="blog_conte">
                         <div>
                             <h3>@Model.BlogPosts[i].Title</h3>
-                            <p>@Html.Raw(@Model.BlogPosts[i].Text)</p>
+                            @{
+                                IEnumerable<string>
+                                    words = Model.BlogPosts[i].Text.Split().Take(50);
+                                <p>
+                                    @foreach (string word in words)
+                                    {
+                                        @Html.Raw(word)
+                                        @Html.Raw(" ")
+                                    }
+
+                                </p>
+                            }
                         </div>
                         <div class="ancor">
-                            <span>Posted On: @Model.BlogPosts[i].DateTime</span>
-                            <a href="#">Reade More</a>
+                            <span>Δημοσιεύτηκε: @Model.BlogPosts[i].DateTime.Day/@Model.BlogPosts[i].DateTime.Month/@Model.BlogPosts[i].DateTime.Year</span>
+                            <a href="~/BlogPosts">Διαβάστε περισσότερα<a>
                         </div>
                     </div>
                 </div>
@@ -550,32 +505,6 @@
                             </div>
                         }
                     }
-
-                    @*<div class="item">
-                            <div class="client-img-holder">
-                                <img src="img/clients/2.png" alt="client">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="client-img-holder">
-                                <img src="img/clients/3.png" alt="client">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="client-img-holder">
-                                <img src="img/clients/4.png" alt="client">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="client-img-holder">
-                                <img src="img/clients/5.png" alt="client">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="client-img-holder">
-                                <img src="img/clients/6.png" alt="client">
-                            </div>
-                        </div>*@
                 </div>
             </div>
         </div>

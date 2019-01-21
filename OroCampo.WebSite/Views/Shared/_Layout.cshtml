@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
     <link rel="icon" type="image/png" href="~/Theme/img/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="~/Theme/img/favicon-16x16.png" sizes="16x16" />
-    <link rel="manifest" href="~/Theme/img/site.webmanifest">
     <link rel="shortcut icon" href="~/Theme/img/favicon.ico">
     @Styles.Render("~/Content/texteditorcss")
     @Styles.Render("~/Content/css")
@@ -20,11 +19,12 @@
             position: absolute;
             background-color: #f9f9f9;
             min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 16px 0 #000000;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
             z-index: 1;
         }
 
-            .dropdown-content a {
+        .dropdown-content a {
                 color: black;
                 padding: 12px 16px;
                 text-decoration: none;
