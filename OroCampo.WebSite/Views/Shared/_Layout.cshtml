@@ -6,6 +6,10 @@
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+    <link rel="icon" type="image/png" href="~/Theme/img/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="~/Theme/img/favicon-16x16.png" sizes="16x16" />
+    <link rel="manifest" href="~/Theme/img/site.webmanifest">
+    <link rel="shortcut icon" href="~/Theme/img/favicon.ico">
     @Styles.Render("~/Content/texteditorcss")
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/theme")
@@ -44,8 +48,8 @@
             <div class="container">
                 <div class="header_top_inner">
                     <div class="pull-left">
-                        <a href=""><i class="fa fa-phone"></i>23410 27288</a>
-                        <a href=""><i class="fa fa-envelope-o"></i>info@OroCampo.gr</a>
+                        <a href=""><i class="fa fa-phone"></i> Τηλ 1: <b>23410 - 27288</b>  &nbsp;  Τηλ 2: <b>23410 - 500980 </b>  &nbsp;  Τηλ 3: <b>23410 - 20111</b></a>
+                        <a href="~/Home/Contact"><i class="fa fa-envelope-o"></i>info@OroCampo.gr</a>
 
                     </div>
                     <div class="pull-right">
@@ -122,17 +126,17 @@
             <div class="row">
                 <div class="col-md-6 col-xs-12">
                     <div class="footer_left_text">
-                        <h3>Gardner need & Landscaping</h3>
+                        <h3>Oro Campo</h3>
                         <p>
-                            If you have an gardner need, simply call <br> our
-                            24 hour emergecny number
+                            Για οποιαδήποτε πληροφορία επικοινονίστε μαζί μας<br> 
+                            μέσω e-mail ή μέσω τηλεφώνου.
                         </p>
                     </div>
                 </div>
                 <div class="col-md-6 col-xs-12">
                     <div class="footer_left_text">
-                        <h3>Call Us Today</h3>
-                        <p>1800 856 7489 <span>Or</span> contact@legacygarden.com</p>
+                        <h3>Καλέστε μας στο κεντρικό κατάστημα</h3>
+                        <p>23410-27288 <span>ή</span> info@OroCampo.gr</p>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -145,41 +149,47 @@
             <div class="row">
                 <div class="col-md-4 col-xs-12">
                     <div class="footer_pannel">
-                        <h3>Address</h3>
+                        <h3>Διευθύνσεις Καταστημάτων</h3>
                         <ul>
                             <li>
                                 <span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
                                 <p>
-                                    110, Lorance Road Sanewadi,
-                                    Badlapur (W), Thane, Melbourne.
+                                    <b>Κεντρικό κατάστημα :</b> <br/>
+                                    Δυτ. επαρχιακή οδός <br/>
+                                    Κιλκίς - Μεταλλικού<br/>
+                                   <b>Υποκατάστημα Πολυκάστρου :</b><br/>
+                                    Μεγ. Αλεξάνδρου & Αγ. Γεωργίου 1
                                 </p>
                             </li>
                             <li>
                                 <span><i class="fa fa-phone" aria-hidden="true"></i></span>
                                 <p>
-                                    +91-92-45-35-43-35
+                                    <b>Κεντρικό κατάστημα :</b><br />
+                                    Τηλ / Fax : 23410 - 27288,<br />
+                                    Τηλ : 23410 - 500980<br/>
+                                    Fax : 23410 - 75009<br />
+                                   <b>Υποκατάστημα Πολυκάστρου :</b> <br/>
+                                    Τηλ / Fax : 23410 - 20111<br />
                                 </p>
                             </li>
                             <li>
                                 <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
                                 <p>
-                                    sales@salesoliva.com
+                                    info@orocampo.gr
                                 </p>
                             </li>
                         </ul>
                         <ul class="f_con">
-                            <li>
-                                <a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                            </li>
+                            <li> <a href="https://www.facebook.com/OROCAMPO/?tn-str=k*F"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
+                            @*<li>
+                                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                </li>*@
                         </ul>
                     </div>
                 </div>
@@ -188,26 +198,28 @@
                         <figure>
                             <img src="~/Theme/img/resource/footer_logo.png" alt="">
                         </figure>
-                        <p>© Copyright Hilton 2018 . All right reserved.</p>
+                        <p>© Copyright Oro Campo 2019 .</p>
+                        <p>All right reserved.</p>
                         <p>Design by Themelab15</p>
                     </div>
                 </div>
                 <div class="col-md-4 col-xs-12">
                     <div class="footer_pannel " style="padding-left: 30px">
-                        <h3>Quick Links</h3>
+                        <h3>Μενού γρήγορων επιλογών</h3>
                         <ul class="footer_links">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Free Tools</a></li>
-                            <li><a href="#">Career</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Free Tools</a></li>
-                            <li><a href="#">Career</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
+                            <li>@Html.ActionLink("Αρχικη", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Σχετικα", "About", "Home")</li>
+                            <li>@Html.ActionLink("Υπηρεσίες", "Index", "Services")</li>
+                            <li>@Html.ActionLink("Προϊόντα", "Index", "Products")</li>
+                            <li>@Html.ActionLink("Αρθρα", "Index", "BlogPosts")</li>
+                            <li>@Html.ActionLink("Εικονες", "Index", "Photos")</li>
+                            <li>@Html.ActionLink("Επικοινωνια", "Contact", "Home")</li>
+
+                            @*<li><a href="#">Αρχική</a></li>
+                                <li><a href="#">Σχετικά με εμάς</a></li>
+                                <li><a href="#">Υπηρεσίες</a></li>
+                                <li><a href="#">Προϊόντα</a></li>
+                                <li><a href="#">Δημοσιεύσεις</a></li>*@
                         </ul>
                     </div>
                 </div>

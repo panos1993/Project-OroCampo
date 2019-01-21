@@ -285,6 +285,11 @@
     </Content>
     <Content Include="Theme\img\banner\banner-bg.jpg" />
     <Content Include="Theme\img\bg\footer_bg.jpg" />
+    <Content Include="Theme\img\bg\gallery-bg.jpg" />
+    <Content Include="Theme\img\fav-icon.png" />
+    <Content Include="Theme\img\favicon-16x16.png" />
+    <Content Include="Theme\img\favicon-32x32.png" />
+    <Content Include="Theme\img\favicon.ico" />
     <Content Include="Theme\img\gallery\1.jpg" />
     <Content Include="Theme\img\gallery\2.jpg" />
     <Content Include="Theme\img\gallery\3.jpg" />
@@ -487,6 +492,7 @@
     <Content Include="Views\Photos\Index.cshtml" />
     <Content Include="Views\Layout\GetProducts.cshtml" />
     <Content Include="Views\Layout\GetServices.cshtml" />
+    <Content Include="Theme\img\site.webmanifest" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -316,8 +316,8 @@ namespace OroCampo.WebSite.Controllers
         private string Resize(byte[] photoBytes)
         {
             // Format is automatically detected though can be changed.
-            ISupportedImageFormat format = new JpegFormat { Quality = 70 };
-            Size size = new Size(150, 0);
+            ISupportedImageFormat format = new JpegFormat { Quality = 85 };
+            Size size = new Size(270, 0);
             using (MemoryStream inStream = new MemoryStream(photoBytes))
             {
                 using (MemoryStream outStream = new MemoryStream())

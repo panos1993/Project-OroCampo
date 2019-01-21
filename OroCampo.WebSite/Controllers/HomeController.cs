@@ -40,8 +40,7 @@ namespace OroCampo.WebSite.Controllers
                 id = teamPhotoCategory.Id;
             }
             var photosTeam =
-                await DatabaseHelper.GetPhotosByCategoryId(ConfigurationManager.AppSettings["ConnectionString"], id,
-                    true);
+                await DatabaseHelper.GetPhotosByCategoryId(ConfigurationManager.AppSettings["ConnectionString"], id,true);
             var photosThumbnail = await DatabaseHelper.GetPhotos(ConfigurationManager.AppSettings["ConnectionString"], true);
             var blogPosts =
                 await DatabaseHelper.GetBlogPosts(ConfigurationManager.AppSettings["ConnectionString"], true);
