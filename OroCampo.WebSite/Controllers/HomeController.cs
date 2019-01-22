@@ -23,29 +23,19 @@ namespace OroCampo.WebSite.Controllers
         {
             var photoCategories = await DatabaseHelper.GetPhotoCategories(ConfigurationManager.AppSettings["ConnectionString"]);
 
-            var slidePhotoCategory = photoCategories.FirstOrDefault(x => x.Name == "slide photo");
-
-            var id = Guid.Empty;
-
-            if (slidePhotoCategory != null)
-            {
-                id = slidePhotoCategory.Id;
-            }
-
+            var photosSlider = await DatabaseHelper.GetPhotosByCategoryId(ConfigurationManager.AppSettings["ConnectionString"], new Guid("BB47EA25-4413-E911-9F2A-000D3AB1BD24"));
             
-            var photosSlider = await DatabaseHelper.GetPhotosByCategoryId(ConfigurationManager.AppSettings["ConnectionString"], id);
-            var teamPhotoCategory = photoCategories.FirstOrDefault(x => x.Name == "Team photo");
-            if (teamPhotoCategory != null)
-            {
-                id = teamPhotoCategory.Id;
-            }
             var photosTeam =
-                await DatabaseHelper.GetPhotosByCategoryId(ConfigurationManager.AppSettings["ConnectionString"], id,true);
+                    await DatabaseHelper.GetPhotosByCategoryId(ConfigurationManager.AppSettings["ConnectionString"], new Guid("FF3A683D-0618-E911-9F2A-000D3AB1BD24"), true);
+
+            var aboutUsFirst = await DatabaseHelper.GetPhotosByCategoryId(ConfigurationManager.AppSettings["ConnectionString"], new Guid("36A2AAB4-441E-E911-9F2A-000D3AB1BAFC"));
+
             var photosThumbnail = await DatabaseHelper.GetPhotos(ConfigurationManager.AppSettings["ConnectionString"], true);
+
             var blogPosts =
                 await DatabaseHelper.GetBlogPosts(ConfigurationManager.AppSettings["ConnectionString"], true);
             IndexModel model = new IndexModel()
-            { PhotosSlider = photosSlider, PhotosTeam = photosTeam, PhotosThumbnail = photosThumbnail, PhotoCategories = photoCategories, BlogPosts = blogPosts};
+            { PhotosSlider = photosSlider, PhotosTeam = photosTeam, PhotosThumbnail = photosThumbnail, PhotoCategories = photoCategories, AboutUsFirst = aboutUsFirst, BlogPosts = blogPosts};
 
             return View(model);
         }

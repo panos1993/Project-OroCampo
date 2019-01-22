@@ -1,4 +1,5 @@
-﻿using System.Linq
+﻿@using System.Linq
+@using HtmlAgilityPack
 @model OroCampo.WebSite.Models.Home.IndexModel
 
 @{
@@ -11,13 +12,13 @@
         <ul>
             @for (int i = 0; i < Model.PhotosSlider.Count; i++)
             {
-                <li data-index="rs-@i" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="" alt="" data-rotate="0" data-saveperformance="off" data-title="Creative" data-param1="01" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                <li data-index="rs-@i.ToString()" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="" alt="" data-rotate="0" data-saveperformance="off" data-title="Creative" data-param1="01" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
                     <!-- MAIN IMAGE -->
 
                     <img src="data:image/png;base64, @Model.PhotosSlider[i].PhotoData" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
                     <!-- LAYER NR. 1 -->
                     <div class="slider_text_box">
-                        <div class="tp-caption tp-resizeme first_text"
+                        <div class="tp-caption tp-resizeme first_text" style="background-color:rgba(0,0,0,.5);"
                              id="slide-1592-layer-1"
                              data-x="['left','left','left','15','0']" data-hoffset="['0','0','0','0']"
                              data-y="['top','top','top','top']" data-voffset="['290','290','290','220','130']"
@@ -31,7 +32,7 @@
                              data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:0px;s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
                              data-textAlign="['left','left','left','left']">@Model.PhotosSlider[i].Title</div>
 
-                            <div class="tp-caption tp-resizeme secand_text"
+                            <div class="tp-caption tp-resizeme secand_text" style="background-color:rgba(0,0,0,.5);"
                                  id="slide-1593-layer-2"
                                  data-x="['left','left','left','15','0']" data-hoffset="['0','0','0','0']"
                                  data-y="['top','top','top','top']" data-voffset="['435','435','435','340','225']"
@@ -103,21 +104,24 @@
 <section class="about_area_second">
     <div class="container">
         <div class="row">
-            <div class="col-md-5 col-sm-5 padd-r-none hidden-xs">
-                <img src="~/Theme/img/resource/about-2.jpg" alt="">
+            @*TODO HEIGHT 441px*@
+            <div class="col-md-5 col-sm-5 padd-r-none hidden-xs" style="height: 441px;">
+                @*TODO HEIGHT 441px*@
+                <img src="data:image/png;base64,@Model.AboutUsFirst[0].PhotoData" alt="" style=" background-size: cover; max-width: 100%;max-height: 100%;height: 441px;">
+                @*HEIGHT: 441px;
+                     background-size: cover;
+                    max-width: 100%;
+                    max-height: 100%;
+                    height: 441px;*@
             </div>
             <div class="col-md-7 col-sm-7 padd-l-none">
                 <div class="about_second_text_col">
-                    <h1 class="text-uppercase"><b>we are Landscaping Company</b></h1>
+                    <h1 class="text-uppercase"><b>@Model.AboutUsFirst[0].Title</b></h1>
                     <p>
-                        Lorem ipsum dolor sit amet, cons ectetur elit. Vestibulum nec odios Suspe ndisse cursus mal suada faci lisis. Lorem ipsum dolor sit ametion consectetur elit. Vesti bulum nec odio ipsum.
-                    </p>
-                    <br>
-                    <p>
-                        Lorem ipsum dolor sit amet, cons ectetur elit. Vestibulum nec odios Suspe ndisse cursus mal suada faci lisis. Lorem ipsum dolor sit ametion consectetur elit. Vesti bulum nec odio ipsum.
+                        @Html.Raw(@Model.AboutUsFirst[0].Description.Substring(0, 150))
                     </p>
                     <br><br>
-                    <a href="#" class="theme_btn btn-lg">Read more</a>
+                    <a href="~/Home/About" class="theme_btn btn-lg">Διαβάστε περισσότερα</a>
                     <div class="pot-img hidden-sm hidden-xs">
                         <img src="~/Theme/img/resource/pot.png" alt="">
                     </div>
@@ -137,9 +141,9 @@
                 </div>
             </div>
             <div class="col-md-8 col-sm-12">
-                <h1 class="text-uppercase">our services</h1>
+                <h1 class="text-uppercase">Υπηρεσιες</h1>
                 <p class="mb-60">
-                    Lorem ipsum dolor sit amet, cons ectetur elit. Vestibulum nec odios Suspe ndisse cursus mtal suada faci lisis Vesti bulum nec odio ipsum.
+                    Παρακάτω παρατίθενται μερικές από τις υπηρεσίες που προσφέρει η εταιρεία Oro Campo
                 </p>
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -212,7 +216,7 @@
 <section class="latest-gallery text-center">
     <div class="container">
         <div class="sec_middle_title">
-            <h2>our work gallery</h2>
+            <h2>Φωτογραφιες</h2>
         </div><!-- title -->
         <ul class="post-filter list-inline">
             <li class="active" data-filter=".filter-item">
@@ -220,7 +224,7 @@
             </li>
             @for (int i = 0; i < Model.PhotoCategories.Count; i++)
             {
-                if (Model.PhotoCategories[i].Name != "slide photo" && Model.PhotoCategories[i].Name != "Team photo" && Model.PhotoCategories[i].Name != "Customer logo")
+                if (Model.PhotoCategories[i].Name != "First about us home page" && Model.PhotoCategories[i].Name != "slide photo" && Model.PhotoCategories[i].Name != "Team photo" && Model.PhotoCategories[i].Name != "Customer logo")
                 {
                     var temp = Model.PhotoCategories[i];
                     <li data-filter=".@temp.Id.ToString()">
@@ -237,7 +241,7 @@
             {
 
                 var temp = Model.PhotosThumbnail[i];
-                if (temp.PhotoCategoryName != "slide photo" && temp.PhotoCategoryName != "Team photo" && temp.PhotoCategoryName != "Customer logo")
+                if (temp.PhotoCategoryName != "First about us home page" && temp.PhotoCategoryName != "slide photo" && temp.PhotoCategoryName != "Team photo" && temp.PhotoCategoryName != "Customer logo")
                 {
 
                     <div class="col-md-4 col-sm-4 col-xs-12 filter-item @temp.CategoryId.ToString()">
@@ -247,7 +251,7 @@
                                 <div class="overlay">
                                     <div class="inner">
                                         <div class="social">
-                                            @*<a href="data:image/png;base64, @temp.PhotoData" data-fancybox-group="example-gallery" class="view lightbox-image"><i class="flaticon-add"></i></a>*@
+                                            <a href="data:image/png;base64, @temp.PhotoData" data-fancybox-group="example-gallery" class="view lightbox-image"><i class="flaticon-add"></i></a>
                                             <h4>@temp.Title</h4>
                                         </div>
                                     </div>
@@ -432,39 +436,43 @@
 <section class="blog">
     <div class="container">
         <div class="sec_middle_title">
-            <h2>latest <span>blog</span></h2>
+            <h2>Προσφατες <span>Δημοσιευσεις</span></h2>
         </div>
-        @for (int i = 0; i < Model.BlogPosts.Count; i++)
-        {
+        @{
+            var doc = new HtmlDocument();
+            for (int i = 0; i < Model.BlogPosts.Count; i++)
+            {
 
-            <div class="blog_cont">
-                <div class="blo_flex">
-                    <div class="blog_img">
-                        <img src="data:image/png;base64, @Model.BlogPosts[i].Photo" alt="" />
-                    </div>
-                    <div class="blog_conte">
-                        <div>
-                            <h3>@Model.BlogPosts[i].Title</h3>
-                            @{
-                                IEnumerable<string>
-                                    words = Model.BlogPosts[i].Text.Split().Take(50);
-                                <p>
-                                    @foreach (string word in words)
+                <div class="blog_cont">
+                    <div class="blo_flex">
+                        <div class="blog_img">
+                            <img src="data:image/png;base64, @Model.BlogPosts[i].Photo" alt="" style="height: 250px;" />
+                        </div>
+                        <div class="blog_conte">
+                            <div>
+                                <h3>@Model.BlogPosts[i].Title</h3>
+                                @{
+                                    IEnumerable<string>
+                                        words = Model.BlogPosts[i].Text.Split().Take(20);
+
+                                    foreach (string word in words)
                                     {
                                         @Html.Raw(word)
                                         @Html.Raw(" ")
                                     }
 
-                                </p>
-                            }
+                                }
+                                <p>.....</p>
+                            </div>
+                            <div class="ancor">
+                                <span>Δημοσιεύτηκε: @Model.BlogPosts[i].DateTime.Day/@Model.BlogPosts[i].DateTime.Month/@Model.BlogPosts[i].DateTime.Year</span>
+                                <a href="~/BlogPosts">Περισσότερα</a>
+                            </div>
                         </div>
-                        <div class="ancor">
-                            <span>Δημοσιεύτηκε: @Model.BlogPosts[i].DateTime.Day/@Model.BlogPosts[i].DateTime.Month/@Model.BlogPosts[i].DateTime.Year</span>
-                            <a href="~/BlogPosts">Διαβάστε περισσότερα<a>
-                        </div>
+
                     </div>
                 </div>
-            </div>
+            }
         }
         @*<div class="blog_cont">
                 <div class="blo_flex">
