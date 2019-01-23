@@ -104,23 +104,24 @@
 <section class="about_area_second">
     <div class="container">
         <div class="row">
-            @*TODO HEIGHT 441px*@
             <div class="col-md-5 col-sm-5 padd-r-none hidden-xs" style="height: 441px;">
-                @*TODO HEIGHT 441px*@
                 <img src="data:image/png;base64,@Model.AboutUsFirst[0].PhotoData" alt="" style=" background-size: cover; max-width: 100%;max-height: 100%;height: 441px;">
-                @*HEIGHT: 441px;
-                     background-size: cover;
-                    max-width: 100%;
-                    max-height: 100%;
-                    height: 441px;*@
             </div>
             <div class="col-md-7 col-sm-7 padd-l-none">
                 <div class="about_second_text_col">
-                    <h1 class="text-uppercase"><b>@Model.AboutUsFirst[0].Title</b></h1>
-                    <p>
-                        @Html.Raw(@Model.AboutUsFirst[0].Description.Substring(0, 150))
-                    </p>
-                    <br><br>
+                    <h1 class="text"><b>@Model.AboutUsFirst[0].Title</b></h1>
+                    @{
+                        IEnumerable<string>
+                            wordsAb = Model.AboutUsFirst[0].Description.Split().Take(250);
+
+                        foreach (string word in wordsAb)
+                        {
+                            @Html.Raw(word)
+                            @Html.Raw(" ")
+                        }
+
+                    }
+                    <br>
                     <a href="~/Home/About" class="theme_btn btn-lg">Διαβάστε περισσότερα</a>
                     <div class="pot-img hidden-sm hidden-xs">
                         <img src="~/Theme/img/resource/pot.png" alt="">
