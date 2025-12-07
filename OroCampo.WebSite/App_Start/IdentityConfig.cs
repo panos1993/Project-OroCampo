@@ -14,6 +14,8 @@ using OroCampo.WebSite.Models;
 
 namespace OroCampo.WebSite
 {
+    using OroCampo.WebSite.Models.Admin;
+
     public class EmailService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)

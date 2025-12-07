@@ -10,6 +10,8 @@ using OroCampo.WebSite.Models;
 
 namespace OroCampo.WebSite.Controllers
 {
+    using OroCampo.WebSite.Models.Admin;
+
     [Authorize]
     public class ManageController : Controller
     {

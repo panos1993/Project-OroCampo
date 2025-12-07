@@ -57,7 +57,7 @@
             }
         }
 
-        public static async Task<List<Service>> GetServices(string connectionString)
+        public static async Task<List<Service>> GetServices(string connectionString, bool fetchImages)
         {
             // We create an sql connection 
             using (var sqlConnection = new SqlConnection(connectionString))
@@ -65,7 +65,7 @@
                 // Open the connection async
                 await sqlConnection.OpenAsync();
 
-                var query = "SELECT * FROM [dbo].[Service] (NOLOCK)";
+                var query = fetchImages ? "SELECT * FROM [dbo].[Service] (NOLOCK)" : "SELECT Id,Title,Description,DateTime FROM [dbo].[Service] (NOLOCK)";
 
                 var services = await sqlConnection.QueryAsync<Service>(query);
 

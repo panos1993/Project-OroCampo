@@ -8,9 +8,13 @@
 
         public string PhotoData { get; set; }
 
+        public string Thumbnail { get; set; }
+
         public string PhotoCategoryName { get; set; }
 
         public string Description { get; set; }
+
+        public string Title { get; set; }
 
         public DateTime DateTime { get; set; }
 

@@ -9,6 +9,8 @@ using OroCampo.WebSite.Models;
 
 namespace OroCampo.WebSite
 {
+    using OroCampo.WebSite.Models.Admin;
+
     public partial class Startup
     {
         // For more information on configuring authentication, please visit https://go.microsoft.com/fwlink/?LinkId=301864

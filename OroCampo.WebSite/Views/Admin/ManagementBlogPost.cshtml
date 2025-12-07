@@ -2,143 +2,146 @@
 @using System.Web.Mvc.Html
 @using OroCampo.Models.Database
 @using OroCampo.WebSite.Controllers
-@model OroCampo.WebSite.Models.BlogPostModel
+@model OroCampo.WebSite.Models.Admin.BlogPostModel
 
 @Html.Partial("CheckIfAuthenticated")
 
-<div class="jumbotron margin-top-25">
-    <h1>@Resourse.blog_post</h1>
-    <p class="lead">@Resourse.blog_post_first_text</p>
-    <hr>
-    <p>@Resourse.blog_post_second_text</p>
+<div class="container main-body-margin-top">
 
-    @using (Html.BeginForm("SaveBlogPost", "Admin", FormMethod.Post, new { role = "form", id = "saveBlogPostForm", enctype = "multipart/form-data" }))
-    {
-        @Html.AntiForgeryToken()
+    <div class="jumbotron margin-top-25">
+        <h1>@Resourse.blog_post</h1>
+        <p class="lead">@Resourse.blog_post_first_text</p>
+        <hr>
+        <p>@Resourse.blog_post_second_text</p>
 
-        @Html.HiddenFor(m => m.BlogPostId)
-        @Html.HiddenFor(m => m.NewPhotoBlogPost)
-
-        <div class="form-group">
-            <label for="blogPostName">@Resourse.blog_post_name</label>
-            @Html.TextBoxFor(m => m.NewTitleBlogPost, new { id = "blog_postName", @class = "form-control", @required = "required" })
-        </div>
-        <div class="form-group">
-            <label for="edit">@Resourse.text_blog</label>
-            <div id="editor">
-                @Html.TextAreaFor(m => m.NewTextBlogPost, new { id = "edit", @class = "form-control", @required = "required" })
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="file">@Resourse.picture_file</label> <br />
-            <div class="col-12" style="width: 100%; ">
-                <div class="input-group">
-                    <label class="input-group-btn">
-                        <span class="btn btn-primary">
-                            @Resourse.open_image&hellip;
-                            @Html.TextBox("file", "File", new { id = "file", type = "file", style = "display: none;" })
-                            @Html.ValidationMessageFor(model => model.NewPhotoBlogPost)
-                        </span>
-                    </label>
-                    <input type="text" class="form-control" readonly>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>@Resourse.image_preview</label><br />
-            @if (Model.NewPhotoBlogPost != null)
-            {
-                <img id="blah" src="data:image/png;base64, @Model.NewPhotoBlogPost" height="150" width="200" />
-            }
-            else
-            {
-                <img id="blah" src="../preview.png" height="150" width="200" />
-            }
-        </div>
-
-        if (Model.BlogPostId != default(Guid))
+        @using (Html.BeginForm("SaveBlogPost", "Admin", FormMethod.Post, new { role = "form", id = "saveBlogPostForm", enctype = "multipart/form-data" }))
         {
-            <div class="panel-body">
-                <div class="btn-group">
-                    <button type="submit" class="btn btn-warning ">@Resourse.update</button>
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(m => m.BlogPostId)
+            @Html.HiddenFor(m => m.NewPhotoBlogPost)
+
+            <div class="form-group">
+                <label for="blogPostName">@Resourse.blog_post_name</label>
+                @Html.TextBoxFor(m => m.NewTitleBlogPost, new { id = "blog_postName", @class = "form-control", @required = "required" })
+            </div>
+            <div class="form-group">
+                <label for="edit">@Resourse.text_blog</label>
+                <div id="editor">
+                    @Html.TextAreaFor(m => m.NewTextBlogPost, new { id = "edit", @class = "form-control", @required = "required" })
                 </div>
-                <div class="btn-group pull-right">
-                    <div class="pull-right">
-                        @Html.ActionLink(@Resourse.cancel, "ManagementBlogPost", "Admin", new { @class = "btn btn-danger" })
+            </div>
+            <div class="form-group">
+                <label for="file">@Resourse.picture_file</label> <br />
+                <div class="col-12" style="width: 100%; ">
+                    <div class="input-group">
+                        <label class="input-group-btn">
+                            <span class="btn btn-primary">
+                                @Resourse.open_image&hellip;
+                                @Html.TextBox("file", "File", new { id = "file", type = "file", style = "display: none;" })
+                                @Html.ValidationMessageFor(model => model.NewPhotoBlogPost)
+                            </span>
+                        </label>
+                        <input type="text" class="form-control" readonly>
                     </div>
                 </div>
             </div>
+
+            <div class="form-group">
+                <label>@Resourse.image_preview</label><br />
+                @if (Model.NewPhotoBlogPost != null)
+                {
+                    <img id="blah" src="data:image/png;base64, @Model.NewPhotoBlogPost" height="150" width="200" />
+                }
+                else
+                {
+                    <img id="blah" src="../preview.png" height="150" width="200" />
+                }
+            </div>
+
+            if (Model.BlogPostId != default(Guid))
+            {
+                <div class="panel-body">
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-warning ">@Resourse.update</button>
+                    </div>
+                    <div class="btn-group pull-right">
+                        <div class="pull-right">
+                            @Html.ActionLink(@Resourse.cancel, "ManagementBlogPost", "Admin", new { @class = "btn btn-danger" })
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <button type="submit" class="btn btn-success">@Resourse.button_insert</button>
+            }
+
+        }
+    </div>
+
+    @if (Model.Message != null)
+    {
+        if (Model.Success)
+        {
+            <div class="alert alert-success" name="alert" role="alert">@Model.Message</div>
         }
         else
         {
-            <button type="submit" class="btn btn-success">@Resourse.button_insert</button>
+            <div class="alert alert-danger" name="alert" role="alert">@Model.Message</div>
         }
-
     }
-</div>
 
-@if (Model.Message != null)
-{
-    if (Model.Success)
+    @if (Model.BlogPosts != null && Model.BlogPosts.Any())
     {
-        <div class="alert alert-success" name="alert" role="alert">@Model.Message</div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="row">@Resourse.number</th>
+                    <th class="text-center" scope="row">@Resourse.column_icon</th>
+                    <th class="text-center" scope="col">@Resourse.column_title_blog_post</th>
+                    <th class="text-center" scope="col">@Resourse.blog_post_text</th>
+                    <th class="text-center" scope="col">@Resourse.column_actions</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @for (int i = 0; i < Model.BlogPosts.Count; i++)
+                {
+                    var temp = Model.BlogPosts[i];
+                    var count = i + 1;
+                    <tr>
+                        <th class="text-center" scope="row" style="vertical-align: middle;"> @count</th>
+                        <td class="text-center" style="vertical-align: middle;"><img src="data:image/png;base64, @temp.Photo" alt="" border=3 height=150 width=250 /> </td>
+                        <td class="text-center" style="vertical-align: middle;">@temp.Title</td>
+                        <td class="text-center" style="vertical-align: middle;">
+                            <div style="width: 250px; height: 200px; word-wrap: break-word; overflow: hidden;">
+                                @Html.Raw(@temp.Text)
+                            </div>
+                        </td>
+                        <td class="text-center" style="vertical-align: middle;">
+                            @using (Html.BeginForm("EditBlogPost", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "editBlogPostForm" }))
+                            {
+                                <div class="panel-body">
+                                    <button type="submit" class="btn btn-warning btn-block">@Resourse.edit</button>
+                                </div>
+                            }
+                            @using (Html.BeginForm("DeleteBlogPost", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "deleteBlogPostForm" }))
+                            {
+                                <div class="panel-body">
+                                    <button type="submit" class="btn btn-danger btn-block">@Resourse.button_delete</button>
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
     else
     {
-        <div class="alert alert-danger" name="alert" role="alert">@Model.Message</div>
+        <div class="jumbotron margin-top-25">
+            <h2 class="text-center">@Resourse.blog_post_no_available</h2>
+        </div>
     }
-}
-
-@if (Model.BlogPosts != null && Model.BlogPosts.Any())
-{
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th class="text-center" scope="row">@Resourse.number</th>
-                <th class="text-center" scope="row">@Resourse.column_icon</th>
-                <th class="text-center" scope="col">@Resourse.column_title_blog_post</th>
-                <th class="text-center" scope="col">@Resourse.blog_post_text</th>
-                <th class="text-center" scope="col">@Resourse.column_actions</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @for (int i = 0; i < Model.BlogPosts.Count; i++)
-            {
-                var temp = Model.BlogPosts[i];
-                var count = i + 1;
-                <tr>
-                    <th class="text-center"scope="row" style="vertical-align: middle;"> @count</th>
-                    <td class="text-center" style="vertical-align: middle;"><img src="data:image/png;base64, @temp.Photo" alt="" border=3 height=150 width=250 /> </td>
-                    <td class="text-center" style="vertical-align: middle;">@temp.Title</td>
-                    <td class="text-center" style="vertical-align: middle;">
-                        <div style="width: 250px; height: 200px; word-wrap: break-word; overflow: hidden;">
-                            @Html.Raw(@temp.Text)
-                        </div>
-                    </td>
-                    <td class="text-center" style="vertical-align: middle;">
-                        @using (Html.BeginForm("EditBlogPost", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "editBlogPostForm" }))
-                        {
-                            <div class="panel-body">
-                                <button type="submit" class="btn btn-warning btn-block">@Resourse.edit</button>
-                            </div>
-                        }
-                        @using (Html.BeginForm("DeleteBlogPost", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "deleteBlogPostForm" }))
-                        {
-                            <div class="panel-body">
-                                <button type="submit" class="btn btn-danger btn-block">@Resourse.button_delete</button>
-                            </div>
-                        }
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <div class="jumbotron margin-top-25">
-        <h2 class="text-center">@Resourse.blog_post_no_available</h2>
-    </div>
-}
+</div>

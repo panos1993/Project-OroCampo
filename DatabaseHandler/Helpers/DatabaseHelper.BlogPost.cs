@@ -59,7 +59,7 @@
             }
         }
 
-        public static async Task<List<BlogPost>> GetBlogPosts(string connectionString)
+        public static async Task<List<BlogPost>> GetBlogPosts(string connectionString, bool numberOfRecordsWeWantToReturn = false)
         {
             // We create an sql connection 
             using (var sqlConnection = new SqlConnection(connectionString))
@@ -67,7 +67,7 @@
                 // Open the connection async
                 await sqlConnection.OpenAsync();
 
-                var query = "SELECT * FROM [dbo].[BlogPost] (NOLOCK)";
+                var query = "SELECT TOP (2) * FROM [dbo].[BlogPost] (NOLOCK)";
 
                 var blogPosts = await sqlConnection.QueryAsync<BlogPost>(query);
 

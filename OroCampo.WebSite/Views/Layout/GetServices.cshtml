@@ -1,0 +1,7 @@
+﻿
+@model  OroCampo.WebSite.Models.LayoutServicesModel
+
+@foreach (var service in Model.Services)
+{
+    <li>@Html.ActionLink(service.Title, "Index", "Products")</li>
+}

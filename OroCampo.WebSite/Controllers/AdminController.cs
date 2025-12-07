@@ -1,10 +1,14 @@
 ﻿
 
 using System;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using ImageProcessor;
+using ImageProcessor.Imaging.Formats;
+using ImageProcessor.Processors;
 
 namespace OroCampo.WebSite.Controllers
 {
@@ -15,6 +19,8 @@ namespace OroCampo.WebSite.Controllers
     using Models;
     using ConfigurationManager = System.Configuration.ConfigurationManager;
     using System.Collections.Generic;
+
+    using OroCampo.WebSite.Models.Admin;
 
     public class AdminController : Controller
     {
@@ -119,9 +125,11 @@ namespace OroCampo.WebSite.Controllers
                     Message = message,
                     Success = success,
 
+                    Title = editPhoto.Title,
                     PhotoDescription = editPhoto.Description,
                     PhotoCategoryId = editPhoto.CategoryId,
                     PhotoData = editPhoto.PhotoData,
+                    Thumbnail = editPhoto.Thumbnail,
                     PhotoId = editGuid.ToGuid()
                 };
 
@@ -136,7 +144,7 @@ namespace OroCampo.WebSite.Controllers
 
         public async Task<ActionResult> ManagementService(string message = null, bool success = false, Guid? editGuid = null)
         {
-            var services = await DatabaseHelper.GetServices(ConfigurationManager.AppSettings["ConnectionString"]);
+            var services = await DatabaseHelper.GetServices(ConfigurationManager.AppSettings["ConnectionString"], true);
 
             ServiceModel model;
 
@@ -269,7 +277,8 @@ namespace OroCampo.WebSite.Controllers
         [ValidateInput(false)]
         public async Task<ActionResult> SavePhoto(PhotoModel model, HttpPostedFileBase file)
         {
-            string imageData = null;
+            string imageData = null, thumbnail = null;
+            
             if (model.PhotoId != default(Guid))
             {
                 var success = await UpdatePhoto(model, file);
@@ -286,18 +295,46 @@ namespace OroCampo.WebSite.Controllers
                 }
 
                 imageData = Convert.ToBase64String(thePictureAsBytes);
-            }
 
+                thumbnail = Resize(thePictureAsBytes);
+            }
+            
             var photoToAdd = new Photo()
             {
+                Title = model.Title,
                 Description = model.PhotoDescription,
                 PhotoData = imageData,
+                Thumbnail = thumbnail,
                 CategoryId = model.PhotoCategoryId
             };
 
             await DatabaseHelper.SavePhoto(photoToAdd, ConfigurationManager.AppSettings["ConnectionString"]);
 
             return RedirectToAction("ManagementPhoto", "Admin");
+        }
+
+        private string Resize(byte[] photoBytes)
+        {
+            // Format is automatically detected though can be changed.
+            ISupportedImageFormat format = new JpegFormat { Quality = 85 };
+            Size size = new Size(270, 0);
+            using (MemoryStream inStream = new MemoryStream(photoBytes))
+            {
+                using (MemoryStream outStream = new MemoryStream())
+                {
+                    // Initialize the ImageFactory using the overload to preserve EXIF metadata.
+                    using (ImageFactory imageFactory = new ImageFactory(preserveExifData: true))
+                    {
+                        // Load, resize, set the format and quality and save an image.
+                        imageFactory.Load(inStream)
+                            .Resize(size)
+                            .Format(format)
+                            .Save(outStream);
+                    }
+                    // Do something with the stream.
+                    return Convert.ToBase64String(outStream.ToArray());
+                }
+            }
         }
 
         [ValidateInput(false)]
@@ -485,7 +522,7 @@ namespace OroCampo.WebSite.Controllers
 
         public async Task<bool> UpdatePhoto(PhotoModel model, HttpPostedFileBase file)
         {
-            string imageData = model.PhotoData;
+            string imageData = model.PhotoData, thumbnail=null;
             if (file != null)
             {
                 var theFileName = Path.GetFileName(file.FileName);
@@ -496,12 +533,15 @@ namespace OroCampo.WebSite.Controllers
                 }
 
                 imageData = Convert.ToBase64String(thePictureAsBytes);
+                thumbnail = Resize(thePictureAsBytes);
             }
             var photoUpdate = new Photo()
             {
                 Id = model.PhotoId,
+                Title = model.Title,
                 Description = model.PhotoDescription,
                 PhotoData = imageData,
+                Thumbnail = thumbnail,
                 CategoryId = model.PhotoCategoryId
             };
 

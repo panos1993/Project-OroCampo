@@ -1,4 +1,4 @@
-﻿@model OroCampo.WebSite.Models.PhotoCategoryModel
+﻿@model OroCampo.WebSite.Models.Admin.PhotoCategoryModel
 
 @{
     ViewBag.Title = "Index";
@@ -7,73 +7,76 @@
 
 @Html.Partial("CheckIfAuthenticated")
 
-<div class="jumbotron margin-top-25">
-    <h1>@Resourse.photo_category</h1>
-    <p class="lead">@Resourse.photo_category_first_text</p>
-    <hr>
-    <p>@Resourse.photo_category_second_text</p>
-    <hr>
-    @using (Html.BeginForm("SavePhotoCategory", "Admin", FormMethod.Post, new { @class = "form-inline", role = "form", id = "saveProgramForm" }))
+<div class="container main-body-margin-top">
+
+    <div class="jumbotron margin-top-25">
+        <h1>@Resourse.photo_category</h1>
+        <p class="lead">@Resourse.photo_category_first_text</p>
+        <hr>
+        <p>@Resourse.photo_category_second_text</p>
+        <hr>
+        @using (Html.BeginForm("SavePhotoCategory", "Admin", FormMethod.Post, new { @class = "form-inline", role = "form", id = "saveProgramForm" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <label for="photoCategoryName">@Resourse.category_text_box_label</label>
+                @Html.TextBoxFor(m => m.NewPhotoCategoryName, new { id = "photoCategoryName", @class = "form-control", @required = "required" })
+            </div>
+
+            <button type="submit" class="btn btn-success">@Resourse.button_insert</button>
+        }
+    </div>
+
+    @if (Model.Message != null)
     {
-        @Html.AntiForgeryToken()
-
-        <div class="form-group">
-            <label for ="photoCategoryName">@Resourse.category_text_box_label</label>
-            @Html.TextBoxFor(m => m.NewPhotoCategoryName, new { id = "photoCategoryName", @class = "form-control", @required = "required" })
-        </div>
-
-        <button type="submit" class="btn btn-success">@Resourse.button_insert</button>
+        if (Model.Success)
+        {
+            <div class="alert alert-success" name="alert" role="alert">@Model.Message</div>
+        }
+        else
+        {
+            <div class="alert alert-danger" name="alert" role="alert">@Model.Message</div>
+        }
     }
-</div>
 
-@if (Model.Message != null)
-{
-    if (Model.Success)
+    @if (Model.PhotoCategories != null && Model.PhotoCategories.Any())
     {
-        <div class="alert alert-success" name="alert" role="alert">@Model.Message</div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="row">@Resourse.column_id</th>
+                    <th class="text-center" scope="col">@Resourse.column_name_category</th>
+                    <th class="text-center" scope="col">@Resourse.column_actions</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @for (int i = 0; i < Model.PhotoCategories.Count; i++)
+                {
+                    var temp = Model.PhotoCategories[i];
+                    var count = i + 1;
+
+                    <tr>
+                        <th class="text-center" scope="row">@count</th>
+                        <td class="text-center">@temp.Name</td>
+                        <td class="text-center">
+                            @using (Html.BeginForm("DeletePhotoCategory", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "DeletePhotoForm" }))
+                            {
+                                <button type="submit" class="btn btn-danger">@Resourse.button_delete</button>
+                            }
+
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
     else
     {
-        <div class="alert alert-danger" name="alert" role="alert">@Model.Message</div>
+        <div class="jumbotron margin-top-25">
+            <h2 class="text-center">@Resourse.photo_category_no_categories_available</h2>
+        </div>
     }
-}
-
-@if (Model.PhotoCategories != null && Model.PhotoCategories.Any())
-{
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th class="text-center" scope="row">@Resourse.column_id</th>
-                <th class="text-center" scope="col">@Resourse.column_name_category</th>
-                <th class="text-center" scope="col">@Resourse.column_actions</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @for (int i = 0; i < Model.PhotoCategories.Count; i++)
-            {
-                var temp = Model.PhotoCategories[i];
-                var count = i + 1;
-
-                <tr>
-                    <th class="text-center" scope="row">@count</th>
-                    <td class="text-center">@temp.Name</td>
-                    <td class="text-center">
-                        @using (Html.BeginForm("DeletePhotoCategory", "Admin", new { id = temp.Id }, FormMethod.Get, new { role = "form", id = "DeletePhotoForm" }))
-                        {
-                            <button type="submit" class="btn btn-danger">@Resourse.button_delete</button>
-                        }
-
-
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <div class="jumbotron margin-top-25">
-        <h2 class="text-center">@Resourse.photo_category_no_categories_available</h2>
-    </div>
-}
+</div>

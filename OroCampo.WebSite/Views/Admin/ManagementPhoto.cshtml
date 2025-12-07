@@ -2,116 +2,125 @@
 @using System.Web.Mvc.Html
 @using OroCampo.Models.Database
 @using OroCampo.WebSite.Controllers
-@model OroCampo.WebSite.Models.PhotoModel
+@model OroCampo.WebSite.Models.Admin.PhotoModel
 
 @Html.Partial("CheckIfAuthenticated")
 
-<div class="jumbotron margin-top-25">
-    <h1>@Resourse.photo</h1>
-    <p class="lead">@Resourse.photo_first_text</p>
-    <hr>
-    <p>@Resourse.photo_second_text <a href="ManagementPhotoCategory">@Resourse.add_photo_category_link</a>).</p>
-    @*<hr>*@
+<div class="container main-body-margin-top">
 
-    @using (Html.BeginForm("SavePhoto", "Admin", FormMethod.Post, new { role = "form", id = "savePhotoForm", enctype = "multipart/form-data" }))
-    {
-        @Html.AntiForgeryToken()
+    <div class="jumbotron margin-top-25">
+        <h1>@Resourse.photo</h1>
+        <p class="lead">@Resourse.photo_first_text</p>
+        <hr>
+        <p>@Resourse.photo_second_text <a href="ManagementPhotoCategory">@Resourse.add_photo_category_link</a>).</p>
+        @*<hr>*@
 
-        @Html.HiddenFor(m => m.PhotoId)
-        @Html.HiddenFor(m => m.PhotoData)
-        <div class="form-group">
-            <label for="edit">@Resourse.description</label>
-            <div id="editor">
-                @Html.TextAreaFor(m => m.PhotoDescription, new { id = "edit", @class = "form-control", rows = 30, @required = "required" })
-            </div>
-        </div>
-        <div class="form-group">
-            <label>@Resourse.category_photo</label>
-            @Html.DropDownListFor(model => model.PhotoCategoryId, Model.Categories, @Resourse.category, new { @class = "form-control", @required = "required" })
-        </div>
-        <div class="form-group">
-            <label for="file">@Resourse.picture_file</label> <br />
-            <div class="col-12" style="width: 100%; ">
-                <div class="input-group">
-                    <label class="input-group-btn">
-                        <span class="btn btn-primary">
-                            @Resourse.open_image&hellip;
-                            @Html.TextBox("file", "File", new { id = "file", type = "file", style = "display: none;" })
-                            @Html.ValidationMessageFor(model => model.PhotoData)
-                        </span>
-                    </label>
-                    <input type="text" class="form-control" readonly>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>@Resourse.image_preview</label><br />
-            @if (Model.PhotoData != null)
-            {
-                <img id="blah" src="data:image/png;base64, @Model.PhotoData" height="150" width="200" />
-            }
-            else
-            {
-                <img id="blah" src="../preview.png" height="150" width="200" />
-            }
-        </div>
-
-        if (Model.PhotoId != default(Guid))
+        @using (Html.BeginForm("SavePhoto", "Admin", FormMethod.Post, new { role = "form", id = "savePhotoForm", enctype = "multipart/form-data" }))
         {
-            <div class="panel-body">
-                <div class="btn-group">
-                    <button type="submit" class="btn btn-warning ">@Resourse.update</button>
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(m => m.PhotoId)
+            @Html.HiddenFor(m => m.PhotoData)
+
+            <div class="form-group">
+                <label for="photoTitle">@Resourse.title_photo</label>
+                @Html.TextBoxFor(m => m.Title, new { id = "photoTitle", @class = "form-control", @required = "required" })
+            </div>
+            <div class="form-group">
+                <label for="edit">@Resourse.description</label>
+                <div id="editor">
+                    @Html.TextAreaFor(m => m.PhotoDescription, new { id = "edit", @class = "form-control", rows = 30, @required = "required" })
                 </div>
-                <div class="btn-group pull-right">
-                    <div class="pull-right">
-                        @Html.ActionLink(@Resourse.cancel, "ManagementPhoto", "Admin", new { @class = "btn btn-danger" })
+            </div>
+            <div class="form-group">
+                <label>@Resourse.category_photo</label>
+                @Html.DropDownListFor(model => model.PhotoCategoryId, Model.Categories, @Resourse.category, new { @class = "form-control", @required = "required" })
+            </div>
+            <div class="form-group">
+                <label for="file">@Resourse.picture_file</label> <br />
+                <div class="col-12" style="width: 100%; ">
+                    <div class="input-group">
+                        <label class="input-group-btn">
+                            <span class="btn btn-primary">
+                                @Resourse.open_image&hellip;
+                                @Html.TextBox("file", "File", new { id = "file", type = "file", style = "display: none;" })
+                                @Html.ValidationMessageFor(model => model.PhotoData)
+                            </span>
+                        </label>
+                        <input type="text" class="form-control" readonly>
                     </div>
                 </div>
             </div>
+
+            <div class="form-group">
+                <label>@Resourse.image_preview</label><br />
+                @if (Model.PhotoData != null)
+                {
+                    <img id="blah" src="data:image/png;base64, @Model.PhotoData" height="150" width="200" />
+                }
+                else
+                {
+                    <img id="blah" src="../preview.png" height="150" width="200" />
+                }
+            </div>
+
+            if (Model.PhotoId != default(Guid))
+            {
+                <div class="panel-body">
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-warning ">@Resourse.update</button>
+                    </div>
+                    <div class="btn-group pull-right">
+                        <div class="pull-right">
+                            @Html.ActionLink(@Resourse.cancel, "ManagementPhoto", "Admin", new { @class = "btn btn-danger" })
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <button type="submit" class="btn btn-success">@Resourse.button_insert</button>
+            }
+
+        }
+    </div>
+
+    @if (Model.Message != null)
+    {
+        if (Model.Success)
+        {
+            <div class="alert alert-success" name="alert" role="alert">@Model.Message</div>
         }
         else
         {
-            <button type="submit" class="btn btn-success">@Resourse.button_insert</button>
+            <div class="alert alert-danger" name="alert" role="alert">@Model.Message</div>
         }
-
     }
-</div>
 
-@if (Model.Message != null)
-{
-    if (Model.Success)
+    @if (Model.Photos != null && Model.Photos.Any())
     {
-        <div class="alert alert-success" name="alert" role="alert">@Model.Message</div>
-    }
-    else
-    {
-        <div class="alert alert-danger" name="alert" role="alert">@Model.Message</div>
-    }
-}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="row">@Resourse.number</th>
+                    <th class="text-center" scope="row">@Resourse.column_icon</th>
+                    <th class="text-center" scope="row">@Resourse.title_photo</th>
+                    <th class="text-center" scope="col">@Resourse.category_photo</th>
+                    <th class="text-center" scope="col">@Resourse.description_photo</th>
+                    <th class="text-center" scope="col">@Resourse.column_actions</th>
+                </tr>
+            </thead>
+            <tbody>
 
-@if (Model.Photos != null && Model.Photos.Any())
-{
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th class="text-center" scope="row">@Resourse.number</th>
-                <th class="text-center" scope="row">@Resourse.column_icon</th>
-                <th class="text-center" scope="col">@Resourse.category_photo</th>
-                <th class="text-center" scope="col">@Resourse.description_photo</th>
-                <th class="text-center" scope="col">@Resourse.column_actions</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @for (int i = 0; i < Model.Photos.Count; i++)
-            {
-                var temp = Model.Photos[i];
-                var count = i + 1;
+                @for (int i = 0; i < Model.Photos.Count; i++)
+                {
+                    var temp = Model.Photos[i];
+                    var count = i + 1;
 
                 <tr>
                     <th class="text-center" scope="row" style="vertical-align: middle;">@count</th>
-                    <td class="text-center" style="vertical-align: middle;"><img src="data:image/png;base64, @temp.PhotoData" alt="" border=3 height=150 width=250 /> </td>
+                    <td class="text-center" style="vertical-align: middle;"><img src="data:image/png;base64, @temp.Thumbnail" alt="" border=3 height=150 width=250 /> </td>
+                    <td class="text-center" style="vertical-align: middle;"> @temp.Title</td>
                     <td class="text-center" style="vertical-align: middle;"> @temp.PhotoCategoryName</td>
                     <td class="text-center" style="vertical-align: middle;">
                         <div style="width: 250px; height: 200px; word-wrap: break-word; overflow: hidden;">
@@ -134,13 +143,14 @@
 
                     </td>
                 </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <div class="jumbotron margin-top-25">
-        <h2 class="text-center">@Resourse.photos_no_available</h2>
-    </div>
-}
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="jumbotron margin-top-25">
+            <h2 class="text-center">@Resourse.photos_no_available</h2>
+        </div>
+    }
+</div>
